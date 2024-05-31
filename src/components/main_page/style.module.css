@@ -2,12 +2,13 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 35%, black 100%), url('/public/background_main/bg.png');
   background-size: cover;
   background-position: center 65%;
   background-repeat: no-repeat;
   position: relative;
+  /* overflow: hidden; */
 }
 
 body::after {
@@ -16,39 +17,37 @@ body::after {
   position: absolute;
   top: 100%;
   width: 100%;
-  height: 280vh;
+  height: 80vh;
   background-color: rgb(0, 0, 0);
   z-index: -1;
-  /* outline: 11px solid rgb(0, 149, 255); */
-
 }
 
 .licenses {
   background-color: #67030d;
   width: 100%;
-  max-height: 200vh;
-  margin-top: 200vh;
+  height: fit-content;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 .licensesmain {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
-  gap: 20px; 
+  gap: 30px;
   padding: 0 20px; 
   width: 100%;
   max-width: 1600px; 
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  padding-bottom: 20px;
 }
 
 .licenseCard {
   background-color: rgba(255, 255, 255, 0.1); 
-  padding: 30px;
+  padding: 20px;
   text-align: center;
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -56,8 +55,7 @@ body::after {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-top: 35px;
-  /* margin-inline: 20px; */
+  margin-top: 5px;
 }
 
 .licenseCard .title {
@@ -118,7 +116,6 @@ body::after {
   background-color: black;
   margin: 5% auto; 
   padding: 20px;
-  /* border: 1px solid #888; */
   width: 80%; 
   max-width: 1800px;
   max-height: 70vh;
@@ -137,7 +134,6 @@ body::after {
 
 .close:hover,
 .close:focus {
-  /* color: black; */
   text-decoration: none;
   cursor: pointer;
 }
@@ -155,21 +151,30 @@ body::after {
 
 .test {
   color: aliceblue;
-  height: 400px;
+  height: 100vh;
+}
+
+.eq{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .purchaseText {
   width: fit-content;
   height: fit-content;
+  margin-top: 4px;
   margin-left: 10px;
-  font-size: 28px;
+  font-size: 20px;
   color: #67030d;
 }
 
 .tagText {
   width: fit-content;
   height: fit-content;
-  font-size: 23px;
+  font-size: 15px;
   color: aliceblue;
   transition: 0.5s ease;
 }
@@ -186,9 +191,7 @@ body::after {
   width: fit-content;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .beatHeatLogo {
@@ -198,6 +201,7 @@ body::after {
 
 .beatInfo {
   margin-right: 10vw;
+  margin-top: 10px;
 }
 
 tr, th {
@@ -213,41 +217,42 @@ tr, th {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
 
 .cartPriceImg {
   min-width: 40px;
   min-height: 35px;
+  margin-top: 2px;
 }
 
 .share {
-  width: 65px;
-  height: 55px;
+  width: 50px;
+  height: 40px;
   background-color: #67030d;
   border: none;
   margin-left: 10px;
+  margin-top: 10px;
 }
 
-/* .shareImg {
-  filter: brightness(150%);
+.shareImg {
+  width: 60px;
+  height: 60px;
 }
-
-.share:hover > .shareImg {
-  filter: brightness(100%);
-} */
 
 .tag {
   background-color: #67030d;
   border: none;
   color: azure;
-  font-size: 20px;
+  font-size: 15px;
   margin-left: 10px;
-  height: 55px;
+  height: 40px;
   width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 30px;
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
 .tag:hover {
@@ -259,14 +264,15 @@ tr, th {
 }
 
 .purchase {
-  width: 200px;
-  min-width: 150px;
-  height: 60px;
-  padding: 10px;
+  width: 130px;
+  min-width: 130px;
+  height: 40px;
+  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  top: 5px;
 }
 
 .beatInfo {
@@ -280,17 +286,17 @@ tr, th {
 
 .featuredText {
   color: aliceblue;
-  font-size: 20px;
+  font-size: 15px;
   width: 300px;
+  margin-top: 30px;
 }
 
 .beatName {
   width: fit-content;
   height: fit-content;
   color: whitesmoke;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
-  /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .searcher {
@@ -311,7 +317,6 @@ tr, th {
 
 .searchButton {
   font-weight: bold;
-  /* outline: 1px solid green; */
   color: rgb(63, 1, 1);
   font-size: 20px;
   border: none;
@@ -324,10 +329,45 @@ tr, th {
 }
 
 .searcherContainer {
-  /* outline: 2px solid blue; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 14%;
+}
+
+.footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 0px;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footerColumn h3 {
+  margin-bottom: 10px;
+}
+
+.footerColumn p {
+  margin: 5px 0;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.socialIcons span {
+  background: white;
+  color: black;
+  border-radius: 50%;
+  padding: 10px;
 }
