@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './style.module.css';
 import Header from '../header/index';
 import Footer from '../footer/index';
-import { Button, Image } from 'antd'
+import { Button, Image, Typography } from 'antd'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,19 +26,54 @@ const Main = () => {
         />
         <span className={styles.searchButton}>Search</span>
         
-        <Button type="default">gfdgfh</Button>
+        {/* <Button type="default">gfdgfh</Button> */}
       </div>
-      <div className={styles.beatHeat}>
-        <Image 
-          className={styles.beatHeatLogo}
-          src='/mainPage/previewBeatLogo.jpg'
-        >
-        </Image>
-        <div className={styles.beatInfo}>
-          <div className={styles.beatName}>
+      <div className={styles.featuredBeat}>
+        <div className={styles.beatHeat}>
+          <Image 
+            className={styles.beatHeatLogo}
+            src='/mainPage/previewBeatLogo.jpg'
+            preview={false}
+          >
+          </Image>
+          <div className={styles.beatInfo}>
+            <div className={styles.featuredText}>Featured Track  •  102BPM</div>
+            <div className={styles.beatName}>
+              Risky
+            </div>
+            <div className={styles.previewBeatButtons}>
+              <Button className={styles.purchase}>
+                <Image
+                  preview={false} 
+                  className={styles.cartPriceImg}
+                  src='/mainPage/cart1.png'
+                ></Image>
+                <Typography.Text className={styles.purchaseText}>$34.95</Typography.Text>
+              </Button>
+              <Button className={styles.share}>
+                <Image 
+                preview={false} 
+                src='/mainPage/share.png' 
+                className={styles.shareImg}
+                ></Image>
+              </Button>
+              <Button className={styles.tag}>
+                <Typography.Text className={styles.tagText}>ohgeesy</Typography.Text>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+      <table>
+        <tr>
+          <th>BEAT</th>
+          <th>TITLE</th>
+          <th>TIME</th>
+          <th>TAGS</th>
+          <th>LINKS</th>
+          </tr>
+      </table>
+      <div className={styles.test}>fgf</div>
       <div className={styles.licenses}>
         <div className={styles.licenseinfo}>Licensing Info</div>
         <div className={styles.licensesmain}>
