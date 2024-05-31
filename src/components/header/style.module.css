@@ -1,0 +1,50 @@
+.header {
+  background-color: black;
+  width: 100%;
+  height: 5.5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerCase {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: aliceblue;
+  height: 100%;
+  width: fit-content;
+  height: 50;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.headerCase:hover {
+  border-bottom: 2px solid white;
+}
+
+.lypa {
+  width: 30px;
+  height: 30px;
+}
+
+.headerMenu {
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+}
