@@ -47,7 +47,10 @@ const Main = () => {
                 ></Image>
                 <Typography.Text className={styles.purchaseText}>$34.95</Typography.Text>
               </Button>
-              <Button className={styles.share}>
+              <Button 
+              className={styles.share}
+              type="primary"
+              >
                 <Image 
                 preview={false} 
                 src='/mainPage/share.png' 

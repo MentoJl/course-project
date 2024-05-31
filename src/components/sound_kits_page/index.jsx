@@ -1,2 +1,0 @@
-vladik lox
-vladik lox
