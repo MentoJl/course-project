@@ -7,3 +7,103 @@
   outline: 11px solid yellow;
 
 } */
+
+.footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  display: flex;
+  height: 40vh;
+  font-size: 15px;
+  /* flex-direction: column; */
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.footerColumn h3 {
+  margin-bottom: 5px;
+  margin-top: 13px;
+  font-size: 14px;
+  /* border: 2px rgb(255, 255, 255) solid; */
+}
+
+.footerColumn p {
+  margin: 5px 0;
+
+  /* border: 2px rgb(255, 255, 255) solid; */
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.socialIcons span {
+  background: blue;
+  color: black;
+  border-radius: 50%;
+  padding: 5px; /* Уменьшите значение для уменьшения высоты */
+  font-size: 12px; /* Уменьшите размер текста для уменьшения высоты */
+}
+
+.youtube {
+  width: 30px; /* Задайте нужный размер для логотипа */
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 50%; /* Если нужно сделать круглые иконки */
+  border: 1px black solid;
+  filter: invert(100%);
+  cursor: pointer;
+}
+
+.instagram {
+  width: 30px; /* Задайте нужный размер для логотипа */
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 50%; /* Если нужно сделать круглые иконки */
+  border: 1px black solid;
+  filter: invert(100%);
+  cursor: pointer;
+}
+
+.facebook {
+  width: 30px; /* Задайте нужный размер для логотипа */
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 50%; /* Если нужно сделать круглые иконки */
+  border: 1px black solid;
+  filter: invert(100%);
+  cursor: pointer;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Выравнивание логотипа и текста по левому краю */
+  width: 100%;
+}
+
+.logo {
+  max-width: 120px;
+  max-height: 50px;
+  margin-left: 5px; /* Смещает логотип вправо */
+  cursor: pointer;
+}
+
+.hoverUnderline {
+  text-decoration: none; /* Убирает подчеркивание по умолчанию */
+  transition: text-decoration 0.3s; /* Плавный переход */
+  cursor: pointer;
+}
+
+.hoverUnderline:hover {
+  text-decoration: underline; /* Добавляет подчеркивание при наведении */
+}
