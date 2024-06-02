@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Заставляет основной контейнер занимать всю высоту окна */
+}
+
+.content {
+  flex: 1; /* Заставляет контент занимать все доступное пространство */
+  padding: 20px;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
