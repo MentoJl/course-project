@@ -1,11 +1,12 @@
 import { Button, Image, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Footer from '../footer/index' // Проверьте, что путь корректный
 import Header from '../header/index'
 import styles from './style.module.css'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const messageRef = useRef(null)
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -13,6 +14,20 @@ const Main = () => {
 
   const closeModal = () => {
     setIsModalOpen(false)
+  }
+
+  useEffect(() => {
+    const messageTextarea = messageRef.current
+    if (messageTextarea) {
+      messageTextarea.style.height = 'auto'
+      messageTextarea.style.height = `${messageTextarea.scrollHeight}px`
+    }
+  }, [])
+
+  const handleInput = (e) => {
+    const textarea = e.target
+    textarea.style.height = 'auto'
+    textarea.style.height = `${textarea.scrollHeight}px`
   }
 
   return (
@@ -46,7 +61,7 @@ const Main = () => {
       <div className={styles.eq}>
         <Image className={styles.test} preview={false} src="/mainPage/eq.png" />
       </div>
-      <div className={styles.test}>dsadsadsadsadsadasdassdassdassdassdassdassdassdassdassdassdassdassdassdas</div>
+      <div className={styles.test}>test black background</div>
       <div className={styles.licenses}>
         <div className={styles.licenseinfo}>Licensing Info</div>
         <div className={styles.licensesmain}>
@@ -150,6 +165,51 @@ const Main = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* <div className={styles.services}>
+        <div className={styles.servicesinfo}>Services</div>
+        <div className={styles.servicesmain}>
+
+        </div>
+      </div> */}
+      <div className={styles.services}>
+        <div className={styles.servicesinfo}>Services</div>
+        <div className={styles.servicesmain}>
+          <div className={styles.serviceCard}>
+            <img className={styles.serviceImage} src="/mainPage/mixmaster.png" alt="" />
+            <p className={styles.serviceTitle}>MIX AND MASTERING</p>
+          </div>
+          <div className={styles.serviceCard}>
+            <img className={styles.serviceImage} src="/mainPage/custombeat.png" alt="" />
+            <p className={styles.serviceTitle}>CUSTOM BEAT</p>
+          </div>
+        </div>
+        <button className={styles.browseButton}>BROWSE ALL SERVICES</button>
+      </div>
+      <div className={styles.contactForm}>
+        <div className={styles.contactInfo}>Contact</div>
+        <form className={styles.form}>
+          <div className={styles.formRow}>
+            <input className={styles.inputField} type="text" placeholder="YOUR NAME" />
+          </div>
+          <div className={styles.formRow}>
+            <input className={styles.inputField} type="email" placeholder="E-MAIL ADDRESS" />
+          </div>
+          <div className={styles.formRow}>
+            <input className={styles.inputField} type="text" placeholder="SUBJECT" />
+          </div>
+          <div className={styles.formRow}>
+            <textarea
+              className={styles.textArea}
+              placeholder="MESSAGE"
+              onInput={handleInput}
+              ref={messageRef}
+            ></textarea>
+          </div>
+          <button className={styles.submitButton} type="submit">
+            SEND MESSAGE
+          </button>
+        </form>
       </div>
       <Footer />
 

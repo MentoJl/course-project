@@ -152,6 +152,9 @@ body::after {
 .test {
   color: aliceblue;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .eq {
@@ -372,3 +375,202 @@ th {
   border-radius: 50%;
   padding: 10px;
 } */
+
+/* .services {
+  background-color: #212121;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.servicesmain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1600px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+.servicesinfo {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} */
+
+.services {
+  background-color: #212121;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.servicesmain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1600px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+.servicesinfo {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.serviceImage {
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.serviceTitle {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.serviceTitle:hover {
+  text-decoration: underline; /* Добавляет подчеркивание при наведении */
+}
+
+.serviceDescription {
+  color: #bbb;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.browseButton {
+  background-color: #67030d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 70px; /* Уменьшите отступ сверху */
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  position: relative; /* Добавьте позиционирование */
+  top: -45px; /* Приподнимите кнопку выше */
+}
+.browseButton:hover {
+  background-color: #99040d;
+}
+
+.contactForm {
+  background-color: black;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+.contactInfo {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputField {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.inputField::placeholder {
+  color: white;
+}
+
+.inputField:focus {
+  outline: none; /* Убирает обводку при фокусе */
+}
+
+.textArea {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid white;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  resize: none; /* Отключаем возможность изменения размера вручную */
+  overflow-y: auto;
+  max-height: 100px; /* Максимальная высота */
+}
+
+.textArea::placeholder {
+  color: white;
+}
+
+.submitButton {
+  background-color: #67030d;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  align-self: flex-end;
+}
+
+.submitButton:hover {
+  background-color: #99040d;
+}
