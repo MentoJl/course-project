@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './style.module.css';
 import Header from '../header/index';
-import { Button, Image, Typography } from 'antd'
-import React, { useEffect, useRef, useState } from 'react'
-import Footer from '../footer/index' // Проверьте, что путь корректный
-import Header from '../header/index'
-import styles from './style.module.css'
+import BeatsTable from '../beatsTable/index';
+import { Button, Image, Typography } from 'antd';
+import Footer from '../footer/index';
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -72,6 +70,7 @@ const Main = () => {
         src='/mainPage/eq.png' >
         </Image>
       </div>
+      <BeatsTable/>
       <div className={styles.licenses}>
         <div className={styles.licenseinfo}>Licensing Info</div>
         <div className={styles.licensesmain}>
