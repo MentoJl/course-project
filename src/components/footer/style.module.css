@@ -1,23 +1,11 @@
-/* .footerarea {
-  background-color: rgb(255, 132, 0);
-  box-sizing: border-box;
-  width: 100%;
-  height: 35vh;
-  margin-top: 100%;
-  outline: 11px solid yellow;
-
-} */
-
 .footer {
   width: 100%;
   background-color: black;
   color: white;
   display: flex;
   justify-content: space-around;
-  display: flex;
   height: 40vh;
   font-size: 15px;
-  /* flex-direction: column; */
 }
 
 .footerColumn {
@@ -31,13 +19,11 @@
   margin-bottom: 5px;
   margin-top: 13px;
   font-size: 14px;
-  /* border: 2px rgb(255, 255, 255) solid; */
 }
 
-.footerColumn p {
-  margin: 5px 0;
-
-  /* border: 2px rgb(255, 255, 255) solid; */
+.footerColumn p,
+.footerColumn a {
+  margin: 10px 0; /* Increase the margin here to add more space between links */
 }
 
 .socialIcons {
@@ -50,35 +36,17 @@
   background: blue;
   color: black;
   border-radius: 50%;
-  padding: 5px; /* Уменьшите значение для уменьшения высоты */
-  font-size: 12px; /* Уменьшите размер текста для уменьшения высоты */
+  padding: 5px; /* Adjust as needed */
+  font-size: 12px; /* Adjust as needed */
 }
 
-.youtube {
-  width: 30px; /* Задайте нужный размер для логотипа */
-  height: 30px;
-  margin-top: 10px;
-  border-radius: 50%; /* Если нужно сделать круглые иконки */
-  border: 1px black solid;
-  filter: invert(100%);
-  cursor: pointer;
-}
-
-.instagram {
-  width: 30px; /* Задайте нужный размер для логотипа */
-  height: 30px;
-  margin-top: 10px;
-  border-radius: 50%; /* Если нужно сделать круглые иконки */
-  border: 1px black solid;
-  filter: invert(100%);
-  cursor: pointer;
-}
-
+.youtube,
+.instagram,
 .facebook {
-  width: 30px; /* Задайте нужный размер для логотипа */
+  width: 30px; /* Adjust as needed */
   height: 30px;
   margin-top: 10px;
-  border-radius: 50%; /* Если нужно сделать круглые иконки */
+  border-radius: 50%; /* If you want round icons */
   border: 1px black solid;
   filter: invert(100%);
   cursor: pointer;
@@ -87,23 +55,23 @@
 .logoContainer {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Выравнивание логотипа и текста по левому краю */
+  justify-content: flex-start; /* Aligns the logo and text to the left */
   width: 100%;
 }
 
 .logo {
   max-width: 120px;
   max-height: 50px;
-  margin-left: 5px; /* Смещает логотип вправо */
+  margin-left: 5px; /* Moves the logo to the right */
   cursor: pointer;
 }
 
 .hoverUnderline {
-  text-decoration: none; /* Убирает подчеркивание по умолчанию */
-  transition: text-decoration 0.3s; /* Плавный переход */
+  text-decoration: none; /* Removes default underline */
+  transition: text-decoration 0.3s; /* Smooth transition */
   cursor: pointer;
 }
 
 .hoverUnderline:hover {
-  text-decoration: underline; /* Добавляет подчеркивание при наведении */
+  text-decoration: underline; /* Adds underline on hover */
 }

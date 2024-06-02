@@ -1,0 +1,55 @@
+.main {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 50px auto;
+}
+
+.title {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.postImage {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.postContent {
+  margin-left: 20px;
+  margin-bottom: 150px;
+}
+
+.postExcerpt {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.readMoreButton {
+  background-color: #67030d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.readMoreButton:hover {
+  background-color: #99040d;
+}

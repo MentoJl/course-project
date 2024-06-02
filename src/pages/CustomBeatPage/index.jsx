@@ -8,8 +8,25 @@ const CustomBeatPage = () => {
     <div className={styles.main}>
       <Header />
       <div className={styles.content}>
-        <h1>Custom Beat Page</h1>
-        {/* Другой контент страницы */}
+        <h1>Services</h1>
+        <div className={styles.services}>
+          <div className={styles.serviceCard}>
+            <img className={styles.serviceImage} src="/mainPage/mixmaster.png" alt="Mix and Mastering" />
+            <p className={styles.serviceTitle}>MIX AND MASTERING</p>
+            <p className={styles.serviceSubtitle}>Quote Request Required</p>
+            <button className={styles.detailsButton}>
+              <b>DETAILS</b>
+            </button>
+          </div>
+          <div className={styles.serviceCard}>
+            <img className={styles.serviceImage} src="/mainPage/custombeat.png" alt="Custom Beat" />
+            <p className={styles.serviceTitle}>Custom Beat</p>
+            <p className={styles.serviceSubtitle}>Quote Request Required</p>
+            <button className={styles.detailsButton}>
+              <b>DETAILS</b>
+            </button>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>

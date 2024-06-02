@@ -1,31 +1,49 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
 
 const Header = () => {
+  const navigate = useNavigate()
+
+  const handleLogoClick = () => {
+    navigate('/')
+  }
   return (
     <div className={styles.header}>
-      <img src="/header/header.png" alt="" className={styles.logo} />
+      <div className={styles.logoContainer} onClick={handleLogoClick}>
+        <img className={styles.logo} src="/header/header.png" alt="Logo" />
+      </div>
       <div className={styles.headerMenu}>
         <div className={styles.headerCase}>
           <span>All Beats</span>
         </div>
         <div className={styles.headerCase}>
-          <span>Albums</span>
+          <span><Link to="/albums">Albums</Link></span>
         </div>
         <div className={styles.headerCase}>
           <span>
-            <Link to="/custombeat">Custom Beat</Link>
+            <Link to="/soundkits">Sound Kits</Link>
           </span>
         </div>
         <div className={styles.headerCase}>
-          <span>Faq</span>
+          <span>
+            <Link to="/custombeat">Services</Link>
+          </span>
         </div>
         <div className={styles.headerCase}>
-          <span>Contact Me</span>
+          <span>
+            <Link to="/faq">Faq</Link>
+          </span>
         </div>
         <div className={styles.headerCase}>
-          <span>About Me</span>
+          <span>
+            <Link to="/contactme">Contact Me</Link>
+          </span>
+        </div>
+        <div className={styles.headerCase}>
+          <span>
+            <Link to="/aboutme">About Me</Link>
+          </span>
         </div>
         <div className={styles.headerCase}>
           <img src="/header/lypa.png" alt="" className={styles.lypa} />
