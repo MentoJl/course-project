@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './style.module.css';
 import Header from '../header/index';
+import MyTable from '../beatsTable';
+import BeatsTable from '../beatsTable/index'
 import { Button, Image, Typography } from 'antd'
 
 const Main = () => {
@@ -66,11 +68,11 @@ const Main = () => {
       </div>
       <div className={styles.eq}>
         <Image 
-        className={styles.test}
         preview={false} 
         src='/mainPage/eq.png' >
         </Image>
       </div>
+      <BeatsTable/>
       <div className={styles.licenses}>
         <div className={styles.licenseinfo}>Licensing Info</div>
         <div className={styles.licensesmain}>
