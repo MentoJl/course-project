@@ -210,16 +210,6 @@ body::after {
   margin-top: 10px;
 }
 
-tr, th {
-  border: 1px solid wheat;
-  width: 80px;
-  height: 55px;
-  color: aliceblue;
-  font-size: 12px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif ;
-  color: #aaa;
-}
-
 .beatTableCol {
   width: 70px;
 }

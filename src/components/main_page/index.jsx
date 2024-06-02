@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styles from './style.module.css';
-import Header from '../header/index';
-import BeatsTable from '../beatsTable/index';
-import { Button, Image, Typography } from 'antd';
-import Footer from '../footer/index';
+import { Button, Image, Typography } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
+import BeatsTable from '../beatsTable/index'
+import Footer from '../footer/index'
+import Header from '../header/index'
+import styles from './style.module.css'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -50,11 +50,7 @@ const Main = () => {
                 <Typography.Text className={styles.purchaseText}>$34.95</Typography.Text>
               </Button>
               <Button className={styles.share}>
-                <Image 
-                preview={false} 
-                src='/mainPage/share.png' 
-                className={styles.shareImg}
-                ></Image>
+                <Image preview={false} src="/mainPage/share.png" className={styles.shareImg}></Image>
               </Button>
               <Button className={styles.tag}>
                 <Typography.Text className={styles.tagText}>ohgeesy</Typography.Text>
@@ -64,13 +60,9 @@ const Main = () => {
         </div>
       </div>
       <div className={styles.eq}>
-        <Image 
-        className={styles.test}
-        preview={false} 
-        src='/mainPage/eq.png' >
-        </Image>
+        <Image className={styles.test} preview={false} src="/mainPage/eq.png"></Image>
       </div>
-      <BeatsTable/>
+      <BeatsTable />
       <div className={styles.licenses}>
         <div className={styles.licenseinfo}>Licensing Info</div>
         <div className={styles.licensesmain}>
