@@ -1,3 +1,5 @@
+![image](https://github.com/MentoJl/course-project/assets/80547023/57e8a0a1-200a-4730-bfca-6a9d8cbb6098)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
