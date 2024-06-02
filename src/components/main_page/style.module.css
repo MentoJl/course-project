@@ -9,6 +9,7 @@ body {
   background-repeat: no-repeat;
   position: relative;
   /* overflow: hidden; */
+  font-family: 'Arvo', serif;
 }
 
 body::after {
@@ -31,6 +32,7 @@ body::after {
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
+  /* font-family: 'Arvo', serif; */
 }
 
 .licensesmain {
@@ -50,7 +52,7 @@ body::after {
   padding: 20px;
   text-align: center;
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,10 +93,10 @@ body::after {
 
 .licenseinfo {
   color: white;
-  font-size: 50px;
+  font-size: 35px;
   text-align: center;
   margin-bottom: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .modal {
@@ -121,7 +123,7 @@ body::after {
   max-height: 70vh;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   overflow-y: auto;
 }
 
@@ -329,7 +331,7 @@ th {
   background-color: white;
   border-radius: 0 3px 3px 0;
   cursor: pointer;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .searcherContainer {
@@ -432,10 +434,10 @@ th {
 
 .servicesinfo {
   color: white;
-  font-size: 50px;
+  font-size: 35px;
   text-align: center;
   margin-bottom: 30px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .serviceCard {
@@ -506,7 +508,7 @@ th {
   font-size: 50px;
   text-align: center;
   margin-bottom: 40px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .form {
@@ -531,7 +533,7 @@ th {
   border-bottom: 1px solid white;
   background-color: transparent;
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .inputField::placeholder {
@@ -550,7 +552,7 @@ th {
   border-bottom: 1px solid white;
   background-color: transparent;
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   resize: none; /* Отключаем возможность изменения размера вручную */
   overflow-y: auto;
   max-height: 100px; /* Максимальная высота */
