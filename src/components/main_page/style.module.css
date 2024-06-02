@@ -9,6 +9,7 @@ body {
   background-repeat: no-repeat;
   position: relative;
   /* overflow: hidden; */
+  font-family: 'Arvo', serif;
 }
 
 body::after {
@@ -17,8 +18,8 @@ body::after {
   position: absolute;
   top: 100%;
   width: 100%;
-  height: 80vh;
-  background-color: rgb(0, 0, 0);
+  height: 100%;
+  background-color: black;
   z-index: -1;
 }
 
@@ -31,26 +32,27 @@ body::after {
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
+  /* font-family: 'Arvo', serif; */
 }
 
 .licensesmain {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; 
+  justify-content: center;
   gap: 30px;
-  padding: 0 20px; 
+  padding: 0 20px;
   width: 100%;
-  max-width: 1600px; 
+  max-width: 2000px;
   box-sizing: border-box;
   padding-bottom: 20px;
 }
 
 .licenseCard {
-  background-color: rgba(255, 255, 255, 0.1); 
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 20px;
   text-align: center;
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,37 +94,40 @@ body::after {
 
 .licenseinfo {
   color: white;
-  font-size: 50px;
+  font-size: 35px;
   text-align: center;
   margin-bottom: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .modal {
   display: block;
-  position: fixed; 
-  z-index: 1; 
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  display: flex;
 }
 
-.button{
+.button {
   cursor: pointer;
+  border: none;
 }
 .modalContent {
   background-color: black;
-  margin: 5% auto; 
+  margin: 5% auto;
   padding: 20px;
-  width: 80%; 
+  width: 80%;
   max-width: 1800px;
   max-height: 70vh;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   overflow-y: auto;
 }
 
@@ -150,7 +155,12 @@ body::after {
   margin-bottom: 20px;
 }
 
-.eq{
+.test {
+  color: aliceblue;
+  height: 100vh;
+}
+
+.eq {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -201,6 +211,7 @@ body::after {
 }
 
 tr, th {
+  border: 1px solid wheat;
   width: 80px;
   height: 55px;
   color: aliceblue;
@@ -296,7 +307,7 @@ tr, th {
 }
 
 .tag:hover > .tagText {
- color: #67030d;
+  color: #67030d;
 }
 
 .purchase {
@@ -361,7 +372,7 @@ tr, th {
   background-color: white;
   border-radius: 0 3px 3px 0;
   cursor: pointer;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 .searcherContainer {
@@ -372,7 +383,7 @@ tr, th {
   margin-top: 14%;
 }
 
-.footer {
+/* .footer {
   width: 100%;
   background-color: black;
   color: white;
@@ -406,4 +417,203 @@ tr, th {
   color: black;
   border-radius: 50%;
   padding: 10px;
+} */
+
+/* .services {
+  background-color: #212121;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.servicesmain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1600px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+.servicesinfo {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} */
+
+.services {
+  background-color: #212121;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.servicesmain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1600px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+.servicesinfo {
+  color: white;
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 30px;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.serviceImage {
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.serviceTitle {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.serviceTitle:hover {
+  text-decoration: underline; /* Добавляет подчеркивание при наведении */
+}
+
+.serviceDescription {
+  color: #bbb;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.browseButton {
+  background-color: #67030d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 70px; /* Уменьшите отступ сверху */
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  position: relative; /* Добавьте позиционирование */
+  top: -45px; /* Приподнимите кнопку выше */
+}
+.browseButton:hover {
+  background-color: #99040d;
+}
+
+.contactForm {
+  background-color: black;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+.contactInfo {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 40px;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputField {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}
+
+.inputField::placeholder {
+  color: white;
+}
+
+.inputField:focus {
+  outline: none; /* Убирает обводку при фокусе */
+}
+
+.textArea {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid white;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  resize: none; /* Отключаем возможность изменения размера вручную */
+  overflow-y: auto;
+  max-height: 100px; /* Максимальная высота */
+}
+
+.textArea::placeholder {
+  color: white;
+}
+
+.submitButton {
+  background-color: #67030d;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  align-self: flex-end;
+}
+
+.submitButton:hover {
+  background-color: #99040d;
 }

@@ -46,5 +46,8 @@ span {
   align-items: center;
   justify-content: center;
   text-align: center;
-  
+}
+
+.logo {
+  cursor: pointer;
 }
