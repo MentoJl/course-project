@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerColumn}>
         <div className={styles.logoContainer}>
-          <Link to="/" onClick={scrollToTop}>
+          <Link className={styles.scrolltotop} to="/" onClick={scrollToTop}>
             <img className={styles.logo} src="/header/header.png" alt="Logo" />
           </Link>
         </div>

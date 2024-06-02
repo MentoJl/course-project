@@ -75,3 +75,7 @@
 .hoverUnderline:hover {
   text-decoration: underline; /* Adds underline on hover */
 }
+
+.scrolltotop {
+  transition: 0.6s ease;
+}
