@@ -145,6 +145,26 @@ const Main = () => {
             </div>
           </div>
           <div className={styles.licenseCard}>
+            <div className={styles.title}>Unlimited Trackout</div>
+            <div className={styles.price}>$149.95</div>
+            <div className={styles.details}>
+              <div>Stems + WAV + MP3 File</div>
+              <div>Unlimited Unit Cap</div>
+              <div>Unlimited Commercial Use</div>
+              <div>Unlimited Stream Cap</div>
+            </div>
+            <button onClick={openModal} className={styles.button}>
+              READ LICENSE
+            </button>
+            <div className={styles.bulkdeals}>
+              <div>Bulk deals:</div>
+              <div>BUY 2 TRACKS, GET 1 FREE!</div>
+              <div>BUY 3 TRACKS, GET 2 FREE!</div>
+              <div>BUY 4 TRACKS, GET 3 FREE!</div>
+              <div>BUY 5 TRACKS, GET 4 FREE!</div>
+            </div>
+          </div>
+          <div className={styles.licenseCard}>
             <div className={styles.title}>Exclusive Rights</div>
             <div className={styles.price}>MAKE AN OFFER</div>
             <div className={styles.details}>
@@ -220,7 +240,7 @@ const Main = () => {
               &times;
             </span>
             <h2>License Preview</h2>
-            <p>License details here...</p>
+            <p>text</p>
           </div>
         </div>
       )}

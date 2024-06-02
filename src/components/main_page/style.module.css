@@ -42,7 +42,7 @@ body::after {
   gap: 30px;
   padding: 0 20px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 2000px;
   box-sizing: border-box;
   padding-bottom: 20px;
 }
@@ -109,10 +109,13 @@ body::after {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  display: flex;
 }
 
 .button {
   cursor: pointer;
+  border: none;
 }
 .modalContent {
   background-color: black;
