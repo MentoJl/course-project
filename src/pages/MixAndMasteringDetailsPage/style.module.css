@@ -1,0 +1,168 @@
+.main {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex: 1;
+}
+
+.imageContainer {
+  margin-right: 20px;
+}
+
+.image {
+  max-width: 300px;
+  height: auto;
+}
+
+.infoContainer {
+  max-width: 900px;
+  margin-top: 75px;
+}
+
+.previewBeatButtons {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+
+.getQuoteButton,
+.shareButton {
+  background-color: #67030d;
+  color: white;
+  height: 40px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.getQuoteButton:hover,
+.shareButton:hover {
+  background-color: #99040d;
+}
+
+.share {
+  width: 50px;
+  height: 40px;
+  background-color: #67030d;
+  border: none;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.share:hover {
+  background-color: #67030d;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+}
+
+.modalOverlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background-color: black;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  color: white;
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal.active {
+  transform: scale(1);
+}
+
+.close {
+  /* position: absolute; */
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formRow {
+  display: flex;
+  gap: 10px;
+}
+
+.textArea {
+  min-height: 200px;
+}
+
+.inputField,
+.textArea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #000;
+  color: white;
+  resize: none;
+  overflow-y: auto;
+  /* max-height: 100px; */
+}
+
+.inputField:focus,
+.textArea:focus {
+  outline: none;
+  border-color: #67030d;
+}
+
+.submitButton {
+  background-color: #67030d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #99040d;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

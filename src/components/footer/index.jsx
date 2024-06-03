@@ -30,7 +30,7 @@ const Footer = () => {
         </Link>
       </div>
       <div className={styles.footerColumn}>
-        <Link to="/custombeat" className={styles.hoverUnderline}>
+        <Link to="/servicespage" className={styles.hoverUnderline}>
           Services
         </Link>
         <Link to="/faq" className={styles.hoverUnderline}>

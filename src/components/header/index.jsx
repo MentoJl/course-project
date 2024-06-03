@@ -18,7 +18,9 @@ const Header = () => {
           <span>All Beats</span>
         </div>
         <div className={styles.headerCase}>
-          <span><Link to="/albums">Albums</Link></span>
+          <span>
+            <Link to="/albums">Albums</Link>
+          </span>
         </div>
         <div className={styles.headerCase}>
           <span>
@@ -27,7 +29,7 @@ const Header = () => {
         </div>
         <div className={styles.headerCase}>
           <span>
-            <Link to="/custombeat">Services</Link>
+            <Link to="/servicespage">Services</Link>
           </span>
         </div>
         <div className={styles.headerCase}>

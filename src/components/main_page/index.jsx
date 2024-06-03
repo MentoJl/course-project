@@ -1,10 +1,10 @@
 import { Button, Image, Typography } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
 import styles from './style.module.css'
-import { Link } from 'react-router-dom'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -197,17 +197,18 @@ const Main = () => {
       <div className={styles.services}>
         <div className={styles.servicesinfo}>Services</div>
         <div className={styles.servicesmain}>
-          <div className={styles.serviceCard}>
+            <Link to="/services/mixandmastering" className={styles.serviceCard}>
             <img className={styles.serviceImage} src="/mainPage/mixmaster.png" alt="" />
             <p className={styles.serviceTitle}>MIX AND MASTERING</p>
-          </div>
-          <div className={styles.serviceCard}>
-            <img className={styles.serviceImage} src="/mainPage/custombeat.png" alt="" />
+            </Link>
+          <Link to="/services/custombeat" className={styles.serviceCard}>
+            <img className={styles.serviceImage} src="/mainPage/custombeat.png" alt="Custom Beat" />
             <p className={styles.serviceTitle}>CUSTOM BEAT</p>
-          </div>
+          </Link>
         </div>
         <button className={styles.browseButton}>
-        <Link to="/custombeat">BROWSE ALL SERVICES</Link></button>
+          <Link to="/servicespage">BROWSE ALL SERVICES</Link>
+        </button>
       </div>
       <div className={styles.contactForm}>
         <div className={styles.contactInfo}>Contact</div>
