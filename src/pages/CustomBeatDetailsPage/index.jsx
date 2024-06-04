@@ -1,4 +1,4 @@
-import { Button, Image, Typography } from 'antd'
+import { Button, Image } from 'antd'
 import React, { useState } from 'react'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
@@ -54,7 +54,7 @@ const CustomBeatDetailsPage = () => {
             <button className={styles.getQuoteButton} onClick={openModal}>
               <b>GET A QUOTE</b>
             </button>
-            <Button className={styles.share}>
+            <Button className={styles.share} type="primary">
               <Image preview={false} src="/mainPage/share.png" className={styles.shareImg}></Image>
             </Button>
           </div>
