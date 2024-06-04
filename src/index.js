@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Main from './components/main_page/index';
+import AllBeats from './pages/AllBeatsPage/index';
 import AboutMePage from './pages/AboutMePage/index';
 import AlbumsPage from './pages/AlbumsPage';
 import ContactMePage from './pages/ContactMePage/index';
@@ -17,11 +18,12 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Router>
-      <ScrollToTop />
+  <Router>
+    <React.StrictMode>
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/allbeats" element={<AllBeats/>}/>
         <Route path="/servicespage" element={<ServicesPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/contactme" element={<ContactMePage />} />
@@ -33,8 +35,8 @@ root.render(
         <Route path="/services/custombeat" element={<CustomBeatDetailsPage />} />
         <Route path="/services/mixandmastering" element={<MixAndMasteringDetailsPage />} />
       </Routes>
-    </Router>
-  </React.StrictMode>
+    </React.StrictMode>
+  </Router>
 );
 
 reportWebVitals();

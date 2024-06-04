@@ -15,35 +15,37 @@ const Header = () => {
       </div>
       <div className={styles.headerMenu}>
         <div className={styles.headerCase}>
-          <span>All Beats</span>
+          <span className={styles.menuCase}>
+            <Link to="/allbeats">All Beats</Link>
+          </span>
         </div>
         <div className={styles.headerCase}>
-          <span>
+          <span className={styles.menuCase}>
             <Link to="/albums">Albums</Link>
           </span>
         </div>
         <div className={styles.headerCase}>
-          <span>
+          <span className={styles.menuCase}>
             <Link to="/soundkits">Sound Kits</Link>
           </span>
         </div>
         <div className={styles.headerCase}>
-          <span>
+          <span className={styles.menuCase}>
             <Link to="/servicespage">Services</Link>
           </span>
         </div>
         <div className={styles.headerCase}>
-          <span>
+          <span className={styles.menuCase}>
             <Link to="/faq">Faq</Link>
           </span>
         </div>
         <div className={styles.headerCase}>
-          <span>
+          <span className={styles.menuCase}>
             <Link to="/contactme">Contact Me</Link>
           </span>
         </div>
         <div className={styles.headerCase}>
-          <span>
+          <span className={styles.menuCase}>
             <Link to="/aboutme">About Me</Link>
           </span>
         </div>
@@ -52,10 +54,10 @@ const Header = () => {
         </div>
         <div className={styles.headerCase}>
           <img src="/header/cart.png" alt="" className={styles.lypa} />
-          <span>$0.00</span>
+          <span className={styles.menuCase}>$0.00</span>
         </div>
         <div className={styles.headerCase}>
-          <span>Log In</span>
+          <span className={styles.menuCase}>Log In</span>
         </div>
       </div>
     </div>
