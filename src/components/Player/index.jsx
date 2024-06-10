@@ -10,6 +10,7 @@ const Player = ({ imgSrc, title, time, link, price, beatSrc }) => {
     const [imgVolumeSrc, setImgVolumeSrc] = useState('./test/volume1.png');
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const formatter = (value) => `${Math.round(value*100)}%`;
 
     useEffect(() => {
         if (audioRef.current) {
@@ -60,6 +61,15 @@ const Player = ({ imgSrc, title, time, link, price, beatSrc }) => {
                 value={currentTime}
                 onChange={handleTimeChange}
                 className={styles.timeSlider}
+                styles={{
+                        track: {
+                            background: 'white',
+                        },
+                        rail: {
+                            background: '#67030d'
+                        }
+                    }
+                }
                 tooltip={{ formatter: null }}
             />
             <div className={styles.controlsContainer}>
@@ -104,7 +114,16 @@ const Player = ({ imgSrc, title, time, link, price, beatSrc }) => {
                         defaultValue={1}
                         onChange={changeVolume}
                         className={styles.volumeSlider}
-                        tooltip={{ formatter: (value) => `${Math.round(value * 100)}%` }}
+                        styles={{
+                                track: {
+                                    background: 'white',
+                                },
+                                rail: {
+                                    background: '#67030d'
+                                }
+                            }
+                        }
+                        tooltip={{formatter}}
                     />
                 </div>
             </div>
