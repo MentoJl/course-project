@@ -1,17 +1,26 @@
-import { Button, Image, Typography } from 'antd'
+import { Button, Image, Modal, Typography } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
+import ExclusiveRights from './license_cards_content/exclusiverigths'
+import Mp3License from './license_cards_content/mp3lease'
+import TrackoutLicense from './license_cards_content/trackoutlease'
+import UnlimitedTrackoutLicense from './license_cards_content/unlimitedtrackout'
+import UnlimitedWavLicense from './license_cards_content/unlimitedwav'
+import WavLicense from './license_cards_content/wavlease'
 import styles from './style.module.css'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalContent, setModalContent] = useState('')
   const messageRef = useRef(null)
 
-  const openModal = () => {
+  const openModal = (content) => {
+    setModalContent(content)
     setIsModalOpen(true)
+    // document.body.style.overflow = 'hidden'
   }
 
   const closeModal = () => {
@@ -50,7 +59,7 @@ const Main = () => {
                 <Image preview={false} className={styles.cartPriceImg} src="/mainPage/cart.png" />
                 <Typography.Text className={styles.purchaseText}>$34.95</Typography.Text>
               </Button>
-              <Button className={styles.share}>
+              <Button type="primary" className={styles.share}>
                 <Image preview={false} src="/mainPage/share.png" className={styles.shareImg}></Image>
               </Button>
               <Button className={styles.tag}>
@@ -76,7 +85,7 @@ const Main = () => {
               <div>1 Commercial Use Only</div>
               <div>10,000 Stream Cap</div>
             </div>
-            <button onClick={openModal} className={styles.button}>
+            <button onClick={() => openModal(Mp3License)} className={styles.button}>
               READ LICENSE
             </button>
             <div className={styles.bulkdeals}>
@@ -96,7 +105,7 @@ const Main = () => {
               <div>2 Commercial Use Only</div>
               <div>50,000 Stream Cap</div>
             </div>
-            <button onClick={openModal} className={styles.button}>
+            <button onClick={() => openModal(WavLicense)} className={styles.button}>
               READ LICENSE
             </button>
             <div className={styles.bulkdeals}>
@@ -116,7 +125,7 @@ const Main = () => {
               <div>Unlimited Commercial Use</div>
               <div>Unlimited Stream Cap</div>
             </div>
-            <button onClick={openModal} className={styles.button}>
+            <button onClick={() => openModal(UnlimitedWavLicense)} className={styles.button}>
               READ LICENSE
             </button>
             <div className={styles.bulkdeals}>
@@ -135,7 +144,7 @@ const Main = () => {
               <div>2 Commercial Use Only</div>
               <div>200,000 Stream Cap</div>
             </div>
-            <button onClick={openModal} className={styles.button}>
+            <button onClick={() => openModal(TrackoutLicense)} className={styles.button}>
               READ LICENSE
             </button>
             <div className={styles.bulkdeals}>
@@ -155,7 +164,7 @@ const Main = () => {
               <div>Unlimited Commercial Use</div>
               <div>Unlimited Stream Cap</div>
             </div>
-            <button onClick={openModal} className={styles.button}>
+            <button onClick={() => openModal(UnlimitedTrackoutLicense)} className={styles.button}>
               READ LICENSE
             </button>
             <div className={styles.bulkdeals}>
@@ -175,7 +184,7 @@ const Main = () => {
               <div>Unlimited Stream Cap</div>
               <div>Exclusive Ownership</div>
             </div>
-            <button onClick={openModal} className={styles.button}>
+            <button onClick={() => openModal(ExclusiveRights)} className={styles.button}>
               READ LICENSE
             </button>
             <div className={styles.bulkdeals}>
@@ -188,19 +197,13 @@ const Main = () => {
           </div>
         </div>
       </div>
-      {/* <div className={styles.services}>
-        <div className={styles.servicesinfo}>Services</div>
-        <div className={styles.servicesmain}>
-
-        </div>
-      </div> */}
       <div className={styles.services}>
         <div className={styles.servicesinfo}>Services</div>
         <div className={styles.servicesmain}>
-            <Link to="/services/mixandmastering" className={styles.serviceCard}>
+          <Link to="/services/mixandmastering" className={styles.serviceCard}>
             <img className={styles.serviceImage} src="/mainPage/mixmaster.png" alt="" />
             <p className={styles.serviceTitle}>MIX AND MASTERING</p>
-            </Link>
+          </Link>
           <Link to="/services/custombeat" className={styles.serviceCard}>
             <img className={styles.serviceImage} src="/mainPage/custombeat.png" alt="Custom Beat" />
             <p className={styles.serviceTitle}>CUSTOM BEAT</p>
@@ -236,18 +239,21 @@ const Main = () => {
         </form>
       </div>
       <Footer />
+      <Modal title="" width="1000px" visible={isModalOpen} footer={null} onCancel={closeModal}>
+        {modalContent}
+      </Modal>
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <span className={styles.close} onClick={closeModal}>
               &times;
             </span>
             <h2>License Preview</h2>
-            <p>text</p>
+            <p>{modalContent}</p>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   )
 }

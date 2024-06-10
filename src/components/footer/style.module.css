@@ -23,7 +23,7 @@
 
 .footerColumn p,
 .footerColumn a {
-  margin: 10px 0; /* Increase the margin here to add more space between links */
+  margin: 10px 0; 
 }
 
 .socialIcons {
@@ -36,17 +36,16 @@
   background: blue;
   color: black;
   border-radius: 50%;
-  padding: 5px; /* Adjust as needed */
-  font-size: 12px; /* Adjust as needed */
+  padding: 5px; 
+  font-size: 12px; 
 }
 
 .youtube,
 .instagram,
 .facebook {
-  width: 30px; /* Adjust as needed */
-  height: 30px;
+  width: 30px; 
   margin-top: 10px;
-  border-radius: 50%; /* If you want round icons */
+  border-radius: 50%; 
   border: 1px black solid;
   filter: invert(100%);
   cursor: pointer;
@@ -55,27 +54,108 @@
 .logoContainer {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Aligns the logo and text to the left */
+  justify-content: flex-start; 
   width: 100%;
 }
 
 .logo {
   max-width: 120px;
   max-height: 50px;
-  margin-left: 5px; /* Moves the logo to the right */
+  margin-left: 5px; 
   cursor: pointer;
 }
 
 .hoverUnderline {
-  text-decoration: none; /* Removes default underline */
-  transition: text-decoration 0.3s; /* Smooth transition */
+  text-decoration: none; 
+  transition: text-decoration 1s;
   cursor: pointer;
 }
 
 .hoverUnderline:hover {
-  text-decoration: underline; /* Adds underline on hover */
+  text-decoration: underline; 
 }
 
 .scrolltotop {
   transition: 0.6s ease;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+}
+
+.modalOverlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background-color: black;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  color: white;
+  transform: translateY(-20px);
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.modal.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.close {
+  /* position: absolute; */
+  justify-content: center;
+  display: flex;
+  top: 20px; 
+  right: 50%; 
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalContent {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 20px;
+}
+
+.modalContent h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modalContent p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.modalContent ul {
+  list-style-type: disc;
+  margin-left: 20px;
 }
