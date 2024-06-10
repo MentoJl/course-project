@@ -17,7 +17,6 @@ const BeatsTable = () => {
   const [beatList, setBeatList] = useState([]);
 
   const nextSound = () => {
-    // Implement your logic for next sound
   }
 
   const handleClose = () => {
@@ -69,8 +68,8 @@ const BeatsTable = () => {
   };
 
   useEffect(() => {
-    setBeatList([]);
     addBeat('./test/testImg.png', 'Hella Crazy', '01:55', '100', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.95', './test/pelmeni.mp3');
+    addBeat('./test/testImg.png', 'Hella', '01:55', '100', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.95', './test/eurobambam.mp3');
   }, []);
 
   return (
