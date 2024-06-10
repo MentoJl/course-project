@@ -23,6 +23,7 @@ td, th {
     width: 45px;
     height: 45px;
     border-radius: 3px;
+    cursor: pointer;
   }
   
   .beatTableCol {
