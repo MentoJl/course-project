@@ -43,7 +43,7 @@ const SoundKitDetailPage = () => {
               <Image preview={false} className={styles.cartPriceImg} src="/mainPage/cart.png" />
               <Typography.Text className={styles.purchaseText}>$49.95</Typography.Text>
             </Button>
-            <Button className={styles.share}>
+            <Button className={styles.share} type="primary">
               <Image preview={false} src="/mainPage/share.png" className={styles.shareImg}></Image>
             </Button>
           </div>
