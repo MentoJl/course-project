@@ -8,16 +8,12 @@ const BeatsTable = () => {
   const [shareLink, setShareLink] = useState(['', '']);
   const [handlePlaySound, setHandlePlaySound] = useState(false);
   const [currentBeat, setCurrentBeat] = useState(null);
+  const [beatList, setBeatList] = useState([]);
 
   const showModal = (beat, link) => {
     setShareLink([beat, link]);
     setIsModalVisible(true);
   };
-
-  const [beatList, setBeatList] = useState([]);
-
-  const nextSound = () => {
-  }
 
   const handleClose = () => {
     setIsModalVisible(false);
@@ -64,12 +60,13 @@ const BeatsTable = () => {
         <span className={styles.priceText}>{price}</span>
       </Button>,
     };
-    setBeatList([...beatList, newRow]);
+    setBeatList(prevBeatList => [...prevBeatList, newRow]);
   };
 
   useEffect(() => {
+    setBeatList([]);
     addBeat('./test/testImg.png', 'Hella Crazy', '01:55', '100', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.95', './test/pelmeni.mp3');
-    addBeat('./test/testImg.png', 'Hella', '01:55', '100', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.95', './test/eurobambam.mp3');
+    addBeat('./test/testImg.png', 'Hella', '01:55', '98', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.00', './test/eurobambam.mp3');
   }, []);
 
   return (
