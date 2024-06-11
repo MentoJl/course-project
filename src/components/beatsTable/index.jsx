@@ -67,6 +67,7 @@ const BeatsTable = () => {
     setBeatList([]);
     addBeat('./test/testImg.png', 'Hella Crazy', '01:55', '100', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.95', './test/pelmeni.mp3');
     addBeat('./test/testImg.png', 'Hella', '01:55', '98', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.00', './test/eurobambam.mp3');
+    addBeat('./test/testImg.png', 'Krak', '01:55', '69', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$3.00', './test/krak.mp3');
   }, []);
 
   return (
