@@ -15,39 +15,39 @@ const Header = () => {
       </div>
       <div className={styles.headerMenu}>
         <div className={styles.headerCase}>
-          <span className={styles.menuCase}>
-            <Link to="/allbeats">All Beats</Link>
-          </span>
+          <Link to="/allbeats" className={styles.menuCase}>
+            All Beats
+          </Link>
         </div>
         <div className={styles.headerCase}>
-          <span className={styles.menuCase}>
-            <Link to="/albums">Albums</Link>
-          </span>
+          <Link to="/albums" className={styles.menuCase}>
+            Albums
+          </Link>
         </div>
         <div className={styles.headerCase}>
-          <span className={styles.menuCase}>
-            <Link to="/soundkits">Sound Kits</Link>
-          </span>
+          <Link to="/soundkits" className={styles.menuCase}>
+            Sound Kits
+          </Link>
         </div>
         <div className={styles.headerCase}>
-          <span className={styles.menuCase}>
-            <Link to="/servicespage">Services</Link>
-          </span>
+          <Link to="/servicespage" className={styles.menuCase}>
+            Services
+          </Link>
         </div>
         <div className={styles.headerCase}>
-          <span className={styles.menuCase}>
-            <Link to="/faq">Faq</Link>
-          </span>
+          <Link to="/faq" className={styles.menuCase}>
+            Faq
+          </Link>
         </div>
         <div className={styles.headerCase}>
-          <span className={styles.menuCase}>
-            <Link to="/contactme">Contact Me</Link>
-          </span>
+          <Link to="/contactme" className={styles.menuCase}>
+            Contact Me
+          </Link>
         </div>
         <div className={styles.headerCase}>
-          <span className={styles.menuCase}>
-            <Link to="/aboutme">About Me</Link>
-          </span>
+        <Link to="/aboutme" className={styles.menuCase}>
+            About Me
+            </Link>
         </div>
         <div className={styles.headerCase}>
           <img src="/header/lypa.png" alt="" className={styles.lypa} />

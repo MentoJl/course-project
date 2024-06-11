@@ -2,14 +2,15 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 35%, black 100%), url('/public/background_main/bg.png');
+  /* min-height: 100vh; */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 55%, black 100%), url('/public/background_main/bg.png');
   background-size: cover;
   background-position: center 65%;
   background-repeat: no-repeat;
   position: relative;
   /* overflow: hidden; */
   font-family: 'Arvo', serif;
+  background-color: black;
 }
 
 body::after {
@@ -18,6 +19,7 @@ body::after {
   position: absolute;
   top: 100%;
   width: 100%;
+  /* height: 300%; */
   height: 100%;
   background-color: black;
   z-index: -1;

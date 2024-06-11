@@ -1,74 +1,164 @@
-import React, { useEffect, useState } from 'react';
-import styles from './style.module.css';
-import { Button, Image, Modal } from 'antd';
-import Player from '../Player';
+import { Button, Image, Modal } from 'antd'
+import React, { useEffect, useState } from 'react'
+import Player from '../Player'
+import styles from './style.module.css'
 
 const BeatsTable = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [shareLink, setShareLink] = useState(['', '']);
-  const [handlePlaySound, setHandlePlaySound] = useState(false);
-  const [currentBeat, setCurrentBeat] = useState(null);
-  const [beatList, setBeatList] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [shareLink, setShareLink] = useState(['', ''])
+  const [handlePlaySound, setHandlePlaySound] = useState(false)
+  const [currentBeat, setCurrentBeat] = useState(null)
+  const [beatList, setBeatList] = useState([])
 
   const showModal = (beat, link) => {
-    setShareLink([beat, link]);
-    setIsModalVisible(true);
-  };
+    setShareLink([beat, link])
+    setIsModalVisible(true)
+  }
 
   const handleClose = () => {
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
   const addBeat = (imgSrc, title, time, bpm, beatTags, link, price, soundSrc) => {
     const newRow = {
       id: beatList.length + 1,
       beatPlaySrc: soundSrc,
-      img: <img
-        className={styles.beatImg}
-        src={imgSrc}
-        onClick={() => {
-          setCurrentBeat({ imgSrc, title, link, price, soundSrc });
-          setHandlePlaySound(true);
-        }}
-      />,
+      img: (
+        <img
+          className={styles.beatImg}
+          src={imgSrc}
+          onClick={() => {
+            setCurrentBeat({ imgSrc, title, link, price, soundSrc })
+            setHandlePlaySound(true)
+          }}
+        />
+      ),
       title: <span className={styles.titleText}>{title}</span>,
       time: <span className={styles.time}>{time}</span>,
       bpm: <span className={styles.bpm}>{bpm}</span>,
-      tags: beatTags.map(tag => (
+      tags: beatTags.map((tag) => (
         <Button className={styles.tag} key={tag}>
           <span className={styles.tagText}>{tag}</span>
         </Button>
       )),
-      link: <Button
-        className={styles.share}
-        onClick={() => showModal(title, link)}
-        type="primary"
-      >
-        <Image
-          preview={false}
-          src='/mainPage/share.png'
-          className={styles.shareImg}
-        />
-      </Button>,
-      price: <Button
-        className={styles.priceButton}>
-        <Image
-          className={styles.priceImg}
-          src='/mainPage/cart.png'
-          preview={false}
-        />
-        <span className={styles.priceText}>{price}</span>
-      </Button>,
-    };
-    setBeatList(prevBeatList => [...prevBeatList, newRow]);
-  };
+      link: (
+        <Button className={styles.share} onClick={() => showModal(title, link)} type="primary">
+          <Image preview={false} src="/mainPage/share.png" className={styles.shareImg} />
+        </Button>
+      ),
+      price: (
+        <Button className={styles.priceButton}>
+          <Image className={styles.priceImg} src="/mainPage/cart.png" preview={false} />
+          <span className={styles.priceText}>{price}</span>
+        </Button>
+      ),
+    }
+    setBeatList((prevBeatList) => [...prevBeatList, newRow])
+  }
 
   useEffect(() => {
-    setBeatList([]);
-    addBeat('./test/testImg.png', 'Hella Crazy', '01:55', '100', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.95', './test/pelmeni.mp3');
-    addBeat('./test/testImg.png', 'Hella', '01:55', '98', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$34.00', './test/eurobambam.mp3');
-    addBeat('./test/testImg.png', 'Krak', '01:55', '69', ['ohgeesy', 'fenix flexin'], 'Hella Crazy.link', '$3.00', './test/krak.mp3');
-  }, []);
+    setBeatList([])
+    addBeat(
+      './test/testImg.png',
+      'Hella Crazy',
+      '01:55',
+      '100',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$34.95',
+      './test/pelmeni.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Hella',
+      '01:55',
+      '98',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$34.00',
+      './test/eurobambam.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+    addBeat(
+      './test/testImg.png',
+      'Krak',
+      '01:55',
+      '69',
+      ['ohgeesy', 'fenix flexin'],
+      'Hella Crazy.link',
+      '$3.00',
+      './test/krak.mp3'
+    )
+  }, [])
 
   return (
     <div className={styles.tableBeatsContainer}>
@@ -85,7 +175,7 @@ const BeatsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {beatList.map(row => (
+          {beatList.map((row) => (
             <tr key={row.id}>
               <td className={styles.beatTableCol}>{row.img}</td>
               <td className={styles.titleTableCol}>{row.title}</td>
@@ -98,12 +188,7 @@ const BeatsTable = () => {
           ))}
         </tbody>
       </table>
-      <Modal
-        title={shareLink[0]}
-        visible={isModalVisible}
-        footer={null}
-        onCancel={handleClose}
-      >
+      <Modal title={shareLink[0]} visible={isModalVisible} footer={null} onCancel={handleClose}>
         <p>{shareLink[1]}</p>
       </Modal>
       {handlePlaySound && currentBeat && (
@@ -117,7 +202,7 @@ const BeatsTable = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default BeatsTable;
+export default BeatsTable

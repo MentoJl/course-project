@@ -137,11 +137,12 @@ td {
 
 .tableBeatsContainer {
   width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 
 @media (max-width: 1200px) {
