@@ -70,9 +70,12 @@
 }
 
 .cartPriceImg {
-  min-width: 30px;
-  min-height: 25px;
-  margin-top: 2px;
+  min-width: 15px;
+  min-height: 15px;
+  /* margin-top: 2px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .share {
@@ -93,5 +96,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
