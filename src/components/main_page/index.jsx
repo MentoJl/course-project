@@ -73,6 +73,11 @@ const Main = () => {
         <Image className={styles.test} preview={false} src="/mainPage/eq.png"></Image>
       </div>
       <BeatsTable />
+      <div className={styles.buttonWrapper}>
+        <Link to="/allbeats">
+          <button className={styles.browseAllBeatsButton}>BROWSE ALL BEATS</button>
+        </Link>
+      </div>
       <div className={styles.licenses}>
         <div className={styles.licenseinfo}>Licensing Info</div>
         <div className={styles.licensesmain}>
@@ -209,9 +214,9 @@ const Main = () => {
             <p className={styles.serviceTitle}>CUSTOM BEAT</p>
           </Link>
         </div>
-        <button className={styles.browseButton}>
-          <Link to="/servicespage">BROWSE ALL SERVICES</Link>
-        </button>
+        <Link to="/servicespage">
+          <button className={styles.browseButton}>BROWSE ALL SERVICES</button>
+        </Link>
       </div>
       <div className={styles.contactForm}>
         <div className={styles.contactInfo}>Contact</div>
