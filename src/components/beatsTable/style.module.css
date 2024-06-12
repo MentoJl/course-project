@@ -116,6 +116,7 @@ td {
   font-weight: bold;
   display: flex;
   justify-content: left;
+  cursor: pointer;
 }
 
 .priceText {
