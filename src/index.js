@@ -19,7 +19,6 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-    <React.StrictMode>
       <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Main />} />
@@ -35,7 +34,6 @@ root.render(
         <Route path="/services/custombeat" element={<CustomBeatDetailsPage />} />
         <Route path="/services/mixandmastering" element={<MixAndMasteringDetailsPage />} />
       </Routes>
-    </React.StrictMode>
   </Router>
 );
 

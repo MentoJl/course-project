@@ -1,5 +1,6 @@
 import { Button, Image, Modal } from 'antd'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import Player from '../Player'
 import styles from './style.module.css'
 
@@ -34,13 +35,13 @@ const BeatsTable = () => {
         />
       ),
       title: <span className={styles.titleText}>{title}</span>,
-      time: <span className={styles.time}>{time}</span>,
+      time: <span className={styles.time}>{time.split(':').slice(-2).join(':')}</span>,
       bpm: <span className={styles.bpm}>{bpm}</span>,
-      tags: beatTags.map((tag) => (
-        <Button className={styles.tag} key={tag}>
+      tags: Array.isArray(beatTags) ? beatTags.map((tag) => (
+        <Button className={styles.tag}>
           <span className={styles.tagText}>{tag}</span>
         </Button>
-      )),
+      )) : null,
       link: (
         <Button className={styles.share} onClick={() => showModal(title, link)} type="primary">
           <Image preview={false} src="/mainPage/share.png" className={styles.shareImg} />
@@ -49,7 +50,7 @@ const BeatsTable = () => {
       price: (
         <Button className={styles.priceButton}>
           <Image className={styles.priceImg} src="/mainPage/cart.png" preview={false} />
-          <span className={styles.priceText}>{price}</span>
+          <span className={styles.priceText}>${price}</span>
         </Button>
       ),
     }
@@ -58,106 +59,26 @@ const BeatsTable = () => {
 
   useEffect(() => {
     setBeatList([])
-    addBeat(
-      './test/testImg.png',
-      'Hella Crazy',
-      '01:55',
-      '100',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$34.95',
-      './test/pelmeni.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Hella',
-      '01:55',
-      '98',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$34.00',
-      './test/eurobambam.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
-    addBeat(
-      './test/testImg.png',
-      'Krak',
-      '01:55',
-      '69',
-      ['ohgeesy', 'fenix flexin'],
-      'Hella Crazy.link',
-      '$3.00',
-      './test/krak.mp3'
-    )
+    axios.get('http://database/database')
+        .then(response => {
+          response.data.map(data => {
+            console.log(data.time)
+            const tagsArray = JSON.parse(data.tags);
+            addBeat(
+              data.img,
+              data.title,
+              data.time,
+              data.bpm,
+              tagsArray,
+              data.link,
+              data.price,
+              data.soundSrc
+            )
+          })
+        })
+        .catch(error => {
+          console.error('There was a problem with your request:', error);
+    });
   }, [])
 
   return (

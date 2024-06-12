@@ -39,7 +39,8 @@ const Player = ({ imgSrc, title, time, link, price, beatSrc }) => {
 
     const handleLoadedMetadata = () => {
         setDuration(audioRef.current.duration);
-        setImgPlaySrc('./test/play_button.png');
+        audioRef.current.play();
+        setImgPlaySrc('./test/pause_button.png');
     };
 
     const handleTimeChange = (value) => {
