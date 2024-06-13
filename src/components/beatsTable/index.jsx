@@ -20,6 +20,10 @@ const BeatsTable = () => {
     setIsModalVisible(false)
   }
 
+  const handleGoToBeat = (imgSrc, title) => {
+
+  }
+
   const addBeat = (imgSrc, title, time, bpm, beatTags, link, price, soundSrc) => {
     const newRow = {
       id: beatList.length + 1,
@@ -34,7 +38,7 @@ const BeatsTable = () => {
           }}
         />
       ),
-      title: <span className={styles.titleText}>{title}</span>,
+      title: <span className={styles.titleText} onClick={() => handleGoToBeat(imgSrc, title)}>{title}</span>,
       time: <span className={styles.time}>{time.split(':').slice(-2).join(':')}</span>,
       bpm: <span className={styles.bpm}>{bpm}</span>,
       tags: Array.isArray(beatTags) ? beatTags.map((tag) => (
@@ -108,6 +112,17 @@ const BeatsTable = () => {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td className={styles.beatTableCol}>IMG</td>
+            <td className={styles.titleTableCol}>TITLE</td>
+            <td className={styles.timeTableCol}>TIME</td>
+            <td className={styles.bpmTableCol}>BPM</td>
+            <td className={styles.tagsTableCol}>TAGS</td>
+            <td className={styles.linkTableCol}>LINK</td>
+            <td className={styles.priceTableCol}>PRICE</td>
+          </tr>
+        </tfoot>
       </table>
       <Modal title={shareLink[0]} visible={isModalVisible} footer={null} onCancel={handleClose}>
         <p>{shareLink[1]}</p>
