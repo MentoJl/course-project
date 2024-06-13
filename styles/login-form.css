@@ -1,178 +1,181 @@
 @font-face {
-    font-family: 'EssenceSansBold';
-    src: url('../font/Essence_Sans_Bold.ttf') format('truetype');
+  font-family: 'EssenceSansBold';
+  src: url('../font/Essence_Sans_Bold.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'Jenkie';
-    src: url('../font/JenkineBold-1Gdy0.ttf') format('truetype');
+  font-family: 'Jenkie';
+  src: url('../font/JenkineBold-1Gdy0.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'Zombiewolf';
-    src: url('../font/ZombiewolfPersonalUseRegular-qZAEx.ttf') format('truetype');
+  font-family: 'Zombiewolf';
+  src: url('../font/ZombiewolfPersonalUseRegular-qZAEx.ttf') format('truetype');
 }
-body{
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-p{
-    font-family: 'Zombiewolf';
-    font-size: 80px;
-    margin-top: 5px;
-    margin-bottom: 50px;
+p {
+  font-family: 'Zombiewolf';
+  font-size: 80px;
+  margin-top: 5px;
+  margin-bottom: 50px;
 }
-html{ 
-    font-family: 'EssenceSansBold';
-    font-size: 20px;
-    height: 100%;
-    width: 100%;
-    background-image: url("/styles/bg.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+html {
+  font-family: 'EssenceSansBold';
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  background-image: url('/styles/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-td{
-    padding-inline: 50%;
-    width: 50%;
+td {
+  padding-inline: 50%;
+  width: 50%;
 }
-.first-page{
-    border: 10px double black;
-    box-shadow: 0 0 0 2px whitesmoke;
-    font-family: "Jenkie";
-    background-image: url("summer-time.png");
-    background-size: cover;
-    background-position: center;
+.first-page {
+  border: 10px double black;
+  box-shadow: 0 0 0 2px whitesmoke;
+  font-family: 'Jenkie';
+  background-image: url('summer-time.png');
+  background-size: cover;
+  background-position: center;
 }
-.first-page div{
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: space-between;
+.first-page div {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.first-page h1{
-    margin: 0;
-    font-size: 80px;
+.first-page h1 {
+  margin: 0;
+  font-size: 80px;
 }
-.first-page p{
-    margin: 0;
-    font-size: 25px;
-    font-family: 'EssenceSansBold';
-    vertical-align: bottom;
-}
-.first-page b{
-    font-size: 30px;
-    font-family: 'Helvetica Neue';
-    font-size: bold;
-    vertical-align: bottom;
-}
+/* .first-page p {
+  margin: 0;
+  font-size: 25px;
+  font-family: 'EssenceSansBold';
+  vertical-align: bottom;
+} */
+/* .first-page b {
+  font-size: 30px;
+  font-family: 'Helvetica Neue';
+  font-size: bold;
+  vertical-align: bottom;
+} */
 table {
-    width: 900px;
-    border-collapse: collapse;
-    margin: 50px auto;
-    background-color: white;
-    height: 80%;
+  width: 900px;
+  border-collapse: collapse;
+  margin: 50px auto;
+  background-color: white;
+  height: 80%;
 }
-th, td {
-    border: 0px solid #000;
-    padding: 10px;
-    text-align: left;
+th,
+td {
+  border: 0px solid #000;
+  padding: 10px;
+  text-align: left;
 }
-.second-page{
-    padding-inline: 50px;
+.second-page {
+  padding-inline: 50px;
 }
 th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
-.or-container{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin:0;
+.or-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0;
 }
 .or-container p {
-    margin: 0px;
-    font-family: Arial, sans-serif;
-    font-size: 25px;
-    margin-block: 20px;
-    padding-inline: 15px;
-    color: #838592;
+  margin: 0px;
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  margin-block: 20px;
+  padding-inline: 15px;
+  color: #838592;
 }
 .or-container hr {
-    flex: 1;
-    border: none;
-    border-top: 1px solid #ccc;
+  flex: 1;
+  border: none;
+  border-top: 1px solid #ccc;
 }
-.underline-text{
-    margin: 0px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    margin-block: 20px;
-    color: #838592;
+.underline-text {
+  margin: 0px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  margin-block: 20px;
+  color: #838592;
 }
 form {
-    display: flex;
-    height: 300px;
-    flex-direction: column;
+  display: flex;
+  height: 300px;
+  flex-direction: column;
 }
-form > input[type="submit"] {
-    background: linear-gradient(90deg, rgb(80, 0, 0), rgb(255, 0, 43));
-    font-family: Arial, sans-serif;
-    font-weight: bolder;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    height: 50px;
-    margin: 4px 2px;
-    cursor: pointer;
-    transition: background-position 0.3s ease, font-size 0.3s ease;
-    background-size: 200% 100%;
-    background-position: 0% 0%;
+form > input[type='submit'] {
+  background: linear-gradient(90deg, rgb(80, 0, 0), rgb(255, 0, 43));
+  font-family: Arial, sans-serif;
+  font-weight: bolder;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  height: 50px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition:
+    background-position 0.3s ease,
+    font-size 0.3s ease;
+  background-size: 200% 100%;
+  background-position: 0% 0%;
 }
-form > input[type="submit"]:hover {
-    background-position: 100% 0%;
-    font-size: 20px;
+form > input[type='submit']:hover {
+  background-position: 100% 0%;
+  font-size: 20px;
 }
 .google-button {
-    display: inline-flex;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    border: 1px solid #dcdcdc;
-    color: #555;
-    padding: 10px 24px;
-    font-size: 16px;
-    height: 50px;
-    font-weight: 500;
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
+  display: inline-flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  border: 1px solid #dcdcdc;
+  color: #555;
+  padding: 10px 24px;
+  font-size: 16px;
+  height: 50px;
+  font-weight: 500;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .google-button:hover {
-    background-color: #e2e2e2;
+  background-color: #e2e2e2;
 }
 
 .google-button img {
-    height: 20px;
-    width: 20px;
-    margin-right: 8px;
+  height: 20px;
+  width: 20px;
+  margin-right: 8px;
 }
 
-form > input[type="text"]{
-    height: 50px;
+form > input[type='text'] {
+  height: 50px;
 }
 a {
-    text-decoration: none;
-    color: purple;
+  text-decoration: none;
+  color: purple;
 }
 .error {
-    color: red;
+  color: red;
 }

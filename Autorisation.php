@@ -12,7 +12,6 @@
                 <td class="first-page">
                     <div>
                        <h1>DJ PROBLEMATIC</h1>
-                        <p>photo by <b>OhGeesy</b></p> 
                     </div>
                 </td>
                 <td class="second-page">
@@ -46,7 +45,7 @@
                         </button>
                     </div>
                     
-                    <p class="underline-text">By logging in to <a>Music gallery</a>, I confirm that I have read and agree to the Nusic Gallery Terms of Service, Privacy Policy, and to receive emails and updates. </p>
+                    <p class="underline-text">By logging in to <a>Beat Store</a>, I confirm that I have read and agree to the Music Gallery Terms of Service, Privacy Policy, and to receive emails and updates. </p>
                 </td>
             </tr>
         </table>

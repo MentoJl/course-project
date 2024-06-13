@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Route, BrowserRouter as Controller, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop/index'
 import Main from './components/main_page/index'
 import AboutMePage from './pages/AboutMePage/index'
@@ -19,7 +19,7 @@ import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <Router>
+  <Controller>
     <ScrollToTop />
     <Routes>
       <Route path="/" element={<Main />} />
@@ -36,7 +36,7 @@ root.render(
       <Route path="/services/mixandmastering" element={<MixAndMasteringDetailsPage />} />
       <Route path="/cart" element={<CartPage />}></Route>
     </Routes>
-  </Router>
+  </Controller>
 )
 
 reportWebVitals()
