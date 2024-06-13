@@ -10,11 +10,11 @@ $app = AppFactory::create();
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-$app->options('/{routes:.+}', function ($request, $response, $args) {
-    return $response;
-});
+// $app->options('/{routes:.+}', function ($request, $response, $args) {
+//     return $response;
+// });
 
-function sortBy($link, $bmp, $mood, $genre){ //Sorting
+function sortBy($link, $bmp, $mood, $genre, $title){ //Sorting
     $sql = "SELECT * FROM base_information";
 
     $conditions = [];
@@ -26,6 +26,9 @@ function sortBy($link, $bmp, $mood, $genre){ //Sorting
     }
     if (!empty($genre)) {
         $conditions[] = "genre = '$genre'";
+    }
+    if (!empty($title)) {
+        $conditions[] = "title = '$title'";
     }
 
     if (!empty($conditions)) {
@@ -52,26 +55,6 @@ $app->add(function ($request, $handler) { #Request access
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
 
-// $app->get('/database', function (Request $request, Response $response, array $args) {
-//     $link = mysqli_connect("localhost", "root", "", "INFO");
-//     $sql = "SELECT * FROM base_information";
-//     $result = mysqli_query($link, $sql);
-
-//     if (!$result) {
-//         $error = mysqli_error($link);
-//         return $response->withStatus(500)->write("Query failed: $error");
-//     }
-
-//     $data = [];
-//     while ($row = mysqli_fetch_assoc($result)) {
-//         $data[] = $row;
-//     }
-//     mysqli_free_result($result);
-//     mysqli_close($link);
-
-//     $response->getBody()->write(json_encode($data));
-//     return $response->withHeader('Content-Type', 'application/json');
-// });
 
 // $app->get('/message_value', function (Request $request, Response $response, array $args) {
 //     $queryParams = $request->getQueryParams();
@@ -90,8 +73,9 @@ $app->get('/database', function (Request $request, Response $response, array $ar
     $bpm = isset($queryParams['bpm']) ? $queryParams['bpm'] : "";
     $mood = isset($queryParams['mood']) ? $queryParams['mood'] : "";
     $genre = isset($queryParams['genre']) ? $queryParams['genre'] : "";
+    $title = isset($queryParams['title']) ? $queryParams['title'] : "";
 
-    $sorted_data = sortBy($link, $bpm, $mood, $genre);
+    $sorted_data = sortBy($link, $bpm, $mood, $genre, $title);
 
     $response->getBody()->write(json_encode($sorted_data));
     return $response->withHeader('Content-Type', 'application/json');

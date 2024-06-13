@@ -2,7 +2,7 @@
 
 class UserController {
     public function main_site() {
-        header("Location: main.html?message=True");
+        header("Location: http://localhost:3000/");
     }
 
     public function Autorisation($access, $error="") {
