@@ -34,7 +34,6 @@ root.render(
       <Route path="/soundkits/westcoastloopkitvol1" element={<SoundKitDetailPage />} />
       <Route path="/services/custombeat" element={<CustomBeatDetailsPage />} />
       <Route path="/services/mixandmastering" element={<MixAndMasteringDetailsPage />} />
-      <Route path="/beatinfopage/:id" element={<BeatInfoPage />} />
     </Routes>
   </Router>
 )
