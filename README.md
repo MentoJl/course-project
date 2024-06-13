@@ -1,4 +1,4 @@
-![image](https://github.com/MentoJl/course-project/assets/80547023/57e8a0a1-200a-4730-bfca-6a9d8cbb6098)
+![image](https://github.com/MentoJl/course-project/assets/80547023/60b364f5-bcc0-478e-be2d-f6fb139aedcd)
 
 # Getting Started with Create React App
 
