@@ -6,6 +6,7 @@ import Main from './components/main_page/index'
 import AboutMePage from './pages/AboutMePage/index'
 import AlbumsPage from './pages/AlbumsPage'
 import AllBeats from './pages/AllBeatsPage/index'
+import CartPage from './pages/CartPage'
 import ContactMePage from './pages/ContactMePage/index'
 import CustomBeatDetailsPage from './pages/CustomBeatDetailsPage'
 import FaqPage from './pages/FAQPage/index'
@@ -33,6 +34,7 @@ root.render(
       <Route path="/soundkits/westcoastloopkitvol1" element={<SoundKitDetailPage />} />
       <Route path="/services/custombeat" element={<CustomBeatDetailsPage />} />
       <Route path="/services/mixandmastering" element={<MixAndMasteringDetailsPage />} />
+      <Route path="/cart" element={<CartPage />}></Route>
     </Routes>
   </Router>
 )

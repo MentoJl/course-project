@@ -1,0 +1,146 @@
+.cartPageContainer {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.image {
+  margin-top: 5%;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.cartWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.cartTable,
+.checkoutSection {
+  background-color: #111;
+  padding: 30px;
+  width: 48%;
+  box-sizing: border-box;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.productInfo {
+  display: flex;
+}
+
+.productInfo img {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.productDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.productPrice {
+  display: flex;
+  gap: 15%;
+  align-items: center;
+  margin-top: 7%;
+}
+
+.productPrice p {
+  font-size: 18px;
+  margin-right: 10px; /* Добавлено */
+}
+
+.reviewLicenseButton,
+.removeButton {
+  padding: 5px 10px;
+  background-color: #67030d;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background-color: #99040d;
+}
+
+.bulkDeals {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bulkDeals button {
+  padding: 10px 20px;
+  background-color: #111;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.couponCode {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.couponCode input {
+  margin-right: 10px;
+}
+
+.priceSummary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.checkoutButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #67030d;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.checkoutButton:hover {
+  background-color: #99040d;
+}
+
+.termsText {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  font-size: 14px;
+}
+
+.termsText a {
+  color: #d9534f;
+  text-decoration: none;
+}
+
+.footer {
+  padding: 20px;
+  background-color: #111;
+  color: white;
+}
