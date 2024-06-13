@@ -54,6 +54,8 @@ td {
 .first-page h1 {
   margin: 0;
   font-size: 80px;
+  display: flex;
+  justify-content: center;
 }
 /* .first-page p {
   margin: 0;

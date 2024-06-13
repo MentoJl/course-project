@@ -11,7 +11,7 @@
             <tr>
                 <td class="first-page">
                     <div>
-                       <h1>DJ PROBLEMATIC</h1>
+                       <h1>DJ x</h1>
                     </div>
                 </td>
                 <td class="second-page">
