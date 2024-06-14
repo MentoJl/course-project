@@ -1,5 +1,7 @@
-import { Button, Image, Modal } from 'antd'
+import { Button, Image, Modal, Upload, message } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react'
+import EditableTagGroup from '../EditableTags/index'
 import axios from 'axios'
 import Player from '../Player'
 import styles from './style.module.css'
@@ -9,7 +11,27 @@ const BeatsTable = () => {
   const [shareLink, setShareLink] = useState(['', ''])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
   const [currentBeat, setCurrentBeat] = useState(null)
+  const [newTags, setNewTags] = useState([])
   const [beatList, setBeatList] = useState([])
+  
+
+  const props = {
+    name: 'file',
+    action: './test',
+    headers: {
+      authorization: 'Upload',
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
 
   const showModal = (beat, link) => {
     setShareLink([beat, link])
@@ -61,13 +83,19 @@ const BeatsTable = () => {
     setBeatList((prevBeatList) => [...prevBeatList, newRow])
   }
 
+  const handleTagSubmit = (tag) => {
+    console.log('New tag submitted:', tag);
+  };
+
   useEffect(() => {
+    let searchReq = 'http://database/database'
+    console.log('Query', localStorage.getItem('searchTitleValue'))
+    
     setBeatList([])
     axios.get('http://database/database')
         .then(response => {
           response.data.map(data => {
-            console.log(data.time)
-            const tagsArray = JSON.parse(data.tags);
+            const tagsArray = JSON.parse(data.tags)
             addBeat(
               data.img,
               data.title,
@@ -83,6 +111,7 @@ const BeatsTable = () => {
         .catch(error => {
           console.error('There was a problem with your request:', error);
     });
+    
   }, [])
 
   return (
@@ -113,14 +142,39 @@ const BeatsTable = () => {
           ))}
         </tbody>
         <tfoot>
+          <tr className={styles.addBeatHeader}>
+              <td className={styles.beatTableCol}>IMG</td>
+              <td className={styles.titleTableCol}>TITLE</td>
+              <td className={styles.timeTableCol}>TIME</td>
+              <td className={styles.bpmTableCol}>BPM</td>
+              <td className={styles.tagsTableCol}>TAGS</td>
+              <td className={styles.linkTableCol}>LINK</td>
+              <td className={styles.priceTableCol}>PRICE</td>
+          </tr>
           <tr>
-            <td className={styles.beatTableCol}>IMG</td>
-            <td className={styles.titleTableCol}>TITLE</td>
-            <td className={styles.timeTableCol}>TIME</td>
-            <td className={styles.bpmTableCol}>BPM</td>
-            <td className={styles.tagsTableCol}>TAGS</td>
-            <td className={styles.linkTableCol}>LINK</td>
-            <td className={styles.priceTableCol}>PRICE</td>
+            <td className={styles.beatTableCol}>
+              <Upload {...props}>
+                <Button className={styles.beatImg}><UploadOutlined /></Button>
+              </Upload>
+            </td>
+            <td className={styles.titleTableCol}>
+              <input className={styles.titleInput} type="text" />
+            </td>
+            <td className={styles.timeTableCol}>
+              <input className={styles.timeInput} type="text" />
+            </td>
+            <td className={styles.bpmTableCol}>
+              <input className={styles.timeInput} type="text" />
+            </td>
+            <td className={styles.tagsTableCol}>
+              <EditableTagGroup tags={newTags} setTags={setNewTags} />
+            </td>
+            <td className={styles.inputLinkTableCol}>
+
+            </td>
+            <td className={styles.priceTableCol}>
+              <input className={styles.priceInput} type="text" />
+            </td>
           </tr>
         </tfoot>
       </table>

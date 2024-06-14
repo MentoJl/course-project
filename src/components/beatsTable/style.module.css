@@ -1,18 +1,55 @@
 td,
 th {
-  width: 80px;
-  height: 55px;
   font-size: 14px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #aaa;
 }
 
-tbody {
-  position: relative;
+tfoot {
+  border-radius: 5px;
+  text-align: center;
 }
 
 td {
   color: aliceblue;
+}
+
+.addBeatHeader {
+  margin-top: 20px;
+}
+
+.priceInput {
+  width: 100px;
+}
+
+.buttonAdd {
+  width: 60px;
+  height: 60px;
+  font-size: 38px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  border-radius: 10px;
+}
+
+.buttonAdd:hover {
+  color: #67030d;
+  background-color: rgb(224, 228, 3);
+}
+
+.timeInput {
+  width: 60px;
+  border-radius: 7px;
+}
+
+.titleInput {
+  border-radius: 7px;
+}
+
+.linkInput {
+  height: 50px;
+  width: 60px;
+  border-radius: 7px;
 }
 
 .tableBeats {
@@ -25,6 +62,7 @@ td {
   height: 45px;
   border-radius: 3px;
   cursor: pointer;
+  margin-top: 7px;
 }
 
 .beatTableCol {
@@ -70,16 +108,22 @@ td {
 
 .linkTableCol {
   width: 50px;
-  position: relative;
+  margin-left: 20px;
 }
 
 .priceTableCol {
   width: 100px;
 }
 
+.inputLinkTableCol {
+  width: 40px;
+  border: 1px solid gray;
+}
+
 .priceImg {
   max-width: 65px;
   max-height: 65px;
+  min-width: 25px;
   display: flex;
   justify-content: center;
 }
@@ -90,7 +134,7 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 5%;
+  left: 28%;
   background-color: #67030d;
 }
 
@@ -134,6 +178,7 @@ td {
 .linkTableCol,
 .priceTableCol {
   text-align: center;
+  width: 65px;
 }
 
 .tableBeatsContainer {
@@ -141,6 +186,7 @@ td {
   margin-top: 10px;
   margin-bottom: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: black;

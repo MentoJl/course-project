@@ -10,17 +10,19 @@ import TrackoutLicense from './license_cards_content/trackoutlease'
 import UnlimitedTrackoutLicense from './license_cards_content/unlimitedtrackout'
 import UnlimitedWavLicense from './license_cards_content/unlimitedwav'
 import WavLicense from './license_cards_content/wavlease'
+import { useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
+  const [inputValue, setInputValue] = useState('')
   const messageRef = useRef(null)
+  const navigate = useNavigate()
 
   const openModal = (content) => {
     setModalContent(content)
     setIsModalOpen(true)
-    // document.body.style.overflow = 'hidden'
   }
 
   const closeModal = () => {
@@ -41,12 +43,22 @@ const Main = () => {
     textarea.style.height = `${textarea.scrollHeight}px`
   }
 
+  const handleChangeInputValue = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSearch = () => {
+    console.log(inputValue)
+    localStorage.setItem('searchTitleValue', inputValue);
+    navigate('/allbeats')
+  }
+
   return (
     <div className={styles.main}>
       <Header />
       <div className={styles.searcherContainer}>
-        <input type="text" placeholder="What type of track are you looking for?" className={styles.searcher} />
-        <span className={styles.searchButton}>Search</span>
+        <input onChange={handleChangeInputValue} placeholder="What type of track are you looking for?" className={styles.searcher} />
+        <span onClick={handleSearch} className={styles.searchButton}>Search</span>
       </div>
       <div className={styles.featuredBeat}>
         <div className={styles.beatHeat}>
