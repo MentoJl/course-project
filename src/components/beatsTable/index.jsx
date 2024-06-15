@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react'
 import EditableTagGroup from '../EditableTags/index'
 import Player from '../Player'
 import styles from './style.module.css'
+import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom'
 
 const BeatsTable = () => {
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
@@ -17,20 +19,20 @@ const BeatsTable = () => {
   const [handlePlaySound, setHandlePlaySound] = useState(false)
 
   const props = {
-    name: 'file',
-    action: './test',
+    file: 'file',
+    path: '/public/test/',
     headers: {
       authorization: 'Upload',
     },
     onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList)
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`)
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`)
-      }
+      console.log(info)
+      axios.post('http://database/POST', info)
+        .then(response => {
+             console.log('Успешный ответ от сервера:', response.data);
+        })
+        .catch(error => {
+            console.error('Ошибка при выполнении POST запроса:', error);
+        });
     },
   }
 
@@ -52,14 +54,16 @@ const BeatsTable = () => {
     setIsCartModalVisible(false)
   }
 
-  const handleGoToBeat = (imgSrc, title) => {}
+  const handleGoToBeat = (imgSrc, title, bpm, beatTags, price, key) => {
+    Cookies.set('beatInfo', imgSrc, { expires: 7 })
+  }
 
   const handleBeatClick = (beat) => {
     setCurrentBeat(beat)
     setHandlePlaySound(true)
   }
 
-  const addBeat = (imgSrc, title, time, bpm, beatTags, link, price, soundSrc) => {
+  const addBeat = (imgSrc, title, time, bpm, beatTags, link, price, soundSrc, key) => {
     const newRow = {
       id: beatList.length + 1,
       beatPlaySrc: soundSrc,
@@ -71,9 +75,11 @@ const BeatsTable = () => {
         />
       ),
       title: (
-        <span className={styles.titleText} onClick={() => handleGoToBeat(imgSrc, title)}>
-          {title}
-        </span>
+        <Link to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&title=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(beatTags.join(','))}&price=${price}&key=${encodeURIComponent(key)}`}>
+          <span className={styles.titleText} onClick={() => handleGoToBeat(imgSrc, title, bpm, beatTags, price, key)}>
+            {title}
+          </span>
+        </Link>
       ),
       time: <span className={styles.time}>{time.split(':').slice(-2).join(':')}</span>,
       bpm: <span className={styles.bpm}>{bpm}</span>,
@@ -111,7 +117,7 @@ const BeatsTable = () => {
 
   useEffect(() => {
     let searchReq = 'http://database/database'
-    console.log('Query', localStorage.getItem('searchTitleValue'))
+    console.log('Query', Cookies.get('searchTitleValue'))
 
     setBeatList([])
     axios
@@ -119,7 +125,7 @@ const BeatsTable = () => {
       .then((response) => {
         response.data.map((data) => {
           const tagsArray = JSON.parse(data.tags)
-          addBeat(data.img, data.title, data.time, data.bpm, tagsArray, data.link, data.price, data.soundSrc)
+          addBeat(data.img, data.title, data.time, data.bpm, tagsArray, data.link, data.price, data.soundSrc, data.key)
         })
       })
       .catch((error) => {

@@ -12,6 +12,7 @@ import UnlimitedWavLicense from './license_cards_content/unlimitedwav'
 import WavLicense from './license_cards_content/wavlease'
 import { useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
+import Cookies from 'js-cookie';
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -49,7 +50,7 @@ const Main = () => {
 
   const handleSearch = () => {
     console.log(inputValue)
-    localStorage.setItem('searchTitleValue', inputValue);
+    Cookies.set('searchTitleValue', inputValue, { expires: 7 })
     navigate('/allbeats')
   }
 

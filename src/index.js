@@ -16,6 +16,7 @@ import ServicesPage from './pages/ServicesPage/index'
 import SoundKitDetailPage from './pages/SoundKitDetailPage'
 import SoundKitsPage from './pages/SoundKitsPage'
 import reportWebVitals from './reportWebVitals'
+import BeatPage from './components/beatPage'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -35,6 +36,7 @@ root.render(
       <Route path="/services/custombeat" element={<CustomBeatDetailsPage />} />
       <Route path="/services/mixandmastering" element={<MixAndMasteringDetailsPage />} />
       <Route path="/cart" element={<CartPage />}></Route>
+      <Route path='/beatPage' element={<BeatPage />} />
     </Routes>
   </Controller>
 )
