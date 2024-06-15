@@ -118,6 +118,9 @@ const BeatsTable = () => {
   useEffect(() => {
     let searchReq = 'http://database/database'
     console.log('Query', Cookies.get('searchTitleValue'))
+    if (Cookies.get('searchTitleValue') !== null || Cookies.get('searchTitleValue') !== undefined) {
+      searchReq += `/?title=${Cookies.get('searchTitleValue')}`
+    }
 
     setBeatList([])
     axios
