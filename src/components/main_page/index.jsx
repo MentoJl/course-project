@@ -10,16 +10,13 @@ import TrackoutLicense from './license_cards_content/trackoutlease'
 import UnlimitedTrackoutLicense from './license_cards_content/unlimitedtrackout'
 import UnlimitedWavLicense from './license_cards_content/unlimitedwav'
 import WavLicense from './license_cards_content/wavlease'
-import { useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
-import Cookies from 'js-cookie';
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
   const [inputValue, setInputValue] = useState('')
   const messageRef = useRef(null)
-  const navigate = useNavigate()
 
   const openModal = (content) => {
     setModalContent(content)
@@ -48,18 +45,14 @@ const Main = () => {
     setInputValue(event.target.value);
   };
 
-  const handleSearch = () => {
-    console.log(inputValue)
-    Cookies.set('searchTitleValue', inputValue, { expires: 7 })
-    navigate('/allbeats')
-  }
-
   return (
     <div className={styles.main}>
       <Header />
       <div className={styles.searcherContainer}>
         <input onChange={handleChangeInputValue} placeholder="What type of track are you looking for?" className={styles.searcher} />
-        <span onClick={handleSearch} className={styles.searchButton}>Search</span>
+        <Link to={`/allbeats?title=${encodeURIComponent(inputValue)}`}>
+          <span className={styles.searchButton}>Search</span>
+        </Link>
       </div>
       <div className={styles.featuredBeat}>
         <div className={styles.beatHeat}>

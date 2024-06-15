@@ -91,6 +91,16 @@ $app->get('/database', function (Request $request, Response $response, array $ar
     $genre = isset($queryParams['genre']) ? $queryParams['genre'] : "";
     $title = isset($queryParams['title']) ? $queryParams['title'] : "";
 
+    // if ($bpm == "All") {
+    //     $bpm = "";
+    // }if ($mood == "All") {
+    //     $mood = "";
+    // }if ($genre == "All") {
+    //     $genre = "";
+    // }if ($title == "All") {
+    //     $title = "";
+    // }
+
     $sorted_data = sortBy($link, $bpm, $mood, $genre, $title);
 
     $response->getBody()->write(json_encode($sorted_data));

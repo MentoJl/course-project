@@ -2,8 +2,19 @@ import React from 'react'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import styles from './style.module.css'
+import { useLocation } from 'react-router-dom'
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
 
 const CartPage = () => {
+  const query = useQuery();
+  const imgSrc = query.get('imgSrc');
+  const title = query.get('title');
+  const lease = query.get('lease');
+  const price = query.get('price');
+
   return (
     <div className={styles.cartPageContainer}>
       <Header />
@@ -14,16 +25,16 @@ const CartPage = () => {
           <div className={styles.cartItem}>
             <div className={styles.productInfo}>
               <div className={styles.image}>
-                <img src="/test/beef.png" alt="" />
+                <img src={imgSrc} alt="" />
               </div>
               <div className={styles.productDetails}>
-                <h2>Beef by DJ Problematic</h2>
-                <p>WAV Lease (WAV, MP3)</p>
+                <h2>{title} by DJ Problematic</h2>
+                <p>{lease}</p>
               </div>
             </div>
             <div className={styles.productPrice}>
               <p>
-                <b>$49.95</b>
+                <b>${price}</b>
               </p>
               <button className={styles.removeButton}>X</button>
             </div>
@@ -33,10 +44,10 @@ const CartPage = () => {
         <div className={styles.checkoutSection}>
           <div className={styles.priceSummary}>
             <p>
-              Gross: <b>$49.95</b>
+              Gross: <b>${price}</b>
             </p>
             <p>
-              Total: <b>$49.95</b>
+              Total: <b>${price}</b>
             </p>
           </div>
           <button className={styles.checkoutButton}>PROCEED TO CHECKOUT</button>

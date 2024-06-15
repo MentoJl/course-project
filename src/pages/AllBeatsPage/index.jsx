@@ -4,13 +4,18 @@ import BeatsTable from '../../components/beatsTable/index'
 import Footer from '../../components/footer/index'
 import Header from '../../components/header/index'
 import styles from './style.module.css'
+import { useLocation } from 'react-router-dom'
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
 
 const AllBeats = () => {
-  const [category, setCategory] = useState('all')
-
-  const handleChange = (value) => {
-    setCategory(value)
-  }
+  const query = useQuery();
+  const title = query.get('title');
+  const [genre, setGenre] = useState('All')
+  const [mood, setMood] = useState('All')
+  const [bpm, setBpm] = useState('All')
 
   return (
     <div className={styles.allbeatsContainer}>
@@ -19,12 +24,12 @@ const AllBeats = () => {
         <span className={styles.allBeatsBoard}>All Beats</span>
         <div className={styles.beatsSortContainer}>
           <Select
-            defaultValue="All Bpm"
+            defaultValue="All"
             className={styles.selectBpm}
-            onChange={handleChange}
+            onChange={(value) => setBpm(value)}
             options={[
               {
-                value: 'All Bpm',
+                value: 'All',
                 label: 'All Bpm',
               },
               {
@@ -62,12 +67,12 @@ const AllBeats = () => {
             ]}
           />
           <Select
-            defaultValue="All Moods"
+            defaultValue="All"
             className={styles.selectMood}
-            onChange={handleChange}
+            onChange={(value) => setMood(value)}
             options={[
               {
-                value: 'All Moods',
+                value: 'All',
                 label: 'All Moods',
               },
               {
@@ -109,12 +114,12 @@ const AllBeats = () => {
             ]}
           />
           <Select
-            defaultValue="All Genres"
+            defaultValue="All"
             className={styles.selectGener}
-            onChange={handleChange}
+            onChange={(value) => setGenre(value)}
             options={[
               {
-                value: 'All Genres',
+                value: 'All',
                 label: 'All Genres',
               },
               {
@@ -134,7 +139,11 @@ const AllBeats = () => {
         </div>
         <div className={styles.beatsSearcher}></div>
       </div>
-      <BeatsTable category={category} />
+      <BeatsTable 
+      titleCategory={title}
+      bpmCategory={bpm}
+      moodCategory={mood}
+      genreCategory={genre} />
       <Footer />
     </div>
   )

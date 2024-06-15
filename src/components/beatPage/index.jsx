@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import Header from '../header/index';
 import Footer from '../footer/index';
 import BeatsTable from '../beatsTable/index';
