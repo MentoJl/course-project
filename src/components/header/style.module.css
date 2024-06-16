@@ -1,10 +1,8 @@
-/* Стили для ссылок */
 a {
   color: white; /* Цвет по умолчанию */
   text-decoration: none; /* Убирает подчеркивание */
 }
 
-/* Основной контейнер шапки */
 .header {
   background-color: black;
   width: 100%;
@@ -14,7 +12,6 @@ a {
   align-items: center;
 }
 
-/* Контейнеры для элементов в шапке */
 .headerCase {
   margin-left: 10px;
   margin-right: 10px;
@@ -33,13 +30,11 @@ a {
   border-bottom: 2px solid white;
 }
 
-/* Стили для иконок */
 .lypa {
   width: 30px;
   height: 30px;
 }
 
-/* Контейнер для меню в шапке */
 .headerMenu {
   height: 5vh;
   display: flex;
@@ -48,7 +43,6 @@ a {
   position: relative;
 }
 
-/* Стили для текста меню */
 .menuCase {
   height: 100%;
   width: 100%;
@@ -58,44 +52,48 @@ a {
   text-align: center;
 }
 
-/* Лого в шапке */
 .logo {
   cursor: pointer;
 }
 
-/* Контейнер для всплывающего меню поиска */
 .searchContainer {
   position: absolute;
-  top: 100%;
+  top: 50px;
   right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
   background-color: black;
-  border: 1px solid white;
-  padding: 5px;
-  display: flex;
-  align-items: center;
 }
 
-/* Стили для инпута поиска */
+.searchContainer.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
 .searchInput {
-  background-color: black;
   border: none;
-  color: white;
   padding: 5px;
-  margin-right: 5px;
-}
-
-/* Стили для кнопки закрытия поиска */
-.searchClose {
-  background-color: transparent;
-  border: none;
+  font-size: 14px;
+  background-color: black;
   color: white;
-  cursor: pointer;
+  outline: none;
 }
 
 .searchSubmit {
-  background-color: black;
+  background: none;
   border: none;
   color: white;
   cursor: pointer;
-  margin-left: 5px;
+  padding: 5px;
+}
+
+.searchSubmit:hover {
+  text-decoration: underline;
 }

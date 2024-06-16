@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
 
@@ -6,6 +6,7 @@ const Header = () => {
   const navigate = useNavigate()
   const [inputValue, setInputValue] = useState('')
   const [searchVisible, setSearchVisible] = useState(false)
+  const searchRef = useRef(null)
 
   const handleLogoClick = () => {
     navigate('/')
@@ -26,6 +27,23 @@ const Header = () => {
       setSearchVisible(false)
     }
   }
+
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setSearchVisible(false)
+    }
+  }
+
+  useEffect(() => {
+    if (searchVisible) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [searchVisible])
 
   return (
     <div className={styles.header}>
@@ -70,25 +88,22 @@ const Header = () => {
         </div>
         <div className={styles.headerCase}>
           <img src="/header/lypa.png" alt="Search" className={styles.lypa} onClick={toggleSearch} />
-          {searchVisible && (
-            <div className={styles.searchContainer}>
-              <form onSubmit={handleSearchSubmit}>
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={handleSearchChange}
-                  placeholder="Search beats"
-                  className={styles.searchInput}
-                />
+          <div ref={searchRef} className={`${styles.searchContainer} ${searchVisible ? styles.visible : ''}`}>
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                value={inputValue}
+                onChange={handleSearchChange}
+                placeholder="Search Beats"
+                className={styles.searchInput}
+              />
+              <Link to={`/allbeats?title=${encodeURIComponent(inputValue)}`}>
                 <button type="submit" className={styles.searchSubmit}>
                   Search
                 </button>
-                <button type="button" onClick={toggleSearch} className={styles.searchClose}>
-                  X
-                </button>
-              </form>
-            </div>
-          )}
+              </Link>
+            </form>
+          </div>
         </div>
         <Link to="/cart">
           <div className={styles.headerCase}>
