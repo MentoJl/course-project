@@ -1,22 +1,22 @@
-import Header from '../header/index';
-import Footer from '../footer/index';
-import BeatsTable from '../beatsTable/index';
-import styles from './style.module.css';
-import { Image, Button } from 'antd';
+import { Button, Image } from 'antd'
 import { useLocation } from 'react-router-dom'
+import BeatsTable from '../beatsTable/index'
+import Footer from '../footer/index'
+import Header from '../header/index'
+import styles from './style.module.css'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
 const BeatPage = () => {
-  const query = useQuery();
-  const imgSrc = query.get('imgSrc');
-  const title = query.get('title');
-  const bpm = query.get('bpm');
-  const beatTags = query.get('beatTags')?.split(',') || [];
-  const price = query.get('price');
-  const key = query.get('key');
+  const query = useQuery()
+  const imgSrc = query.get('imgSrc')
+  const title = query.get('title')
+  const bpm = query.get('bpm')
+  const beatTags = query.get('beatTags')?.split(',') || []
+  const price = query.get('price')
+  const key = query.get('key')
 
   return (
     <div>
@@ -28,12 +28,14 @@ const BeatPage = () => {
             <span className={styles.titleHeader}>{title}</span>
             <span className={styles.authorHeader}>DJ Problematic</span>
             <span className={styles.infoHeader}>
-              <Image preview={false} src='./icons/bpm.png' className={styles.bpmIcon} />
+              <Image preview={false} src="./icons/bpm.png" className={styles.bpmIcon} />
               <span className={styles.beatInfoHeader}>{bpm}</span>
-              <Image preview={false} src='./icons/sound.png' className={styles.soundIcon} />
+              <Image preview={false} src="./icons/sound.png" className={styles.soundIcon} />
               <span className={styles.beatInfoHeader}>{key}</span>
             </span>
-            <span className={styles.desHeader}>BUY 2 GET 1 FREE, BUY 3 GET 2 FREE, BUY 4 GET 3 FREE, BUY 5 GET 4 FREE</span>
+            <span className={styles.desHeader}>
+              BUY 2 GET 1 FREE, BUY 3 GET 2 FREE, BUY 4 GET 3 FREE, BUY 5 GET 4 FREE
+            </span>
             <div className={styles.beatControllHeader}>
               <div className={styles.naviButtons}>
                 <Button className={styles.priceButton}>
@@ -60,7 +62,7 @@ const BeatPage = () => {
       <BeatsTable />
       <Footer />
     </div>
-  );
+  )
 }
 
-export default BeatPage;
+export default BeatPage

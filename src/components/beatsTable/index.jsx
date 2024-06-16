@@ -1,14 +1,18 @@
 import { UploadOutlined } from '@ant-design/icons'
 import { Button, Image, Modal, Upload } from 'antd'
 import axios from 'axios'
-import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import EditableTagGroup from '../EditableTags/index'
 import Player from '../Player'
 import styles from './style.module.css'
 
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
+
 const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => {
+  const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
   const [shareLink, setShareLink] = useState(['', ''])
@@ -17,6 +21,7 @@ const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => 
   const [newTags, setNewTags] = useState([])
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
+  const title = query.get('title') || ''
 
   const props = {
     file: 'file',
@@ -75,9 +80,7 @@ const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => 
         <Link
           to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&title=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(beatTags.join(','))}&price=${price}&key=${encodeURIComponent(key)}`}
         >
-          <span className={styles.titleText}>
-            {title}
-          </span>
+          <span className={styles.titleText}>{title}</span>
         </Link>
       ),
       time: <span className={styles.time}>{time.split(':').slice(-2).join(':')}</span>,
@@ -112,8 +115,9 @@ const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => 
 
   useEffect(() => {
     setBeatList([])
+
     axios
-      .get(`http://update/database`)
+      .get(`http://update/database?title=${title}`)
       .then((response) => {
         response.data.map((data) => {
           const tagsArray = JSON.parse(data.tags)
