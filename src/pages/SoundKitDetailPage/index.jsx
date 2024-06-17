@@ -1,19 +1,24 @@
 import { Button, Image, Typography } from 'antd'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import styles from './style.module.css'
 
 const SoundKitDetailPage = () => {
+  const imgSrc = '/soundkitspage/soundkits.png'
+  const title = 'West Coast Loop Kit Vol.1'
+  const price = '49.95'
+
   return (
     <div className={styles.main}>
       <Header />
       <div className={styles.content}>
         <div className={styles.imageContainer}>
-          <img src="/soundkitspage/soundkits.png" alt="West Coast Loop Kit Vol.1" className={styles.image} />
+          <img src={imgSrc} alt={title} className={styles.image} />
         </div>
         <div className={styles.infoContainer}>
-          <h1 className={styles.mainTitle}>West Coast Loop Kit Vol.1</h1>
+          <h1 className={styles.mainTitle}>{title}</h1>
           <h2 className={styles.subTitle}>Sound Kit by DJ Problematic</h2>
           <p className={styles.text}>Loop Kit with 10 High Quality WAV.</p>
           <p className={styles.text}>
@@ -39,10 +44,14 @@ const SoundKitDetailPage = () => {
             Instagram: @djproblematic
           </p>
           <div className={styles.previewBeatButtons}>
-            <Button className={styles.purchase}>
-              <Image preview={false} className={styles.cartPriceImg} src="/mainPage/cart.png" />
-              <Typography.Text className={styles.purchaseText}>$49.95</Typography.Text>
-            </Button>
+            <Link
+              to={`/cart?imgSrc=${encodeURIComponent(imgSrc)}&title=${encodeURIComponent(title)}&price=${price}&lease=Sound Kit`}
+            >
+              <Button className={styles.purchase}>
+                <Image preview={false} className={styles.cartPriceImg} src="/mainPage/cart.png" />
+                <Typography.Text className={styles.purchaseText}>${price}</Typography.Text>
+              </Button>
+            </Link>
             <Button className={styles.share} type="primary">
               <Image preview={false} src="/mainPage/share.png" className={styles.shareImg}></Image>
             </Button>

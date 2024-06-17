@@ -42,14 +42,18 @@ const Main = () => {
   }
 
   const handleChangeInputValue = (event) => {
-    setInputValue(event.target.value);
-  };
+    setInputValue(event.target.value)
+  }
 
   return (
     <div className={styles.main}>
       <Header />
       <div className={styles.searcherContainer}>
-        <input onChange={handleChangeInputValue} placeholder="What type of track are you looking for?" className={styles.searcher} />
+        <input
+          onChange={handleChangeInputValue}
+          placeholder="What type of track are you looking for?"
+          className={styles.searcher}
+        />
         <Link to={`/allbeats?title=${encodeURIComponent(inputValue)}`}>
           <span className={styles.searchButton}>Search</span>
         </Link>

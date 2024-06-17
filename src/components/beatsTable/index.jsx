@@ -11,7 +11,7 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
+const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '' }) => {
   const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
@@ -78,7 +78,9 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
       ),
       title: (
         <Link
-          to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&title=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(beatTags.join(','))}&price=${price}&key=${encodeURIComponent(key)}`}
+          to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&title=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(
+            beatTags.join(',')
+          )}&price=${price}&key=${encodeURIComponent(key)}`}
         >
           <span className={styles.titleText}>{title}</span>
         </Link>
@@ -126,7 +128,7 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
-  }, [bpmCategory, moodCategory, genreCategory])
+  }, [title, bpmCategory, moodCategory, genreCategory])
 
   return (
     <div className={styles.tableBeatsContainer}>
@@ -213,7 +215,9 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
                     <div className={styles.licenseCard}>
                       <p className={styles.cartModalText}>MP3 Lease: </p>
                       <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(cartBeat.title)}&price=34.95&lease=MP3 Lease`}
+                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
+                          cartBeat.title
+                        )}&price=34.95&lease=MP3 Lease`}
                       >
                         <Button className={styles.modalPriceButton}>
                           <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
@@ -226,7 +230,9 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
                     <div className={styles.licenseCard}>
                       <p className={styles.cartModalText}>WAV Lease: </p>
                       <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(cartBeat.title)}&price=49.95&lease=WAV Lease`}
+                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
+                          cartBeat.title
+                        )}&price=49.95&lease=WAV Lease`}
                       >
                         <Button className={styles.modalPriceButton}>
                           <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
@@ -239,7 +245,9 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
                     <div className={styles.licenseCard}>
                       <p className={styles.cartModalText}>Unlimited WAV:</p>
                       <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(cartBeat.title)}&price=74.95&lease=Unlimited WAV`}
+                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
+                          cartBeat.title
+                        )}&price=74.95&lease=Unlimited WAV`}
                       >
                         <Button className={styles.modalPriceButton}>
                           <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
@@ -252,7 +260,9 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
                     <div className={styles.licenseCard}>
                       <p className={styles.cartModalText}>Trackout Lease:</p>
                       <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(cartBeat.title)}&price=99.95&lease=Trackout Lease`}
+                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
+                          cartBeat.title
+                        )}&price=99.95&lease=Trackout Lease`}
                       >
                         <Button className={styles.modalPriceButton}>
                           <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
@@ -265,7 +275,9 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
                     <div className={styles.licenseCard}>
                       <p className={styles.cartModalText}>Unlimited Trackout:</p>
                       <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(cartBeat.title)}&price=149.95&lease=Unlimited Trackout`}
+                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
+                          cartBeat.title
+                        )}&price=149.95&lease=Unlimited Trackout`}
                       >
                         <Button className={styles.modalPriceButton}>
                           <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
@@ -278,7 +290,9 @@ const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
                     <div className={styles.licenseCard}>
                       <p className={styles.cartModalText}>Exclusive Rights:</p>
                       <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(cartBeat.title)}&price=1000.00&lease=Exclusive Rights`}
+                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
+                          cartBeat.title
+                        )}&price=1000.00&lease=Exclusive Rights`}
                       >
                         <Button className={styles.modalPriceButton}>
                           <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />

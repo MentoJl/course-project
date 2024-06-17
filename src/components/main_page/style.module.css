@@ -366,11 +366,12 @@ body::after {
   color: rgb(63, 1, 1);
   font-size: 20px;
   border: none;
-  width: 80px;
+  width: 100px;
   height: 65px;
   background-color: white;
   border-radius: 0 3px 3px 0;
   cursor: pointer;
+
   /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 

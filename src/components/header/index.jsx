@@ -97,11 +97,9 @@ const Header = () => {
                 placeholder="Search Beats"
                 className={styles.searchInput}
               />
-              <Link to={`/allbeats?title=${encodeURIComponent(inputValue)}`}>
-                <button type="submit" className={styles.searchSubmit}>
-                  Search
-                </button>
-              </Link>
+              <button type="submit" className={styles.searchSubmit}>
+                Search
+              </button>
             </form>
           </div>
         </div>
