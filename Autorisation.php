@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,24 +18,51 @@
                     </div>
                 </td>
                 <td class="second-page">
-                    
-                    <div>
-                        <p>Log in</p>
-                        <form action="autoristionModule.php" method="post">
-                        <label for="login">UserName: </label>
-                        <input type="text" id="login" name="login"><br><br>
-        
-                        <label for="password">Password: </label>
-                        <input type="text" id="password" name="password"><br>
-        
-                        <input type="submit" value="Continue">
-                        </form> 
-                    </div>
+                    <?php if($_SESSION['type'] == "Login" || $_SESSION['type'] == "") { ?>
+                        <div>
+                            <p>Log in</p>
+                            <form action="autoristionModule.php" method="post">
+                            <label for="login">UserName: </label>
+                            <input type="text" id="login" name="login"><br><br>
+            
+                            <label for="password">Password: </label>
+                            <input type="text" id="password" name="password"><br>
+            
+                            <input type="submit" value="Continue">
+                            </form> 
+                        </div>
+                    <?php }elseif($_SESSION['type'] == "Registration") {?>
+                        <div>
+                            <p class="Reg">Registration</p>
+                            <form action="" method="post">
+                                <label for="reg-login">New username: </label>
+                                <input type="text" id="login" name="login"><br>
+                                
+                                <label for="email">Add your email: </label>
+                                <input type="text" id="email" name="email"><br>
+                
+                                <label for="reg-password">Password: </label>
+                                <input type="text" id="password" name="password"><br>
+
+                                <label for="second-password">Confirm password: </label>
+                                <input type="text" id="second-password" name="second-password"><br>
+                
+                                <input type="submit" value="Create account">
+                            </form> 
+                        </div>
+                    <?php }?>
+
                     <?php if(isset($_GET['error']) && $_GET['error'] == "invalid_login") { ?>
                         <div class="error">Login or password are invalid*</div>
                     <?php }elseif(isset($_GET['error']) && $_GET['error'] == "no_information") { ?>
                         <div class="error">empty information*</div>
                     <?php } ?>
+                    
+                    <?php if($_SESSION['type'] == "Login" || isset($_SESSION['type']) == False) { ?>
+                        <p class="logintext">Not a member of our store yet? Become <a href="update_text.php">one!</a></p>
+                    <?php }elseif($_SESSION['type'] == "Registration") {?>
+                        <p class="logintext">Already a member? <a href="update_text.php">Log in.</a></p>
+                    <?php }?>
                     <div class="or-container">
                         <hr>
                         <p>or</p>
