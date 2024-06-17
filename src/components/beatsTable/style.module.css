@@ -94,6 +94,10 @@ td {
   inset-inline: initial;
 }
 
+.beatRow {
+  border: 1px solid rgb(56, 56, 56);
+}
+
 .tag {
   width: fit-content;
   background-color: #67030d;
@@ -101,6 +105,7 @@ td {
   height: 40px;
   border-radius: 30px;
   margin-left: 10px;
+  margin-bottom: 3px;
 }
 
 .tag:hover > span {

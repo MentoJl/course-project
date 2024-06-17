@@ -24,12 +24,12 @@ const AllBeats = () => {
         <span className={styles.allBeatsBoard}>All Beats</span>
         <div className={styles.beatsSortContainer}>
           <Select
-            defaultValue="All"
+            defaultValue="All BPM"
             className={styles.selectBpm}
             onChange={(value) => setBpm(value)}
             options={[
               {
-                value: 'All',
+                value: '',
                 label: 'All Bpm',
               },
               {
@@ -67,12 +67,12 @@ const AllBeats = () => {
             ]}
           />
           <Select
-            defaultValue="All"
+            defaultValue="All Mood"
             className={styles.selectMood}
             onChange={(value) => setMood(value)}
             options={[
               {
-                value: 'All',
+                value: '',
                 label: 'All Moods',
               },
               {
@@ -114,12 +114,12 @@ const AllBeats = () => {
             ]}
           />
           <Select
-            defaultValue="All"
+            defaultValue="All Genre"
             className={styles.selectGener}
             onChange={(value) => setGenre(value)}
             options={[
               {
-                value: 'All',
+                value: '',
                 label: 'All Genres',
               },
               {
@@ -140,10 +140,9 @@ const AllBeats = () => {
         <div className={styles.beatsSearcher}></div>
       </div>
       <BeatsTable 
-      titleCategory={title}
-      bpmCategory={bpm}
-      moodCategory={mood}
-      genreCategory={genre} />
+      bpmCategory={bpm === 'All' ? '' : bpm}
+      moodCategory={mood === 'All' ? '' : mood}
+      genreCategory={genre === 'All' ? '' : genre} />
       <Footer />
     </div>
   )

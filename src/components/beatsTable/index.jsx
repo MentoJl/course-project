@@ -11,7 +11,7 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => {
+const BeatsTable = ({bpmCategory='', moodCategory='', genreCategory= ''}) => {
   const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
@@ -115,9 +115,8 @@ const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => 
 
   useEffect(() => {
     setBeatList([])
-
     axios
-      .get(`http://update/database?title=${title}`)
+      .get(`http://database/database?title=${title}&bpm=${bpmCategory}&mood=${moodCategory}&genre=${genreCategory}`)
       .then((response) => {
         response.data.map((data) => {
           const tagsArray = JSON.parse(data.tags)
@@ -127,7 +126,7 @@ const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => 
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
-  }, [])
+  }, [bpmCategory, moodCategory, genreCategory])
 
   return (
     <div className={styles.tableBeatsContainer}>
@@ -145,7 +144,7 @@ const BeatsTable = (titleCategory, bpmCategory, moodCategory, genreCategory) => 
         </thead>
         <tbody>
           {beatList.map((row) => (
-            <tr key={row.id}>
+            <tr className={styles.beatRow} key={row.id}>
               <td className={styles.beatTableCol}>{row.img}</td>
               <td className={styles.titleTableCol}>{row.title}</td>
               <td className={styles.timeTableCol}>{row.time}</td>
