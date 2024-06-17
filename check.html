@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <script>
+        // const file = document.getElementById('fileInput');
+        const Data = {
+        //   path : './img',
+        //   file: file
+        };
+        // const data = {
+        //   new_member : {
+        //     "id": "32",
+        //     "img": "public\\db\\img\\beef.png",
+        //     "title": "Beef",
+        //     "time": "00:02:26",
+        //     "bpm": "105",
+        //     "tags": "{\"beat\": \"\", \"music\": \"\", \"bitmaker\": \"\"}",
+        //     "link": "",
+        //     "price": "50",
+        //     "key": "Dm",
+        //     "mood": "shoreline mafia & ohgeesy",
+        //     "genre": "Hip Hop",
+        //     "soundSrc": "public\\db\\sound\\beef.mp3"
+        //   }
+        // }
+        // const data = {
+        //   id : 32,
+        // };
+
+        const fileInput = document.getElementById('fileInput');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files;
+            let formData = new FormData();
+            formData.append('file', file[0], file[0].name);
+            formData.append('path', './public/test/');
+
+            if (!file) {
+                console.error('Файл не выбран или пустой.');
+                return;
+            }
+
+            axios.post('http://courseupdate/POST', formData)
+                .then(response => {
+                    console.log('Успешный ответ от сервера:', response.data);
+                })
+                .catch(error => {
+                    console.error('Ошибка при выполнении POST запроса:', error);
+                });
+        });
+
+
+    </script>
+</body>
+</html>

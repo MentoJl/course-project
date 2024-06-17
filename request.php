@@ -1,5 +1,5 @@
 <?php
-require 'slim-skeleton/vendor/autoload.php';
+require './slim-skeleton/vendor/autoload.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -21,7 +21,8 @@ function sortBy($link, $bmp, $mood, $genre, $title){ //Sorting
         $conditions[] = "bpm = '$bmp'";
     }
     if (!empty($mood)) {
-        $conditions[] = "mood = '$mood'";
+        $conditions[] = "mood LIKE '%" . mysqli_real_escape_string($link, $mood) . "%'";
+        // $conditions[] = "mood = '$mood'";
     }
     if (!empty($genre)) {
         $conditions[] = "genre = '$genre'";
@@ -91,16 +92,6 @@ $app->get('/database', function (Request $request, Response $response, array $ar
     $genre = isset($queryParams['genre']) ? $queryParams['genre'] : "";
     $title = isset($queryParams['title']) ? $queryParams['title'] : "";
 
-    // if ($bpm == "All") {
-    //     $bpm = "";
-    // }if ($mood == "All") {
-    //     $mood = "";
-    // }if ($genre == "All") {
-    //     $genre = "";
-    // }if ($title == "All") {
-    //     $title = "";
-    // }
-
     $sorted_data = sortBy($link, $bpm, $mood, $genre, $title);
 
     $response->getBody()->write(json_encode($sorted_data));
@@ -115,20 +106,20 @@ $app->get('/database', function (Request $request, Response $response, array $ar
 //             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 // });
 
-$app->post('/POST', function (Request $request, Response $response, $args) {
-    $uploadedFiles = $request->getUploadedFiles();
-    $uploadedFile = $uploadedFiles['file'];
+// $app->post('/POST', function (Request $request, Response $response, $args) {
+//     $uploadedFiles = $request->getUploadedFiles();
+//     $uploadedFile = $uploadedFiles['file'];
 
-    if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-        $uploadPath = $request->getParsedBody()['path'];
-        $uploadedFileName = $uploadedFile->getClientFilename();
-        $uploadedFile->moveTo($uploadPath . $uploadedFileName);
+//     if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+//         $uploadPath = $request->getParsedBody()['path'];
+//         $uploadedFileName = $uploadedFile->getClientFilename();
+//         $uploadedFile->moveTo($uploadPath . $uploadedFileName);
 
-        return $response->withHeader('Content-Type', 'application/json');
-    } else {
-        return $response->withHeader('Content-Type', 'application/json');
-    }
-});
+//         return $response->withHeader('Content-Type', 'application/json');
+//     } else {
+//         return $response->withHeader('Content-Type', 'application/json');
+//     }
+// });
 
 $app->post('/Database/add_user', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
