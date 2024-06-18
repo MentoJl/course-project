@@ -57,11 +57,6 @@ const Header = () => {
           </Link>
         </div>
         <div className={styles.headerCase}>
-          <Link to="/albums" className={styles.menuCase}>
-            Albums
-          </Link>
-        </div>
-        <div className={styles.headerCase}>
           <Link to="/soundkits" className={styles.menuCase}>
             Sound Kits
           </Link>

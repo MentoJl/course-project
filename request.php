@@ -106,20 +106,21 @@ $app->get('/database', function (Request $request, Response $response, array $ar
 //             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 // });
 
-// $app->post('/POST', function (Request $request, Response $response, $args) {
-//     $uploadedFiles = $request->getUploadedFiles();
-//     $uploadedFile = $uploadedFiles['file'];
+$app->post('/POST', function (Request $request, Response $response, $args) {
+    $uploadedFiles = $request->getUploadedFiles();
+    $uploadedFile = $uploadedFiles['file'];
+    $uploadPath = $request->getParsedBody()['path'];
 
-//     if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-//         $uploadPath = $request->getParsedBody()['path'];
-//         $uploadedFileName = $uploadedFile->getClientFilename();
-//         $uploadedFile->moveTo($uploadPath . $uploadedFileName);
-
-//         return $response->withHeader('Content-Type', 'application/json');
-//     } else {
-//         return $response->withHeader('Content-Type', 'application/json');
-//     }
-// });
+    if ($uploadedFile->getError() == UPLOAD_ERR_OK) {
+        $uploadedFileName = $uploadedFile->getClientFilename();
+        $uploadedFile->moveTo($uploadPath . $uploadedFileName);
+        echo "Add, $uploadPath";
+        return $response->withHeader('Content-Type', 'application/json');
+    } else {
+        echo "Error, $uploadPath, " . $uploadedFile->getError();
+        return $response->withHeader('Content-Type', 'application/json');
+    }
+});
 
 $app->post('/Database/add_user', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);

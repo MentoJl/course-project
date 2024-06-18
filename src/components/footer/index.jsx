@@ -49,9 +49,6 @@ const Footer = () => {
           <Link to="/soundkits" className={styles.hoverUnderline}>
             Sound Kits
           </Link>
-          <Link to="/albums" className={styles.hoverUnderline}>
-            Albums
-          </Link>
         </div>
         <div className={styles.footerColumn}>
           <Link to="/servicespage" className={styles.hoverUnderline}>
