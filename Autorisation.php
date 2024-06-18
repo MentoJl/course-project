@@ -1,5 +1,8 @@
 <?php
-session_start();
+    session_start();
+    if (!isset($_SESSION["type"])){
+        $_SESSION["type"] = "Login";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
