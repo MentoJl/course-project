@@ -4,7 +4,6 @@ import { Route, BrowserRouter as Controller, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop/index'
 import Main from './components/main_page/index'
 import AboutMePage from './pages/AboutMePage/index'
-import AlbumsPage from './pages/AlbumsPage'
 import AllBeats from './pages/AllBeatsPage/index'
 import CartPage from './pages/CartPage'
 import ContactMePage from './pages/ContactMePage/index'
@@ -30,7 +29,6 @@ root.render(
       <Route path="/contactme" element={<ContactMePage />} />
       <Route path="/aboutme" element={<AboutMePage />} />
       <Route path="/soundkits" element={<SoundKitsPage />} />
-      <Route path="/albums" element={<AlbumsPage />} />
       <Route path="/licensinginfo" element={<LicensingInfoPage />} />
       <Route path="/soundkits/westcoastloopkitvol1" element={<SoundKitDetailPage />} />
       <Route path="/services/custombeat" element={<CustomBeatDetailsPage />} />

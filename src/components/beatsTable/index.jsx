@@ -78,7 +78,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '' })
       ),
       title: (
         <Link
-          to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&title=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(
+          to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&name=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(
             beatTags.join(',')
           )}&price=${price}&key=${encodeURIComponent(key)}`}
         >
