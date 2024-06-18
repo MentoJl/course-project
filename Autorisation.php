@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["type"])){
+    $_SESSION["type"] = "Login";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +17,7 @@ session_start();
             <tr>
                 <td class="first-page">
                     <div>
-                       <h1>DJ x</h1>
+                       <h1>DJ PRIGOZHIN</h1>
                     </div>
                 </td>
                 <td class="second-page">
@@ -35,10 +38,10 @@ session_start();
                         <div>
                             <p class="Reg">Registration</p>
                             <form action="modules/registration.php" method="post">
-                                <label for="reg-login">New username: </label>
+                                <label for="reg-login">UserName: </label>
                                 <input type="text" id="reg-login" name="reg-login"><br>
                                 
-                                <label for="email">Add your email: </label>
+                                <label for="email">Email: </label>
                                 <input type="text" id="email" name="email"><br>
                 
                                 <label for="reg-password">Password: </label>
@@ -56,8 +59,6 @@ session_start();
                         echo "<div class='error'>" . $_GET['error'] . "</div>";
                     }
                     ?>
-                        
-                    
                     <?php if($_SESSION['type'] == "Login" || isset($_SESSION['type']) == False) { ?>
                         <p class="logintext">Not a member of our store yet? Become <a href="update_text.php">one!</a></p>
                     <?php }elseif($_SESSION['type'] == "Registration") {?>
@@ -74,11 +75,9 @@ session_start();
                             Continue with Google
                         </button>
                     </div>
-                    
                     <p class="underline-text">By logging in to <a>Beat Store</a>, I confirm that I have read and agree to the Music Gallery Terms of Service, Privacy Policy, and to receive emails and updates. </p>
                 </td>
             </tr>
         </table>
-        
     </body>
 </html>

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import styles from './style.module.css';
 import { Image, Slider } from 'antd';
 
-const Player = ({ imgSrc, title, time, link, price, beatSrc }) => {
+const Player = ({ imgSrc, title, time, link, price, beatSrc, prevButton, nextButton }) => {
     const audioRef = useRef(null);
     const [imgPlaySrc, setImgPlaySrc] = useState('./test/play_button.png');
     const [imgSkipnSrc, setImgSkipnSrc] = useState('./test/skipn.png');
@@ -84,7 +84,7 @@ const Player = ({ imgSrc, title, time, link, price, beatSrc }) => {
                 </div>
                 <div className={styles.controls}>
                     <Image
-                        onClick={playPause}
+                        onClick={prevButton}
                         src={imgSkippSrc}
                         preview={false}
                         className={styles.skipp}
@@ -96,7 +96,7 @@ const Player = ({ imgSrc, title, time, link, price, beatSrc }) => {
                         className={styles.controlButton}
                     />
                     <Image
-                        onClick={playPause}
+                        onClick={nextButton}
                         src={imgSkipnSrc}
                         preview={false}
                         className={styles.skipn}

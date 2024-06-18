@@ -47,7 +47,7 @@
                 return;
             }
 
-            axios.post('http://courseupdate/POST', formData)
+            axios.post('http://database/POST', formData)
                 .then(response => {
                     console.log('Успешный ответ от сервера:', response.data);
                 })

@@ -12,7 +12,7 @@ const useQuery = () => {
 const BeatPage = () => {
   const query = useQuery()
   const imgSrc = query.get('imgSrc')
-  const title = query.get('title')
+  const title = query.get('name')
   const bpm = query.get('bpm')
   const beatTags = query.get('beatTags')?.split(',') || []
   const price = query.get('price')

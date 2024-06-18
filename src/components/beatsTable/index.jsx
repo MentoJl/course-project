@@ -11,7 +11,7 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '' }) => {
+const BeatsTable = ({bpmCategory = '', moodCategory = '', genreCategory = '' }) => {
   const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
@@ -32,7 +32,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '' })
     onChange(info) {
       console.log(info)
       axios
-        .post('http://update/POST', info)
+        .post('http://database/POST', info)
         .then((response) => {
           console.log('Успешный ответ от сервера:', response.data)
         })
@@ -65,20 +65,39 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '' })
     setHandlePlaySound(true)
   }
 
-  const addBeat = (imgSrc, title, time, bpm, beatTags, link, price, soundSrc, key) => {
+  const prevBeat = () => {
+    if (beatList[currentBeat.id - 2] === undefined) {
+      setCurrentBeat(beatList[beatList.length-1].beatPlayerInfo)
+    } else {
+      setCurrentBeat(beatList[currentBeat.id-2].beatPlayerInfo)
+    }
+  }
+
+  const nextBeat = () => {
+    if (beatList[currentBeat.id] === undefined) {
+      setCurrentBeat(beatList[0].beatPlayerInfo)
+    } else {
+      setCurrentBeat(beatList[currentBeat.id].beatPlayerInfo)
+    }
+  }
+
+
+  const addBeat = (id, imgSrc, title, time, bpm, beatTags, link, price, soundSrc, key) => {
+    const beatPlayerInfo = { id, imgSrc, title, link, price, soundSrc }
     const newRow = {
-      id: beatList.length + 1,
+      id: id,
+      beatPlayerInfo: beatPlayerInfo,
       beatPlaySrc: soundSrc,
       img: (
         <img
           className={styles.beatImg}
           src={imgSrc}
-          onClick={() => handleBeatClick({ imgSrc, title, link, price, soundSrc })}
+          onClick={() => handleBeatClick(beatPlayerInfo)}
         />
       ),
       title: (
         <Link
-          to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&title=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(
+          to={`/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&name=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(
             beatTags.join(',')
           )}&price=${price}&key=${encodeURIComponent(key)}`}
         >
@@ -122,7 +141,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '' })
       .then((response) => {
         response.data.map((data) => {
           const tagsArray = JSON.parse(data.tags)
-          addBeat(data.img, data.title, data.time, data.bpm, tagsArray, data.link, data.price, data.soundSrc, data.key)
+          addBeat(data.id, data.img, data.title, data.time, data.bpm, tagsArray, data.link, data.price, data.soundSrc, data.key)
         })
       })
       .catch((error) => {
@@ -315,6 +334,8 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '' })
           link={currentBeat.link}
           price={currentBeat.price}
           beatSrc={currentBeat.soundSrc}
+          prevButton={prevBeat}
+          nextButton={nextBeat}
         />
       )}
     </div>
