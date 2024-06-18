@@ -1,5 +1,5 @@
 <?php
-require_once 'modules/controller.php';
+require_once 'controller.php';
 
 $userController = new UserController();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($result) > 0) {
             $userController->Autorisation(True);
         } else {
-            $userController->Autorisation(false, "invalid_login");
+            $userController->Autorisation(false, "Login or password are invalid*");
         }
     } else {
-        $userController->Autorisation(false, "no_information");
+        $userController->Autorisation(false, "empty information*");
     }
 
     mysqli_close($link);

@@ -7,7 +7,7 @@ class UserController {
 
     public function Autorisation($access, $error="") {
         if($access === false){
-            header("Location: Autorisation.php?error=". $error ."");
+            header("Location: ../Autorisation.php?error=". $error ."");
             exit;
         }else{
             self::main_site();

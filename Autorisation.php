@@ -21,7 +21,7 @@ session_start();
                     <?php if($_SESSION['type'] == "Login" || $_SESSION['type'] == "") { ?>
                         <div>
                             <p>Log in</p>
-                            <form action="autoristionModule.php" method="post">
+                            <form action="modules/autoristionModule.php" method="post">
                             <label for="login">UserName: </label>
                             <input type="text" id="login" name="login"><br><br>
             
@@ -34,15 +34,15 @@ session_start();
                     <?php }elseif($_SESSION['type'] == "Registration") {?>
                         <div>
                             <p class="Reg">Registration</p>
-                            <form action="" method="post">
+                            <form action="modules/registration.php" method="post">
                                 <label for="reg-login">New username: </label>
-                                <input type="text" id="login" name="login"><br>
+                                <input type="text" id="reg-login" name="reg-login"><br>
                                 
                                 <label for="email">Add your email: </label>
                                 <input type="text" id="email" name="email"><br>
                 
                                 <label for="reg-password">Password: </label>
-                                <input type="text" id="password" name="password"><br>
+                                <input type="text" id="reg-password" name="reg-password"><br>
 
                                 <label for="second-password">Confirm password: </label>
                                 <input type="text" id="second-password" name="second-password"><br>
@@ -52,11 +52,11 @@ session_start();
                         </div>
                     <?php }?>
 
-                    <?php if(isset($_GET['error']) && $_GET['error'] == "invalid_login") { ?>
-                        <div class="error">Login or password are invalid*</div>
-                    <?php }elseif(isset($_GET['error']) && $_GET['error'] == "no_information") { ?>
-                        <div class="error">empty information*</div>
-                    <?php } ?>
+                    <?php if(isset($_GET['error'])) {
+                        echo "<div class='error'>" . $_GET['error'] . "</div>";
+                    }
+                    ?>
+                        
                     
                     <?php if($_SESSION['type'] == "Login" || isset($_SESSION['type']) == False) { ?>
                         <p class="logintext">Not a member of our store yet? Become <a href="update_text.php">one!</a></p>
