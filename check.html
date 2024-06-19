@@ -11,8 +11,16 @@
     <script>
         // const file = document.getElementById('fileInput');
         const Data = {
-        //   path : './img',
-        //   file: file
+            beatName : "Beef",
+            login : "User",
+            action : "comment",
+            text : "That so cool, keep it up"
+        };
+        const Data2 = {
+            beatName : "Summer Time",
+            login : "User",
+            action : "like",
+            text : ""
         };
         // const data = {
         //   new_member : {
@@ -34,27 +42,44 @@
         //   id : 32,
         // };
 
-        const fileInput = document.getElementById('fileInput');
+        // const fileInput = document.getElementById('fileInput');
 
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files;
-            let formData = new FormData();
-            formData.append('file', file[0], file[0].name);
-            formData.append('path', './public/db/sound/');
+        // fileInput.addEventListener('change', function(event) {
+        //     const file = event.target.files;
+        //     let formData = new FormData();
+        //     formData.append('file', file[0], file[0].name);
+        //     formData.append('path', './public/db/sound/');
 
-            if (!file) {
-                console.error('Файл не выбран или пустой.');
-                return;
-            }
+        //     if (!file) {
+        //         console.error('Файл не выбран или пустой.');
+        //         return;
+        //     }
 
-            axios.post('http://database/POST', formData)
-                .then(response => {
-                    console.log('Успешный ответ от сервера:', response.data);
-                })
-                .catch(error => {
-                    console.error('Ошибка при выполнении POST запроса:', error);
-                });
-        });
+        //     axios.post('http://courseupdate/POST', formData)
+        //         .then(response => {
+        //             console.log('Успешный ответ от сервера:', response.data);
+        //         })
+        //         .catch(error => {
+        //             console.error('Ошибка при выполнении POST запроса:', error);
+        //         });
+        // });
+
+        axios.post('http://courseupdate/Database/action', Data)
+            .then(response => {
+                console.log('Успешный ответ от сервера:', response.data);
+            })
+            .catch(error => {
+                console.error('Ошибка при выполнении POST запроса:', error);
+            });
+        axios.post('http://courseupdate/Database/action', Data2)
+            .then(response => {
+                console.log('Успешный ответ от сервера:', response.data);
+            })
+            .catch(error => {
+                console.error('Ошибка при выполнении POST запроса:', error);
+            });
+
+
 
 
     </script>

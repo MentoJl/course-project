@@ -134,6 +134,25 @@ $app->post('/Database/add_user', function (Request $request, Response $response,
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->post('/Database/action', function (Request $request, Response $response, $args) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    print_r($data);
+    $link = mysqli_connect("localhost", "root", "", "INFO");
+
+    $beat_name = mysqli_real_escape_string($link, $data['beatName']);
+    $login = mysqli_real_escape_string($link, $data['login']);
+    $action = mysqli_real_escape_string($link, $data['action']);
+    $text = mysqli_real_escape_string($link, $data['text']);
+
+    $query = "INSERT INTO actions (beat_name, login, action, value) VALUES ('$beat_name', '$login', '$action', '$text')";
+    mysqli_query($link, $query);
+
+    // mysqli_close($link);
+
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+
 $app->post('/Database/delete_user', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
     print_r($data);
