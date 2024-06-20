@@ -11,17 +11,24 @@
     <script>
         // const file = document.getElementById('fileInput');
         const Data = {
-            beatName : "Beef",
-            login : "User",
-            action : "comment",
-            text : "That so cool, keep it up"
+            beatName : {
+                name : "Beef",
+                price : "34.99",
+                title : "awd",
+            }
         };
-        const Data2 = {
-            beatName : "Summer Time",
-            login : "User",
-            action : "like",
-            text : ""
-        };
+        // const Data = {
+        //     beatName : "Beef",
+        //     login : "User",
+        //     action : "comment",
+        //     text : "That so cool, keep it up"
+        // };
+        // const Data2 = {
+        //     beatName : "Summer Time",
+        //     login : "User",
+        //     action : "like",
+        //     text : ""
+        // };
         // const data = {
         //   new_member : {
         //     "id": "32",
@@ -64,14 +71,22 @@
         //         });
         // });
 
-        axios.post('http://courseupdate/Database/action', Data)
-            .then(response => {
-                console.log('Успешный ответ от сервера:', response.data);
-            })
-            .catch(error => {
-                console.error('Ошибка при выполнении POST запроса:', error);
-            });
-        axios.post('http://courseupdate/Database/action', Data2)
+        // axios.post('http://courseupdate/Database/action', Data)
+        //     .then(response => {
+        //         console.log('Успешный ответ от сервера:', response.data);
+        //     })
+        //     .catch(error => {
+        //         console.error('Ошибка при выполнении POST запроса:', error);
+        //     });
+        // axios.post('http://courseupdate/Database/action', Data2)
+        //     .then(response => {
+        //         console.log('Успешный ответ от сервера:', response.data);
+        //     })
+        //     .catch(error => {
+        //         console.error('Ошибка при выполнении POST запроса:', error);
+        //     });
+
+        axios.post('http://course-work/savePurchased', Data)
             .then(response => {
                 console.log('Успешный ответ от сервера:', response.data);
             })

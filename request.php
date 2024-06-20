@@ -106,6 +106,17 @@ $app->get('/database', function (Request $request, Response $response, array $ar
 //             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 // });
 
+// setcookie("user_data", $jsonData, time() + 86400, "/");
+
+$app->post('/savePurchased', function (Request $request, Response $response, $args) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    $jsonData = json_encode($data);
+
+    setcookie("user_data", $jsonData, time() + 3600, "/");
+
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
 $app->post('/POST', function (Request $request, Response $response, $args) {
     $uploadedFiles = $request->getUploadedFiles();
     $uploadedFile = $uploadedFiles['file'];
