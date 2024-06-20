@@ -17,6 +17,9 @@ const Main = () => {
   const [modalContent, setModalContent] = useState('')
   const [inputValue, setInputValue] = useState('')
   const messageRef = useRef(null)
+  const sendMail = useRef(null)
+  const sendName = useRef(null)
+  const sendTitle = useRef(null)
 
   const openModal = (content) => {
     setModalContent(content)
@@ -44,6 +47,34 @@ const Main = () => {
   const handleChangeInputValue = (event) => {
     setInputValue(event.target.value)
   }
+
+  const handleSendEmail = () => {
+    const emailData = {
+      email: sendMail.current.value,
+      title: sendTitle.current.value,
+      name: sendName.current.value,
+    };
+
+    if (sendMail.current.value !== ''
+      && sendTitle.current.value !== ''
+      && sendName.current.value !== ''
+    ) {
+    fetch('http://database/sendEmail.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+    }
+ }
 
   return (
     <div className={styles.main}>
@@ -232,13 +263,13 @@ const Main = () => {
         <div className={styles.contactInfo}>Contact</div>
         <form className={styles.form}>
           <div className={styles.formRow}>
-            <input className={styles.inputField} type="text" placeholder="YOUR NAME" />
+            <input ref={sendName} className={styles.inputField} type="text" placeholder="YOUR NAME" />
           </div>
           <div className={styles.formRow}>
-            <input className={styles.inputField} type="email" placeholder="E-MAIL ADDRESS" />
+            <input ref={sendMail} className={styles.inputField} type="email" placeholder="E-MAIL ADDRESS" />
           </div>
           <div className={styles.formRow}>
-            <input className={styles.inputField} type="text" placeholder="SUBJECT" />
+            <input ref={sendTitle} className={styles.inputField} type="text" placeholder="SUBJECT" />
           </div>
           <div className={styles.formRow}>
             <textarea
@@ -248,7 +279,7 @@ const Main = () => {
               ref={messageRef}
             ></textarea>
           </div>
-          <button className={styles.submitButton} type="submit">
+          <button className={styles.submitButton} onClick={handleSendEmail}>
             SEND MESSAGE
           </button>
         </form>
