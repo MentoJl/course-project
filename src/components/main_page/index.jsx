@@ -53,11 +53,13 @@ const Main = () => {
       email: sendMail.current.value,
       title: sendTitle.current.value,
       name: sendName.current.value,
+      message: messageRef.current.value,
     };
 
     if (sendMail.current.value !== ''
       && sendTitle.current.value !== ''
       && sendName.current.value !== ''
+      && messageRef.current.value !== ''
     ) {
     fetch('http://database/sendEmail.php', {
       method: 'POST',
@@ -263,13 +265,13 @@ const Main = () => {
         <div className={styles.contactInfo}>Contact</div>
         <form className={styles.form}>
           <div className={styles.formRow}>
-            <input ref={sendName} className={styles.inputField} type="text" placeholder="YOUR NAME" />
+            <input ref={sendName} className={styles.inputField} type="text" placeholder="NAME" />
           </div>
           <div className={styles.formRow}>
-            <input ref={sendMail} className={styles.inputField} type="email" placeholder="E-MAIL ADDRESS" />
+            <input ref={sendMail} className={styles.inputField} type="email" placeholder="E-MAIL" />
           </div>
           <div className={styles.formRow}>
-            <input ref={sendTitle} className={styles.inputField} type="text" placeholder="SUBJECT" />
+            <input ref={sendTitle} className={styles.inputField} type="text" placeholder="TITLE" />
           </div>
           <div className={styles.formRow}>
             <textarea

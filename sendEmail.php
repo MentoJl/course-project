@@ -23,7 +23,7 @@ header('Content-Type: application/json');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if (!isset($data['email']) || !isset($data['title']) || !isset($data['name'])) {
+    if (!isset($data['email']) || !isset($data['title']) || !isset($data['name']) || !isset($data['message'])) {
         http_response_code(400);
         echo json_encode(['message' => 'Invalid input']);
         exit;
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $data['email'];
     $title = $data['title'];
     $name = $data['name'];
+    $message = $data['message'];
 
     $mail = new PHPMailer(true);
     try {
@@ -43,12 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom($_ENV['EMAIL'], 'Mailer');
+        $mail->setFrom($_ENV['EMAIL'], htmlspecialchars($name));
         $mail->addAddress($_ENV['EMAIL']);
 
         $mail->isHTML(true);
         $mail->Subject = $title;
-        $mail->Body    = 'Hello ' . htmlspecialchars($name) . ', this is a test email!';
+        $mail->Body = htmlspecialchars($message) . '<p/>My Mail to contact me: ' . htmlspecialchars($email);
 
         $mail->send();
         echo json_encode(['message' => 'Email sent']);
