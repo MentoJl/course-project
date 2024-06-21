@@ -6,10 +6,10 @@
   font-family: 'Jenkie';
   src: url('../font/JenkineBold-1Gdy0.ttf') format('truetype');
 }
-@font-face {
+/* @font-face {
   font-family: 'Zombiewolf';
   src: url('../font/ZombiewolfPersonalUseRegular-qZAEx.ttf') format('truetype');
-}
+} */
 body {
   height: 100%;
   margin: 0;
@@ -17,14 +17,22 @@ body {
   justify-content: center;
   align-items: center;
 }
-.Reg{
+.Reg {
   font-size: 60px;
+  display: flex;
+  justify-content: center;
 }
 p {
-  font-family: 'Zombiewolf';
+  font-family: 'Jenkie';
   font-size: 80px;
   margin-top: 5px;
   margin-bottom: 50px;
+}
+
+.loginText {
+  font-family: 'Jenkie';
+  display: flex;
+  justify-content: center;
 }
 
 html {
@@ -120,7 +128,7 @@ th {
 }
 form {
   display: flex;
-  max-height: 400px; 
+  max-height: 400px;
   flex-direction: column;
 }
 form > input[type='submit'] {
@@ -185,12 +193,12 @@ a {
 .error {
   color: red;
 }
-.logintext{
+.logintext {
   font-family: 'EssenceSansBold';
   font-size: 20px;
   margin: 0;
 }
-.logintext > a{
+.logintext > a {
   color: purple;
   text-decoration: underline;
 }

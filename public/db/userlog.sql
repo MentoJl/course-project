@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 18, 2024 at 07:32 PM
+-- Generation Time: Jun 21, 2024 at 08:11 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `userlog` (
   `userLogin` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
-  `userTable` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -41,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `userlog` (
 -- Dumping data for table `userlog`
 --
 
-INSERT INTO `userlog` (`id`, `userLogin`, `email`, `password`, `userTable`) VALUES
-(0, 'admin', 'admin@gmail.com', 'password', ''),
-(21, 'user', 'user@gmail.com', 'userpassword', 'user_beat_information');
+INSERT INTO `userlog` (`id`, `userLogin`, `email`, `password`) VALUES
+(0, 'admin', 'admin@gmail.com', 'password'),
+(21, 'user', 'user@gmail.com', 'userpassword');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

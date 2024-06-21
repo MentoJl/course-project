@@ -17,13 +17,13 @@
             <tr>
                 <td class="first-page">
                     <div>
-                       <h1>DJ x</h1>
+                       <h1>BEAT STORE</h1>
                     </div>
                 </td>
                 <td class="second-page">
                     <?php if($_SESSION['type'] == "Login" || $_SESSION['type'] == "") { ?>
                         <div>
-                            <p>Log in</p>
+                            <p class="loginText">Login</p>
                             <form action="modules/autoristionModule.php" method="post">
                             <label for="login">UserName: </label>
                             <input type="text" id="login" name="login"><br><br>
