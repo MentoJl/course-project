@@ -11,7 +11,7 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-const BeatsTable = ({bpmCategory = '', moodCategory = '', genreCategory = '' }) => {
+const BeatsTable = ({bpmCategory = '', moodCategory = '', genreCategory = '', keyCategory = '' }) => {
   const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
@@ -137,7 +137,7 @@ const BeatsTable = ({bpmCategory = '', moodCategory = '', genreCategory = '' }) 
   useEffect(() => {
     setBeatList([])
     axios
-      .get(`http://database/database?title=${title}&bpm=${bpmCategory}&mood=${moodCategory}&genre=${genreCategory}`)
+      .get(`http://database/database?title=${title}&bpm=${bpmCategory}&mood=${moodCategory}&genre=${genreCategory}&key=${keyCategory}`)
       .then((response) => {
         response.data.map((data) => {
           const tagsArray = JSON.parse(data.tags)
@@ -147,7 +147,7 @@ const BeatsTable = ({bpmCategory = '', moodCategory = '', genreCategory = '' }) 
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
-  }, [title, bpmCategory, moodCategory, genreCategory])
+  }, [title, bpmCategory, moodCategory, genreCategory, keyCategory])
 
   return (
     <div className={styles.tableBeatsContainer}>

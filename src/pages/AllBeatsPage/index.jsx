@@ -16,6 +16,7 @@ const AllBeats = () => {
   const [genre, setGenre] = useState('All')
   const [mood, setMood] = useState('All')
   const [bpm, setBpm] = useState('All')
+  const [key, setKey] = useState('All')
 
   return (
     <div className={styles.allbeatsContainer}>
@@ -63,6 +64,57 @@ const AllBeats = () => {
               {
                 value: '105',
                 label: '105',
+              },
+            ]}
+          />
+          <Select
+            defaultValue="All Key"
+            className={styles.selectBpm}
+            onChange={(value) => setKey(value)}
+            options={[
+              {
+                value: '',
+                label: 'All Key',
+              },
+              {
+                value: 'Dm',
+                label: 'Dm',
+              },
+              {
+                value: 'Bm',
+                label: 'Bm',
+              },
+              {
+                value: 'C#m',
+                label: 'C#m',
+              },
+              {
+                value: 'Gm',
+                label: 'Gm',
+              },
+              {
+                value: 'C#m',
+                label: 'C#m',
+              },
+              {
+                value: 'A#m',
+                label: 'A#m',
+              },
+              {
+                value: 'Ebm',
+                label: 'Ebm',
+              },
+              {
+                value: 'Fm',
+                label: 'Fm',
+              },
+              {
+                value: 'Abm',
+                label: 'Abm',
+              },
+              {
+                value: 'F#m',
+                label: 'F#m',
               },
             ]}
           />
@@ -142,7 +194,8 @@ const AllBeats = () => {
       <BeatsTable 
       bpmCategory={bpm === 'All' ? '' : bpm}
       moodCategory={mood === 'All' ? '' : mood}
-      genreCategory={genre === 'All' ? '' : genre} />
+      genreCategory={genre === 'All' ? '' : genre}
+      keyCategory={key === 'All' ? '' : key} />
       <Footer />
     </div>
   )

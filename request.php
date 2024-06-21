@@ -13,7 +13,7 @@ $app = AppFactory::create();
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-function sortBy($link, $bmp, $mood, $genre, $title){ //Sorting
+function sortBy($link, $bmp, $mood, $genre, $title){
     $sql = "SELECT * FROM base_information";
 
     $conditions = [];
@@ -22,7 +22,6 @@ function sortBy($link, $bmp, $mood, $genre, $title){ //Sorting
     }
     if (!empty($mood)) {
         $conditions[] = "mood LIKE '%" . mysqli_real_escape_string($link, $mood) . "%'";
-        // $conditions[] = "mood = '$mood'";
     }
     if (!empty($genre)) {
         $conditions[] = "genre = '$genre'";
@@ -48,7 +47,7 @@ function sortBy($link, $bmp, $mood, $genre, $title){ //Sorting
 }
 
 function add_user($data, $conn){
-    $id = mysqli_real_escape_string($conn, $data['new_member']['id']); #protect data from taken away
+    $id = mysqli_real_escape_string($conn, $data['new_member']['id']);
     $img = mysqli_real_escape_string($conn, $data['new_member']['img']);
     $title = mysqli_real_escape_string($conn, $data['new_member']['title']);
     $time = mysqli_real_escape_string($conn, $data['new_member']['time']);
@@ -75,7 +74,7 @@ function add_user($data, $conn){
     }
 }
 
-$app->add(function ($request, $handler) { #Request access
+$app->add(function ($request, $handler) {
     $response = $handler->handle($request);
     return $response
             ->withHeader('Access-Control-Allow-Origin', '*')
