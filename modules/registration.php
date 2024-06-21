@@ -46,16 +46,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
 
-    $query = "INSERT INTO userLog (userLogin, email, password, userTable) VALUES ('$login', '$email', '$password', '". $login . "_beat_information')";
+    $query = "INSERT INTO userLog (userLogin, email, password) VALUES ('$login', '$email', '$password')";
     $result = mysqli_query($link, $query);
 
-    $sql = "CREATE TABLE " . $login . "_beat_information (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(30) NOT NULL,
-        password VARCHAR(30) NOT NULL,
-        reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    )";
-    $result = mysqli_query($link, $sql);
+    // $sql = "CREATE TABLE " . $login . "_beat_information (
+    //     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    //     username VARCHAR(30) NOT NULL,
+    //     password VARCHAR(30) NOT NULL,
+    //     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    // )";
+    // $result = mysqli_query($link, $sql);
 
 
     $userController->Autorisation(True);

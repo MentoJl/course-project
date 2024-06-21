@@ -79,13 +79,7 @@
         //         console.error('Ошибка при выполнении POST запроса:', error);
         //     });
 
-        axios.post('http://course-work/savePurchased', Data)
-            .then(response => {
-                console.log('Успешный ответ от сервера:', response.data);
-            })
-            .catch(error => {
-                console.error('Ошибка при выполнении POST запроса:', error);
-            });
+        window.location.href = 'http://course-work/Autorisation.php';
 
 
 
