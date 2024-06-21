@@ -107,10 +107,10 @@ const Header = () => {
         <div
           className={styles.headerCase}
           onClick={() => {
-            window.location.href = 'http://userlog/Autorisation.php'
+            window.location.href = 'http://database/Autorisation.php'
           }}
         >
-          <span className={styles.menuCase}>Log In</span>
+          <span className={styles.menuCase}>Login</span>
         </div>
       </div>
     </div>

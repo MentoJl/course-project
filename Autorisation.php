@@ -3,6 +3,7 @@
     if (!isset($_SESSION["type"])){
         $_SESSION["type"] = "Login";
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +18,15 @@
             <tr>
                 <td class="first-page">
                     <div>
-                       <h1>DJ x</h1>
+                       <h1>Beat Store</h1>
                     </div>
                 </td>
                 <td class="second-page">
                     <?php if($_SESSION['type'] == "Login" || $_SESSION['type'] == "") { ?>
                         <div>
-                            <p>Log in</p>
+                            <!-- <p>Log in</p> -->
                             <form action="modules/autoristionModule.php" method="post">
-                            <label for="login">UserName: </label>
+                            <label for="login">Username: </label>
                             <input type="text" id="login" name="login"><br><br>
             
                             <label for="password">Password: </label>
@@ -36,7 +37,7 @@
                         </div>
                     <?php }elseif($_SESSION['type'] == "Registration") {?>
                         <div>
-                            <p class="Reg">Registration</p>
+                            <!-- <p class="Reg">Registration</p> -->
                             <form action="modules/registration.php" method="post">
                                 <label for="reg-login">New username: </label>
                                 <input type="text" id="reg-login" name="reg-login"><br>
@@ -64,7 +65,7 @@
                     <?php if($_SESSION['type'] == "Login" || isset($_SESSION['type']) == False) { ?>
                         <p class="logintext">Not a member of our store yet? Become <a href="update_text.php">one!</a></p>
                     <?php }elseif($_SESSION['type'] == "Registration") {?>
-                        <p class="logintext">Already a member? <a href="update_text.php">Log in.</a></p>
+                        <p class="logintext">Already a member? <a href="update_text.php">Log in</a></p>
                     <?php }?>
                     <div class="or-container">
                         <hr>

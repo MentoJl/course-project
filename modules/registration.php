@@ -4,6 +4,7 @@ require_once 'controller.php';
 $userController = new UserController();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $link = mysqli_connect("localhost", "root", "", "INFO");
+    session_start();
 
     
     if (isset($_POST["reg-login"]) == False){
@@ -56,7 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     // )";
     // $result = mysqli_query($link, $sql);
-
+    
+    $_SESSION ["type"] = "Login";
 
     $userController->Autorisation(True);
 
