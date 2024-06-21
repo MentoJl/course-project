@@ -2,6 +2,8 @@
     session_start();
     if (!isset($_SESSION["type"])){
         $_SESSION["type"] = "Login";
+    }elseif(isset($_GET['window'])) {
+        $_SESSION["type"] = $_GET['window'];
     }
 
 ?>
