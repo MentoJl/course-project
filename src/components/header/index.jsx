@@ -104,7 +104,12 @@ const Header = () => {
             <span className={styles.menuCase}>$0.00</span>
           </div>
         </Link>
-        <div className={styles.headerCase}>
+        <div
+          className={styles.headerCase}
+          onClick={() => {
+            window.location.href = 'http://userlog/Autorisation.php'
+          }}
+        >
           <span className={styles.menuCase}>Log In</span>
         </div>
       </div>
