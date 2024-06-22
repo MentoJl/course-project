@@ -1,126 +1,133 @@
 .beatInfoContainer {
-    border-bottom: 2px solid rgb(71, 71, 71);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: aliceblue;
-    background-color: rgb(10, 8, 8);
-    margin-bottom: 60px;
+  border-bottom: 2px solid rgb(71, 71, 71);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  background-color: rgb(10, 8, 8);
+  margin-bottom: 60px;
 }
 
 .titleHeader,
 .authorHeader,
 .infoHeader,
 .desHeader {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .share {
-    background-color: #67030d;
-    width: 40px;
-    height: 40px;
+  background-color: #67030d;
+  width: 40px;
+  height: 40px;
 }
 
 .shareImg {
-    max-width: 20px;
-    max-height: 20px;
-    min-width: 20px;
-    min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .beatControllHeader {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .naviButtons {
-    width: 180px;
-    display: flex;
-    justify-content: space-between;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tag {
-    width: fit-content;
-    background-color: #67030d;
-    border: none;
-    height: 40px;
-    border-radius: 30px;
-    margin-left: 10px;
+  width: fit-content;
+  background-color: #67030d;
+  border: none;
+  height: 40px;
+  border-radius: 30px;
+  margin-left: 10px;
 }
-  
+
 .tag:hover > span {
-    color: #67030d;
+  color: #67030d;
 }
-  
+
 .tagText {
-    height: 100%;
-    width: 100%;
-    margin-top: 5px;
-    color: aliceblue;
-    display: flex;
-    justify-self: center;
-    align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 5px;
+  color: aliceblue;
+  display: flex;
+  justify-self: center;
+  align-items: center;
 }
 
 .priceButton {
-    height: 40px;
+  height: 40px;
+  width: 100px;
+}
+
+.likeButton {
+  height: 40px;
+  width: 100px;
 }
 
 .beatHeader {
-    width: 60%;
-    height: 400px;
-    display: flex;
-    margin-top: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .beatInfoHeader {
-    font-style: italic;
-    font-size: 12px;
+  font-style: italic;
+  font-size: 12px;
 }
 
 .authorHeader {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .bpmIcon {
-    max-width: 30px;
-    max-height: 20px;
+  max-width: 30px;
+  max-height: 20px;
 }
 
 .soundIcon {
-    max-width: 30px;
-    max-height: 30px;
+  max-width: 30px;
+  max-height: 30px;
 }
 
 .titleHeader {
-    font-size: 30px;
-    font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .beatHeaderInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 70%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70%;
+  height: 100%;
 }
 
 .beatImgHeader {
-    max-width: 180px;
-    max-height: 180px;
-    border-radius: 5px;
+  margin-bottom: 80px;
+  max-width: 280px;
+  max-height: 280px;
+  border-radius: 5px;
 }
 
 .beatImgContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
