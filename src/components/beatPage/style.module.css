@@ -88,6 +88,7 @@
 .beatInfoHeader {
   font-style: italic;
   font-size: 12px;
+  margin-left: 5px;
 }
 
 .authorHeader {
@@ -100,8 +101,9 @@
 }
 
 .soundIcon {
-  max-width: 30px;
-  max-height: 30px;
+  max-width: 25px;
+  max-height: 25px;
+  margin-left: 10%;
 }
 
 .titleHeader {
