@@ -17,7 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($link, $query);
 
         if (mysqli_num_rows($result) > 0) {
+            setcookie("current_login", $_POST['login'], time() + 86400, "/", "localhost");
+
             $userController->Autorisation(True);
+            
         } else {
             $userController->Autorisation(false, "Login or password are invalid*");
         }

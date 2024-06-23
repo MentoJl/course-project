@@ -1,12 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
+import axios from 'axios'
+import Cookies from 'js-cookie';
 
 const Header = () => {
   const navigate = useNavigate()
   const [inputValue, setInputValue] = useState('')
   const [searchVisible, setSearchVisible] = useState(false)
   const searchRef = useRef(null)
+
+  // const [login, setLogCookie] = useState(NaN)
+  const [logTitle, setLogTitle] = useState("Login")
+
+  useEffect (() => {
+    console.log("awdawdawdawd",  document.cookie)
+    
+	})
 
   const handleLogoClick = () => {
     navigate('/')
@@ -110,7 +120,7 @@ const Header = () => {
             window.location.href = 'http://database/Autorisation.php?window=Login'
           }}
         >
-          <span className={styles.menuCase}>Login</span>
+          <span className={styles.menuCase}>{logTitle}</span>
         </div>
       </div>
     </div>

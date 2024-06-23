@@ -73,6 +73,35 @@ function add_user($data, $conn){
         return false;
     }
 }
+function sortAction($link, $BN, $login, $action){
+    $sql = "SELECT * FROM actions";
+
+    $conditions = [];
+    if (!empty($BN)) {
+        $conditions[] = "beat_name = '$BN'";
+    }
+    if (!empty($login)) {
+        $conditions[] = "login = '$login'";
+    }
+    if (!empty($action)) {
+        $conditions[] = "action = '$action'";
+    }
+
+    if (!empty($conditions)) {
+        $sql .= " WHERE " . implode(" AND ", $conditions);
+    }
+
+    $result = mysqli_query($link, $sql);
+
+    $data = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+    mysqli_free_result($result);
+    mysqli_close($link);
+
+    return $data;
+}
 
 $app->add(function ($request, $handler) {
     $response = $handler->handle($request);
@@ -114,6 +143,19 @@ $app->post('/savePurchased', function (Request $request, Response $response, $ar
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+// $app->post('/getCookie', function (Request $request, Response $response, $args) {
+//     $data = json_decode(file_get_contents('php://input'), true);
+//     // $cookieName = $data['name'];
+//     $name = $data['name'];
+//     echo $name;
+    
+//     $value = $_COOKIE['current_login'] ?? null;
+
+//     $response->getBody()->write(json_encode(['value' => $value]));
+//     return $response
+//         ->withHeader('Content-Type', 'application/json');
+// });
+
 $app->post('/POST', function (Request $request, Response $response, $args) {
     $uploadedFiles = $request->getUploadedFiles();
     $uploadedFile = $uploadedFiles['file'];
@@ -130,6 +172,23 @@ $app->post('/POST', function (Request $request, Response $response, $args) {
     }
 });
 
+$app->get('/takeAction', function (Request $request, Response $response, $args) {
+    $link = mysqli_connect("localhost", "root", "", "INFO");
+
+    $sql = "SELECT * FROM `actions`";
+    $result = mysqli_query($link, $sql);
+
+    $queryParams = $request->getQueryParams();
+    $BN = isset($queryParams['beat_name']) ? $queryParams['beat_name'] : "";
+    $login = isset($queryParams['login']) ? $queryParams['login'] : "";
+    $action = isset($queryParams['action']) ? $queryParams['action'] : "";
+
+    $sorted_data = sortAction($link, $BN, $login, $action);
+
+    $response->getBody()->write(json_encode($sorted_data));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
 $app->post('/Database/add_user', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
     print_r($data);
@@ -142,7 +201,7 @@ $app->post('/Database/add_user', function (Request $request, Response $response,
     return $response->withHeader('Content-Type', 'application/json');
 });
 
-$app->post('/Database/action', function (Request $request, Response $response, $args) {
+$app->post('/action', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
     print_r($data);
     $link = mysqli_connect("localhost", "root", "", "INFO");

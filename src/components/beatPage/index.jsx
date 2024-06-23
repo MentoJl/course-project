@@ -1,11 +1,13 @@
 import { LikeFilled, LikeOutlined, SendOutlined } from '@ant-design/icons'
 import { Button, Image, Input } from 'antd'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
 import styles from './style.module.css'
+// import React, { useState } from 'react';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -23,9 +25,35 @@ const BeatPage = () => {
   const key = query.get('key')
   const [liked, setLiked] = useState(false)
   const [comment, setComment] = useState('')
-
+	const [data, setData] = useState(null)
+	
+	useEffect (() => {
+		axios.get(`http://database/takeAction?beat_name=${title}&action=like`)
+		.then(response => {
+				setData(response.data);
+		})
+		.catch(error => {
+			console.error('Ошибка при выполнении POST запроса:', error);
+		});	
+	}, [])
   const toggleLike = () => {
     setLiked(!liked)
+
+    const data = {
+      beatName : "Summer Time",
+      login : "User",
+      action : "like",
+      text : ""
+    }
+
+    axios.post('http://database/action', data)
+    .then(response => {
+        console.log('Успешный ответ от сервера:', response.data);
+    })
+    .catch(error => {
+        console.error('Ошибка при выполнении POST запроса:', error);
+    });
+
   }
 
   const handleInputChange = (e) => {
@@ -74,6 +102,7 @@ const BeatPage = () => {
                 >
                   {liked ? 'Liked' : 'Like'}
                 </Button>
+                <div>{data?.length}</div>
               </div>
               <div className={styles.tagsButtons}>
                 {Array.isArray(beatTags)
