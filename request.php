@@ -13,7 +13,7 @@ $app = AppFactory::create();
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-function sortBy($link, $bmp, $mood, $genre, $title){
+function sortBy($link, $bmp, $mood, $genre, $title, $key){
     $sql = "SELECT * FROM base_information";
 
     $conditions = [];
@@ -28,6 +28,10 @@ function sortBy($link, $bmp, $mood, $genre, $title){
     }
     if (!empty($title)) {
         $conditions[] = "title = '$title'";
+    }
+
+    if (!empty($key)) {
+        $conditions[] = "`key` = '$key'";
     }
 
     if (!empty($conditions)) {
@@ -119,8 +123,9 @@ $app->get('/database', function (Request $request, Response $response, array $ar
     $mood = isset($queryParams['mood']) ? $queryParams['mood'] : "";
     $genre = isset($queryParams['genre']) ? $queryParams['genre'] : "";
     $title = isset($queryParams['title']) ? $queryParams['title'] : "";
+    $key = isset($queryParams['key']) ? $queryParams['key'] : "";
 
-    $sorted_data = sortBy($link, $bpm, $mood, $genre, $title);
+    $sorted_data = sortBy($link, $bpm, $mood, $genre, $title, $key);
 
     $response->getBody()->write(json_encode($sorted_data));
     return $response->withHeader('Content-Type', 'application/json');

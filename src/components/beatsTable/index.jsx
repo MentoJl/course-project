@@ -99,6 +99,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       ),
       time: <span className={styles.time}>{time.split(':').slice(-2).join(':')}</span>,
       bpm: <span className={styles.bpm}>{bpm}</span>,
+      // key: <span className={styles.key}>{key}</span>,
       tags: Array.isArray(beatTags)
         ? beatTags.map((tag) => (
             <Button className={styles.tag} key={tag}>

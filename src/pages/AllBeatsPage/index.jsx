@@ -1,18 +1,18 @@
 import { Select } from 'antd'
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import BeatsTable from '../../components/beatsTable/index'
 import Footer from '../../components/footer/index'
 import Header from '../../components/header/index'
 import styles from './style.module.css'
-import { useLocation } from 'react-router-dom'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
 const AllBeats = () => {
-  const query = useQuery();
-  const title = query.get('title');
+  const query = useQuery()
+  const title = query.get('title')
   const [genre, setGenre] = useState('All')
   const [mood, setMood] = useState('All')
   const [bpm, setBpm] = useState('All')
@@ -31,7 +31,7 @@ const AllBeats = () => {
             options={[
               {
                 value: '',
-                label: 'All Bpm',
+                label: "All Bpm",
               },
               {
                 value: '90',
@@ -68,58 +68,58 @@ const AllBeats = () => {
             ]}
           />
           <Select
-            defaultValue="All Key"
+            defaultValue="All Keys"
             className={styles.selectBpm}
             onChange={(value) => setKey(value)}
             options={[
               {
                 value: '',
-                label: 'All Key',
+                label: 'All Keys',
               },
               {
-                value: 'Dm',
-                label: 'Dm',
+                value: 'D Minor',
+                label: 'D Minor',
               },
               {
-                value: 'Bm',
-                label: 'Bm',
+                value: 'B Minor',
+                label: 'B Minor',
               },
               {
-                value: 'C#m',
-                label: 'C#m',
+                value: 'C Sharp Minor',
+                label: 'C Sharp Minor',
               },
               {
-                value: 'Gm',
-                label: 'Gm',
+                value: 'G Minor',
+                label: 'G Minor',
               },
               {
-                value: 'C#m',
-                label: 'C#m',
+                value: 'B Major',
+                label: 'B Major',
               },
               {
-                value: 'A#m',
-                label: 'A#m',
+                value: 'A Sharp Minor',
+                label: 'A Sharp Minor',
               },
               {
-                value: 'Ebm',
-                label: 'Ebm',
+                value: 'E-Flat Minor',
+                label: 'E-Flat Minor',
               },
               {
-                value: 'Fm',
-                label: 'Fm',
+                value: 'F Minor',
+                label: 'F Minor',
               },
               {
-                value: 'Abm',
-                label: 'Abm',
+                value: 'A-Flat Minor',
+                label: 'A-Flat Minor',
               },
               {
-                value: 'F#m',
-                label: 'F#m',
+                value: 'F Sharp Minor',
+                label: 'F Sharp Minor',
               },
             ]}
           />
           <Select
-            defaultValue="All Mood"
+            defaultValue="All Moods"
             className={styles.selectMood}
             onChange={(value) => setMood(value)}
             options={[
@@ -166,7 +166,7 @@ const AllBeats = () => {
             ]}
           />
           <Select
-            defaultValue="All Genre"
+            defaultValue="All Genres"
             className={styles.selectGener}
             onChange={(value) => setGenre(value)}
             options={[
@@ -191,11 +191,12 @@ const AllBeats = () => {
         </div>
         <div className={styles.beatsSearcher}></div>
       </div>
-      <BeatsTable 
-      bpmCategory={bpm === 'All' ? '' : bpm}
-      moodCategory={mood === 'All' ? '' : mood}
-      genreCategory={genre === 'All' ? '' : genre}
-      keyCategory={key === 'All' ? '' : key} />
+      <BeatsTable
+        bpmCategory={bpm === 'All' ? '' : bpm}
+        moodCategory={mood === 'All' ? '' : mood}
+        genreCategory={genre === 'All' ? '' : genre}
+        keyCategory={key === 'All' ? '' : key}
+      />
       <Footer />
     </div>
   )
