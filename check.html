@@ -17,7 +17,10 @@
         //     text : "That so cool, keep it up"
         // };
         const Data = {
-            name : "current_login"
+        beatName : "Beef",
+        login : "user",
+        action : "like",
+        text : ""
         }
         // const data = {
         //   new_member : {
@@ -68,13 +71,13 @@
         //     .catch(error => {
         //         console.error('Ошибка при выполнении POST запроса:', error);
         //     });
-        axios.post('http://database/getCookie', Data)
+        axios.post('http://database/deleteAction', Data)
             .then(response => {
-                console.log('Успешный ответ от сервера:', response.data);
+                console.log('Успешный удаление ответ от сервера:', response.data);
             })
             .catch(error => {
-                console.error('Ошибка при выполнении POST запроса:', error);
-            });
+			console.error('Ошибка при выполнении POST запроса:', error);
+		});
 
         // window.location.href = 'http://course-work/Autorisation.php';
 

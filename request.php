@@ -218,7 +218,27 @@ $app->post('/action', function (Request $request, Response $response, $args) {
 
     return $response->withHeader('Content-Type', 'application/json');
 });
+$app->post('/deleteAction', function (Request $request, Response $response, $args) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    print_r($data);
 
+    $link = mysqli_connect("localhost", "root", "", "INFO");
+
+    $login = mysqli_real_escape_string($link, $data['login']);
+    $BN = mysqli_real_escape_string($link, $data['beatName']);
+    $action = mysqli_real_escape_string($link, $data['action']);
+
+    $sql = "DELETE FROM `actions` WHERE `login` = '$login' AND `beat_name` = '$BN' AND `action` = '$action'";
+
+    if (mysqli_query($link, $sql)) {
+        echo "Запись успешно удалена из базы данных";
+    } else {
+        echo "Ошибка при выполнении запроса: " . mysqli_error($link);
+    }
+    // mysqli_close($link);
+
+    return $response->withHeader('Content-Type', 'application/json');
+});
 
 $app->post('/Database/delete_user', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);

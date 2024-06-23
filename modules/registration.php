@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $_SESSION ["type"] = "Login";
 
-    setcookie("current_login", $login, time() + 86400, "/");
+    // setcookie("current_login", $login, time() + 86400, "/");
     // setcookie("current_password", $password, time() + 86400, "/");
 
-    $userController->Autorisation(True);
+    $userController->Autorisation(True, "", $login);
 
     mysqli_close($link);
     exit();

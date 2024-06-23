@@ -8,6 +8,7 @@ import Footer from '../footer/index'
 import Header from '../header/index'
 import styles from './style.module.css'
 // import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -27,34 +28,61 @@ const BeatPage = () => {
   const [comment, setComment] = useState('')
 	const [data, setData] = useState(null)
 	
-	useEffect (() => {
+  const toggleLike = () => {
+    if(!Cookies.get('current_login')){
+      window.location.href = 'http://database/Autorisation.php?window=Login'
+      return
+    }
+    setLiked(!liked)
+    const Data = {
+      beatName : title,
+      login : Cookies.get('current_login'),
+      action : "like",
+      text : ""
+    }
+    console.log(Data)
+
+    if (!liked)
+      axios.post('http://database/action', Data)
+        .then(response => {
+            console.log('Успешный ответ от сервера:', response.data);
+        })
+        .catch(error => {
+          console.error('Ошибка при выполнении POST запроса:', error);
+        });
+    else{
+      axios.post('http://database/deleteAction', Data)
+        .then(response => {
+            console.log('Успешный удаление ответ от сервера:', response.data);
+        })
+        .catch(error => {
+          console.error('Ошибка при выполнении POST запроса:', error);
+        });
+    }
+
+    axios.get(`http://database/takeAction?beat_name=${title}&action=like`)
+      .then(response => {
+          setData(response.data);
+      })
+      .catch(error => {
+        console.error('Ошибка при выполнении POST запроса:', error);
+      });
+  }
+  useEffect (() => {
 		axios.get(`http://database/takeAction?beat_name=${title}&action=like`)
 		.then(response => {
+        const check = Array.isArray(response.data) && response.data.some(element => element.login.toLowerCase() === Cookies.get('current_login'))
+        if(check){
+          setLiked(true)
+        }else{
+          setLiked(false)
+        }
 				setData(response.data);
 		})
 		.catch(error => {
 			console.error('Ошибка при выполнении POST запроса:', error);
-		});	
-	}, [])
-  const toggleLike = () => {
-    setLiked(!liked)
-
-    const data = {
-      beatName : "Summer Time",
-      login : "User",
-      action : "like",
-      text : ""
-    }
-
-    axios.post('http://database/action', data)
-    .then(response => {
-        console.log('Успешный ответ от сервера:', response.data);
-    })
-    .catch(error => {
-        console.error('Ошибка при выполнении POST запроса:', error);
-    });
-
-  }
+		});
+	}, [title, liked])
 
   const handleInputChange = (e) => {
     setComment(e.target.value)
