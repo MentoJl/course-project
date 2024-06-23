@@ -1,22 +1,43 @@
-import { Button, Image } from 'antd'
-import { useLocation } from 'react-router-dom'
-import BeatsTable from '../beatsTable/index'
-import Footer from '../footer/index'
-import Header from '../header/index'
-import styles from './style.module.css'
+import { Button, Image, Input } from 'antd';
+import { useLocation } from 'react-router-dom';
+import BeatsTable from '../beatsTable/index';
+import Footer from '../footer/index';
+import Header from '../header/index';
+import styles from './style.module.css';
+import { LikeOutlined, LikeFilled, SendOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 
 const useQuery = () => {
-  return new URLSearchParams(useLocation().search)
-}
+  return new URLSearchParams(useLocation().search);
+};
+
+const { TextArea } = Input;
 
 const BeatPage = () => {
-  const query = useQuery()
-  const imgSrc = query.get('imgSrc')
-  const title = query.get('name')
-  const bpm = query.get('bpm')
-  const beatTags = query.get('beatTags')?.split(',') || []
-  const price = query.get('price')
-  const key = query.get('key')
+  const query = useQuery();
+  const imgSrc = query.get('imgSrc');
+  const title = query.get('name');
+  const bpm = query.get('bpm');
+  const beatTags = query.get('beatTags')?.split(',') || [];
+  const price = query.get('price');
+  const key = query.get('key');
+  const [liked, setLiked] = useState(false);
+  const [comment, setComment] = useState('');
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
+  const handleInputChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (comment.trim()) {
+      console.log('Comment submitted:', comment);
+      setComment('');
+    }
+  };
 
   return (
     <div>
@@ -45,6 +66,13 @@ const BeatPage = () => {
                 <Button className={styles.share} type="primary">
                   <Image preview={false} src="./mainPage/share.png" className={styles.shareImg} />
                 </Button>
+                <Button
+                  type="primary"
+                  icon={liked ? <LikeFilled /> : <LikeOutlined />}
+                  onClick={toggleLike}
+                >
+                  {liked ? 'Liked' : 'Like'}
+                </Button>
               </div>
               <div className={styles.tagsButtons}>
                 {Array.isArray(beatTags)
@@ -56,13 +84,28 @@ const BeatPage = () => {
                   : null}
               </div>
             </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
+              <TextArea
+                rows={4}
+                value={comment}
+                onChange={handleInputChange}
+                placeholder="Write your comment here..."
+              />
+              <Button
+                type="primary"
+                icon={<SendOutlined />}
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+            </div>
           </div>
         </div>
       </div>
       <BeatsTable />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default BeatPage
+export default BeatPage;
