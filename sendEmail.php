@@ -23,6 +23,10 @@ header('Content-Type: application/json');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
+    if ($data['email']) {
+
+    }
+
     if (!isset($data['email']) || !isset($data['title']) || !isset($data['name']) || !isset($data['message'])) {
         http_response_code(400);
         echo json_encode(['message' => 'Invalid input']);
@@ -33,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = $data['title'];
     $name = $data['name'];
     $message = $data['message'];
+    $projectName = ($data['projectName'] !== '') ? $data['projectName'] : '';
+    $phone = ($data['phone'] !== '') ? $data['phone'] : '';
+    $budget = ($data['budget']) ? $data['budget'] : '';
 
     $mail = new PHPMailer(true);
     try {
@@ -49,7 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $mail->isHTML(true);
         $mail->Subject = $title;
-        $mail->Body = htmlspecialchars($message) . '<p/>My Mail to contact me: ' . htmlspecialchars($email);
+        $mail->Body = ($projectName === '' && $phone === '' && $budget === '') 
+        ? htmlspecialchars($message) . '<p/>My Mail to contact me: ' . htmlspecialchars($email) 
+        : 'Project: ' . htmlspecialchars($projectName) 
+        . '<p/>Budget: ' . htmlspecialchars($budget)
+        . '<p/>' . htmlspecialchars($message)
+        . '<p/>My Mail to contact me: ' . htmlspecialchars($email)
+        . '<p/>Phone number: ' . htmlspecialchars($phone);
 
         $mail->send();
         echo json_encode(['message' => 'Email sent']);

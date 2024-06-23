@@ -1,16 +1,18 @@
 <?php
 
 class UserController {
-    public function main_site($login) {
-        header("Location: http://localhost:3000?login={$login}");
+    public function main_site() {
+        header("Location: http://localhost:3000/");
     }
 
-    public function Autorisation($access, $error="", $login="") {
+    public function Autorisation($access, $error="") {
         if($access === false){
             header("Location: ../Autorisation.php?error=". $error ."");
             exit;
         }else{
-            self::main_site($login);
+            self::main_site();
         }
     }
 }
+
+?>
