@@ -10,18 +10,18 @@
     <input type="file" id="fileInput">
     <script>
         // const file = document.getElementById('fileInput');
+        // const Data = {
+        //     beatName : "Beef",
+        //     login : "User",
+        //     action : "comment",
+        //     text : "That so cool, keep it up"
+        // };
         const Data = {
-            beatName : "Beef",
-            login : "User",
-            action : "comment",
-            text : "That so cool, keep it up"
-        };
-        const Data2 = {
-            beatName : "Summer Time",
-            login : "User",
-            action : "like",
-            text : ""
-        };
+        beatName : "Beef",
+        login : "user",
+        action : "like",
+        text : ""
+        }
         // const data = {
         //   new_member : {
         //     "id": "32",
@@ -71,15 +71,15 @@
         //     .catch(error => {
         //         console.error('Ошибка при выполнении POST запроса:', error);
         //     });
-        // axios.post('http://courseupdate/Database/action', Data2)
-        //     .then(response => {
-        //         console.log('Успешный ответ от сервера:', response.data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Ошибка при выполнении POST запроса:', error);
-        //     });
+        axios.post('http://database/deleteAction', Data)
+            .then(response => {
+                console.log('Успешный удаление ответ от сервера:', response.data);
+            })
+            .catch(error => {
+			console.error('Ошибка при выполнении POST запроса:', error);
+		});
 
-        window.location.href = 'http://course-work/Autorisation.php';
+        // window.location.href = 'http://course-work/Autorisation.php';
 
 
 

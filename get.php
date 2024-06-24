@@ -1,10 +1,4 @@
 <?php
 
-require 'vendor/autoload.php';
-
-use GuzzleHttp\Client;
-
-$client = new Client();
-$response = $client->request('GET', 'http://course-work/database');
-
-echo $response->getBody();
+echo $_COOKIE['current_login'];
+var_dump($_COOKIE);
