@@ -58,6 +58,8 @@ const CustomBeatDetailsPage = () => {
           console.error('Error:', error)
         })
     }
+
+    alert('Your inquiry has been sent successfully.')
   }
 
   return (

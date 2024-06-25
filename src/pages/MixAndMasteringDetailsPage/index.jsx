@@ -1,5 +1,5 @@
-import { Button, Image } from 'antd'
-import React, { useState, useRef } from 'react'
+import { Button, Image, message } from 'antd'
+import React, { useRef, useState } from 'react'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import styles from './style.module.css'
@@ -32,30 +32,33 @@ const MixAndMasteringDetailsPage = () => {
       projectName: sendProject.current.value,
       phone: sendPhone.current.value,
       budget: sendBudget.current.value,
-    };
+    }
 
-    if (sendMail.current.value !== ''
-      && sendProject.current.value !== ''
-      && sendName.current.value !== ''
-      && messageRef.current.value !== ''
-      && sendProject.current.value !== ''
-      && sendPhone.current.value !== ''
-      && sendBudget.current.value !== ''
+  alert('Your inquiry has been sent successfully.')
+
+    if (
+      sendMail.current.value !== '' &&
+      sendProject.current.value !== '' &&
+      sendName.current.value !== '' &&
+      messageRef.current.value !== '' &&
+      sendProject.current.value !== '' &&
+      sendPhone.current.value !== '' &&
+      sendBudget.current.value !== ''
     ) {
-    fetch('http://database/sendEmail.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+      fetch('http://database/sendEmail.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data)
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
     }
   }
 
