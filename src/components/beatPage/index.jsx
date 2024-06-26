@@ -7,7 +7,7 @@ import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
 import styles from './style.module.css'
-// import React, { useState } from 'react';
+import CommentTable from '../CommentTable/index'
 import Cookies from 'js-cookie'
 
 const useQuery = () => {
@@ -175,6 +175,8 @@ const BeatPage = () => {
           </div>
         </div>
       </div>
+      <CommentTable
+      title="Beef"/>
       <BeatsTable />
       <Footer />
     </div>

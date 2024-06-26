@@ -1,0 +1,42 @@
+.commentTableContainer {
+    width: 100%;
+    height: fit-content;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: black;
+    border-bottom: 2px solid rgb(71, 71, 71);
+}
+
+.commentTable {
+    background-color: black;
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.commentTitleContainer {
+    margin-right: 100px;
+}
+
+.commentTextContainer {
+    resize: none;
+    overflow-y: auto;
+    max-height: 100px;
+    max-width: 600px;
+}
+
+.commentContainer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentTitle{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
