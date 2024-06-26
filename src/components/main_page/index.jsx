@@ -1,4 +1,4 @@
-import { Button, Image, Modal, Typography } from 'antd'
+import { Button, Image, Modal, Typography, message } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BeatsTable from '../beatsTable/index'
@@ -69,13 +69,15 @@ const Main = () => {
       body: JSON.stringify(emailData),
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
     .catch((error) => {
         console.error('Error:', error);
     });
     }
+    message.success('You sent an email')
+    sendMail.current.value = ''
+    sendTitle.current.value = ''
+    sendName.current.value = ''
+    messageRef.current.value = ''
  }
 
   return (
@@ -263,7 +265,7 @@ const Main = () => {
       </div>
       <div className={styles.contactForm}>
         <div className={styles.contactInfo}>Contact</div>
-        <form className={styles.form}>
+        <div className={styles.form}>
           <div className={styles.formRow}>
             <input ref={sendName} className={styles.inputField} type="text" placeholder="NAME" />
           </div>
@@ -284,7 +286,7 @@ const Main = () => {
           <button className={styles.submitButton} onClick={handleSendEmail}>
             SEND MESSAGE
           </button>
-        </form>
+        </div>
       </div>
       <Footer />
       <Modal title="" width="1000px" visible={isModalOpen} footer={null} onCancel={closeModal}>

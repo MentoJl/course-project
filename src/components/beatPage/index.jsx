@@ -176,7 +176,7 @@ const BeatPage = () => {
         </div>
       </div>
       <CommentTable
-      title="Beef"/>
+      title={title}/>
       <BeatsTable />
       <Footer />
     </div>

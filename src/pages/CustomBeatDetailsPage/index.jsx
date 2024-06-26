@@ -1,8 +1,9 @@
-import { Button, Image } from 'antd'
+import { Button, Image, message } from 'antd'
 import React, { useRef, useState } from 'react'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import styles from './style.module.css'
+
 
 const CustomBeatDetailsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -59,7 +60,9 @@ const CustomBeatDetailsPage = () => {
         })
     }
 
-    alert('Your inquiry has been sent successfully.')
+    message.success('Your inquiry has been sent successfully.')
+
+    closeModal()
   }
 
   return (
@@ -115,7 +118,7 @@ const CustomBeatDetailsPage = () => {
           <div className={styles.title}>
             <h1>CUSTOM BEAT</h1>
           </div>
-          <form className={styles.form}>
+          <div className={styles.form}>
             <div className={styles.formRow}>
               <input className={styles.inputField} ref={sendName} type="text" placeholder="ARTIST NAME" />
               <input className={styles.inputField} ref={sendMail} type="email" placeholder="E-MAIL" />
@@ -133,7 +136,7 @@ const CustomBeatDetailsPage = () => {
             <button className={styles.submitButton} onClick={handleSendEmail} type="submit">
               SEND INQUIRY
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ const CommentTable = ({ title = 'Beef' }) => {
     };
 
     fetchComments();
-  }, []);
+  }, title);
 
   return (
     <div className={styles.commentTableContainer}>

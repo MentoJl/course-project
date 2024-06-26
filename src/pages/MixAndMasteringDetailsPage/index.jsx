@@ -34,7 +34,9 @@ const MixAndMasteringDetailsPage = () => {
       budget: sendBudget.current.value,
     }
 
-  alert('Your inquiry has been sent successfully.')
+    message.success('Your inquiry has been sent successfully.')
+
+    closeModal()
 
     if (
       sendMail.current.value !== '' &&
@@ -108,7 +110,7 @@ const MixAndMasteringDetailsPage = () => {
           <div className={styles.title}>
             <h1>MIX AND MASTERING</h1>
           </div>
-          <form className={styles.form}>
+          <div className={styles.form}>
             <div className={styles.formRow}>
               <input className={styles.inputField} ref={sendName} type="text" placeholder="ARTIST NAME" />
               <input className={styles.inputField} ref={sendMail} type="email" placeholder="E-MAIL" />
@@ -126,7 +128,7 @@ const MixAndMasteringDetailsPage = () => {
             <button className={styles.submitButton} onClick={handleSendEmail} type="submit">
               SEND INQUIRY
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
