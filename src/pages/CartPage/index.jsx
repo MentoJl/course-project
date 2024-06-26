@@ -17,12 +17,12 @@ const CartPage = () => {
   const price = decodeURIComponent(query.get('price') || '')
 
   const [cartItems, setCartItems] = useState(() => {
-    const cartItemsCookie = Cookies.get('cartItems')
+    const cartItemsCookie = Cookies.get(Cookies.get('current_login'))
     return cartItemsCookie ? JSON.parse(cartItemsCookie) : []
   })
 
   useEffect(() => {
-    Cookies.set('cartItems', JSON.stringify(cartItems), { expires: 7 })
+    Cookies.set(Cookies.get('current_login'), JSON.stringify(cartItems), { expires: 7 })
     console.log('COOKIE', Cookies.get('cartItems'))
   }, [cartItems])
 
