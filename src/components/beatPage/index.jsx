@@ -95,10 +95,23 @@ const BeatPage = () => {
   }
 
   const handleSubmit = () => {
-    if (comment.trim()) {
-      console.log('Comment submitted:', comment)
-      setComment('')
+    if(!Cookies.get('current_login')){
+      window.location.href = 'http://database/Autorisation.php?window=Login'
+      return
     }
+    const Data = {
+      beatName : title,
+      login : Cookies.get('current_login'),
+      action : "comment",
+      text : comment.trim()
+    }
+    axios.post('http://database/action', Data)
+    .then(response => {
+        console.log('Успешный ответ от сервера:', response.data);
+    })
+    .catch(error => {
+      console.error('Ошибка при выполнении POST запроса:', error);
+    });
   }
 
   return (
