@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import styles from './style.module.css'
+import Cookies from 'js-cookie';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -15,11 +16,20 @@ const CartPage = () => {
   const lease = decodeURIComponent(query.get('lease') || '')
   const price = decodeURIComponent(query.get('price') || '')
 
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState(() => {
+    const cartItemsCookie = Cookies.get('cartItems');
+    return cartItemsCookie ? JSON.parse(cartItemsCookie) : [];
+  });
+  
+  useEffect(() => {
+    Cookies.set('cartItems', JSON.stringify(cartItems), { expires: 7 });
+    console.log("COOKIE",Cookies.get('cartItems'))
+  }, [cartItems])
 
   useEffect(() => {
     if (title && lease && price) {
       const newItem = { imgSrc, title, lease, price }
+      
       setCartItems((prevItems) => [...prevItems, newItem])
     }
   }, [imgSrc, title, lease, price])
