@@ -36,7 +36,7 @@
 }
 
 .naviButtons {
-  width: 300px;
+  width: 350px;
   display: flex;
   justify-content: space-between;
 }
@@ -133,4 +133,15 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.likeValue {
+  background-color: #67030d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-left: 5px; */
+  min-width: 40px;
+  /* max-width: 100px; */
+  border-radius: 10px;
 }

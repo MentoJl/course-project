@@ -1,14 +1,14 @@
 import { LikeFilled, LikeOutlined, SendOutlined } from '@ant-design/icons'
 import { Button, Image, Input } from 'antd'
-import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
 import styles from './style.module.css'
 // import React, { useState } from 'react';
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -26,63 +26,69 @@ const BeatPage = () => {
   const key = query.get('key')
   const [liked, setLiked] = useState(false)
   const [comment, setComment] = useState('')
-	const [data, setData] = useState(null)
-	
+  const [data, setData] = useState(null)
+
   const toggleLike = () => {
-    if(!Cookies.get('current_login')){
+    if (!Cookies.get('current_login')) {
       window.location.href = 'http://database/Autorisation.php?window=Login'
       return
     }
     setLiked(!liked)
     const Data = {
-      beatName : title,
-      login : Cookies.get('current_login'),
-      action : "like",
-      text : ""
+      beatName: title,
+      login: Cookies.get('current_login'),
+      action: 'like',
+      text: '',
     }
     console.log(Data)
 
     if (!liked)
-      axios.post('http://database/action', Data)
-        .then(response => {
-            console.log('Успешный ответ от сервера:', response.data);
+      axios
+        .post('http://database/action', Data)
+        .then((response) => {
+          console.log('Успешный ответ от сервера:', response.data)
         })
-        .catch(error => {
-          console.error('Ошибка при выполнении POST запроса:', error);
-        });
-    else{
-      axios.post('http://database/deleteAction', Data)
-        .then(response => {
-            console.log('Успешный удаление ответ от сервера:', response.data);
+        .catch((error) => {
+          console.error('Ошибка при выполнении POST запроса:', error)
         })
-        .catch(error => {
-          console.error('Ошибка при выполнении POST запроса:', error);
-        });
+    else {
+      axios
+        .post('http://database/deleteAction', Data)
+        .then((response) => {
+          console.log('Успешный удаление ответ от сервера:', response.data)
+        })
+        .catch((error) => {
+          console.error('Ошибка при выполнении POST запроса:', error)
+        })
     }
 
-    axios.get(`http://database/takeAction?beat_name=${title}&action=like`)
-      .then(response => {
-          setData(response.data);
+    axios
+      .get(`http://database/takeAction?beat_name=${title}&action=like`)
+      .then((response) => {
+        setData(response.data)
       })
-      .catch(error => {
-        console.error('Ошибка при выполнении POST запроса:', error);
-      });
+      .catch((error) => {
+        console.error('Ошибка при выполнении POST запроса:', error)
+      })
   }
-  useEffect (() => {
-		axios.get(`http://database/takeAction?beat_name=${title}&action=like`)
-		.then(response => {
-        const check = Array.isArray(response.data) && response.data.some(element => element.login.toLowerCase() === Cookies.get('current_login'))
-        if(check){
+  useEffect(() => {
+    axios
+      .get(`http://database/takeAction?beat_name=${title}&action=like`)
+      .then((response) => {
+        const check =
+          Array.isArray(response.data) &&
+          response.data.some((element) => element.login.toLowerCase() === Cookies.get('current_login'))
+        if (check) {
           setLiked(true)
-        }else{
+        } else {
           setLiked(false)
         }
-				setData(response.data);
-		})
-		.catch(error => {
-			console.error('Ошибка при выполнении POST запроса:', error);
-		});
-	}, [title, liked])
+        setData(response.data)
+      })
+      .catch((error) => {
+        console.error('Ошибка при выполнении POST запроса:', error)
+      })
+  }, [title, liked])
 
   const handleInputChange = (e) => {
     setComment(e.target.value)
@@ -130,7 +136,7 @@ const BeatPage = () => {
                 >
                   {liked ? 'Liked' : 'Like'}
                 </Button>
-                <div>{data?.length}</div>
+                <div className={styles.likeValue}>{data?.length}</div>
               </div>
               <div className={styles.tagsButtons}>
                 {Array.isArray(beatTags)
