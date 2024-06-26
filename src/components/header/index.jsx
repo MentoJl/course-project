@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
 // import { Link, useLocation } from 'react-router-dom'
 // import axios from 'axios'
-import Cookies from 'js-cookie';
-
+import Cookies from 'js-cookie'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -16,16 +15,16 @@ const Header = () => {
   const [inputValue, setInputValue] = useState('')
   const [searchVisible, setSearchVisible] = useState(false)
   const searchRef = useRef(null)
- 
-  const login = query.get('login') || ""
-  const [logTitle, setLogTitle] = useState(Cookies.get('current_login') ? "Log out" : "Login")
 
-  useEffect (() => {
-    if(login !== ""){
-      Cookies.set('current_login', login, { expires: 1 });
+  const login = query.get('login') || ''
+  const [logTitle, setLogTitle] = useState(Cookies.get('current_login') ? 'Log out' : 'Login')
+
+  useEffect(() => {
+    if (login !== '') {
+      Cookies.set('current_login', login, { expires: 1 })
       setLogTitle('Log out')
     }
-	}, [login])
+  }, [login])
 
   const handleLogoClick = () => {
     navigate('/')
@@ -126,10 +125,20 @@ const Header = () => {
         <div
           className={styles.headerCase}
           onClick={() => {
-            if(logTitle === "Login")
-              window.location.href = 'http://database/Autorisation.php?window=Login'
-            else{
-              Cookies.remove('current_login');
+            if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
+            else {
+              window.location.href = 'http://localhost:3000/userprofile'
+            }
+          }}
+        >
+          <img src="/header/userprofile.png" alt="" className={styles.userprofile} />
+        </div>
+        <div
+          className={styles.headerCase}
+          onClick={() => {
+            if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
+            else {
+              Cookies.remove('current_login')
               window.location.href = 'http://localhost:3000/'
             }
           }}

@@ -35,6 +35,12 @@ a {
   height: 30px;
 }
 
+.userprofile {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+}
+
 .headerMenu {
   height: 5vh;
   display: flex;
