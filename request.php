@@ -90,6 +90,8 @@ function sortAction($link, $BN, $login, $action){
     if (!empty($conditions)) {
         $sql .= " WHERE " . implode(" AND ", $conditions);
     }
+    
+    $sql .= " ORDER BY id ASC";
 
     $result = mysqli_query($link, $sql);
 
