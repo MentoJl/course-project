@@ -119,7 +119,7 @@ const Header = () => {
         <Link to="/cart">
           <div className={styles.headerCase}>
             <img src="/header/cart.png" alt="" className={styles.lypa} />
-            <span className={styles.menuCase}>$0.00</span>
+            <span className={styles.menuCase}>${Cookies.get('totalPrice')}</span>
           </div>
         </Link>
         <div

@@ -40,6 +40,10 @@ const CartPage = () => {
 
   const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2)
 
+  useEffect(() => {
+    Cookies.set('totalPrice', totalPrice, { expires: 7 });
+  }, [totalPrice])
+
   return (
     <div className={styles.cartPageContainer}>
       <Header />
