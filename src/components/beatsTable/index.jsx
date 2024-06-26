@@ -1,5 +1,5 @@
-import { UploadOutlined } from '@ant-design/icons'
-import { Button, Image, Modal, Upload } from 'antd'
+import { UploadOutlined, CopyOutlined } from '@ant-design/icons'
+import { Button, Image, Modal, Upload, Input, message } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
@@ -81,8 +81,8 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
     }
   }
 
-  const addBeat = (id, imgSrc, title, time, bpm, beatTags, link, price, soundSrc, key) => {
-    const beatPlayerInfo = { id, imgSrc, title, link, price, soundSrc }
+  const addBeat = (id, imgSrc, title, time, bpm, beatTags, price, soundSrc, key) => {
+    const beatPlayerInfo = { id, imgSrc, title, link: `localhost:3000/beatPage?name=${encodeURIComponent(title)}`, price, soundSrc }
     const newRow = {
       id: id,
       beatPlayerInfo: beatPlayerInfo,
@@ -107,7 +107,13 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           ))
         : null,
       link: (
-        <Button className={styles.share} onClick={() => showShareModal(title, link)} type="primary">
+        <Button className={styles.share} onClick={() => showShareModal(title, `localhost:3000/beatPage?imgSrc=${encodeURIComponent(imgSrc)}
+        &name=${encodeURIComponent(title)}
+        &bpm=${bpm}
+        &beatTags=${encodeURIComponent(beatTags.join(','))}
+        &price=${price}
+        &key=${encodeURIComponent(key)}`)} 
+        type="primary">
           <Image preview={false} src="/mainPage/share.png" className={styles.shareImg} />
         </Button>
       ),
@@ -127,6 +133,14 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
     setBeatList((prevBeatList) => [...prevBeatList, newRow])
   }
 
+  const handleCopy = (link) => {
+    navigator.clipboard.writeText(link).then(() => {
+      message.success('Link copied to clipboard!');
+    }).catch(err => {
+      message.error('Failed to copy link');
+    });
+  };
+
   useEffect(() => {
     setBeatList([])
     axios
@@ -143,7 +157,6 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
             data.time,
             data.bpm,
             tagsArray,
-            data.link,
             data.price,
             data.soundSrc,
             data.key
@@ -220,7 +233,12 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
         </tfoot>
       </table>
       <Modal title={shareLink[0]} visible={isShareModalVisible} footer={null} onCancel={handleShareModalClose}>
-        <p>{shareLink[1]}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Input value={shareLink[1]} readOnly />
+          <Button icon={<CopyOutlined />} onClick={() => handleCopy(shareLink[1])}>
+            Copy Link
+          </Button>
+        </div>
       </Modal>
       <div className={`${styles.modalOverlay} ${isCartModalVisible ? styles.active : ''}`}>
         <div className={`${styles.modal} ${isCartModalVisible ? styles.active : ''}`}>

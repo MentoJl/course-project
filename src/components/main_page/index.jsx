@@ -11,11 +11,11 @@ import UnlimitedTrackoutLicense from './license_cards_content/unlimitedtrackout'
 import UnlimitedWavLicense from './license_cards_content/unlimitedwav'
 import WavLicense from './license_cards_content/wavlease'
 import styles from './style.module.css'
+import Searcher from '../Searcher'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
-  const [inputValue, setInputValue] = useState('')
   const messageRef = useRef(null)
   const sendMail = useRef(null)
   const sendName = useRef(null)
@@ -42,10 +42,6 @@ const Main = () => {
     const textarea = e.target
     textarea.style.height = 'auto'
     textarea.style.height = `${textarea.scrollHeight}px`
-  }
-
-  const handleChangeInputValue = (event) => {
-    setInputValue(event.target.value)
   }
 
   const handleSendEmail = () => {
@@ -82,17 +78,9 @@ const Main = () => {
 
   return (
     <div className={styles.main}>
-      <Header />
-      <div className={styles.searcherContainer}>
-        <input
-          onChange={handleChangeInputValue}
-          placeholder="What type of track are you looking for?"
-          className={styles.searcher}
-        />
-        <Link to={`/allbeats?title=${encodeURIComponent(inputValue)}`}>
-          <span className={styles.searchButton}>Search</span>
-        </Link>
-      </div>
+      <Header/>
+      <div className={styles.empty}></div>
+      <Searcher/>
       <div className={styles.featuredBeat}>
         <div className={styles.beatHeat}>
           <Image className={styles.beatHeatLogo} src="/mainPage/previewBeatLogo.jpg" preview={false} />

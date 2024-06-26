@@ -5,6 +5,7 @@ import BeatsTable from '../../components/beatsTable/index'
 import Footer from '../../components/footer/index'
 import Header from '../../components/header/index'
 import styles from './style.module.css'
+import Searcher from '../../components/Searcher/index'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -23,6 +24,7 @@ const AllBeats = () => {
       <Header />
       <div className={styles.beatsNavigator}>
         <span className={styles.allBeatsBoard}>All Beats</span>
+        <Searcher/>
         <div className={styles.beatsSortContainer}>
           <Select
             defaultValue="All BPM"

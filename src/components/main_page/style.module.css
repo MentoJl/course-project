@@ -191,9 +191,10 @@ body::after {
 
 .featuredBeat {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
+  margin-top: -70px;
 }
 
 .beatHeat {
@@ -341,46 +342,9 @@ body::after {
   font-weight: bold;
 }
 
-.searcher {
-  width: 32vw;
-  height: 63px;
-  border: none;
-  outline: none;
-  border-radius: 3px 0 0 3px;
-  padding-inline: 25px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.searcher:focus {
-  border: none;
-  outline: none;
-}
-
-.searchButton {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-weight: bold;
-  color: rgb(63, 1, 1);
-  font-size: 20px;
-  border: none;
-  width: 100px;
-  height: 65px;
-  background-color: white;
-  border-radius: 0 3px 3px 0;
-  cursor: pointer;
-
-  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
-}
-
-.searcherContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 14%;
+.empty {
+  width: 100%;
+  height: 250px;
 }
 
 /* .footer {
