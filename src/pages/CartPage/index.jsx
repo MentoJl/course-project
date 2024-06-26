@@ -1,9 +1,9 @@
+import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 import styles from './style.module.css'
-import Cookies from 'js-cookie';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -17,20 +17,26 @@ const CartPage = () => {
   const price = decodeURIComponent(query.get('price') || '')
 
   const [cartItems, setCartItems] = useState(() => {
-    const cartItemsCookie = Cookies.get('cartItems');
-    return cartItemsCookie ? JSON.parse(cartItemsCookie) : [];
-  });
-  
+    const cartItemsCookie = Cookies.get('cartItems')
+    return cartItemsCookie ? JSON.parse(cartItemsCookie) : []
+  })
+
   useEffect(() => {
-    Cookies.set('cartItems', JSON.stringify(cartItems), { expires: 7 });
-    console.log("COOKIE",Cookies.get('cartItems'))
+    Cookies.set('cartItems', JSON.stringify(cartItems), { expires: 7 })
+    console.log('COOKIE', Cookies.get('cartItems'))
   }, [cartItems])
 
   useEffect(() => {
     if (title && lease && price) {
       const newItem = { imgSrc, title, lease, price }
-      
-      setCartItems((prevItems) => [...prevItems, newItem])
+
+      const itemExists = cartItems.some((item) => item.title === title && item.lease === lease && item.price === price)
+
+      if (!itemExists) {
+        setCartItems((prevItems) => [...prevItems, newItem])
+      }
+
+      // setCartItems((prevItems) => [...prevItems, newItem])
     }
   }, [imgSrc, title, lease, price])
 
@@ -41,7 +47,7 @@ const CartPage = () => {
   const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2)
 
   useEffect(() => {
-    Cookies.set('totalPrice', totalPrice, { expires: 7 });
+    Cookies.set('totalPrice', totalPrice, { expires: 7 })
   }, [totalPrice])
 
   return (
