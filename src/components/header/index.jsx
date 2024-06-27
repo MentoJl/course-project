@@ -19,7 +19,6 @@ const Header = () => {
 
   const login = query.get('login') || ''
   const [logTitle, setLogTitle] = useState(Cookies.get('current_login') ? 'Log out' : 'Login')
-  // const [data, setData] = useState(null)
 
   useEffect(() => {
     if (login !== '') {
@@ -51,6 +50,31 @@ const Header = () => {
   const handleClickOutside = (event) => {
     if (searchRef.current && !searchRef.current.contains(event.target)) {
       setSearchVisible(false)
+    }
+  }
+
+  const handleGoToUserProfile = () => {
+    axios.get(`http://database/takeAction?login=${Cookies.get('current_login')}&action=like`)
+    .then((response) => { 
+      const newList = [];
+      response.data.map((data) => {
+        newList.push(data.beat_name)
+      })
+      const likedBeats = newList.length > 0 ? newList.join(',') : undefined
+
+      if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
+      else window.location.href = `http://localhost:3000/userprofile?title=${likedBeats}`
+    })
+    .catch((error) => {
+      console.error('Ошибка при выполнении POST запроса:', error)
+    })
+  }
+
+  const handleLog = () => {
+    if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
+    else {
+      Cookies.remove('current_login')
+      window.location.href = 'http://localhost:3000/'
     }
   }
 
@@ -126,35 +150,13 @@ const Header = () => {
         </Link>
         <div
           className={styles.headerCase}
-          onClick={() => {
-           
-            axios.get(`http://database/takeAction?login=${Cookies.get('current_login')}&action=like`)
-            .then((response) => { 
-              const newList = [];
-              for (let i = 0; i < response.data.length; i++) {
-                newList.push(response.data[i].beat_name);
-              }
-              const text = newList.length > 0 ? newList.join(',') : undefined
-
-              if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
-              else window.location.href = `http://localhost:3000/userprofile?title=${text}`
-            })
-            .catch((error) => {
-              console.error('Ошибка при выполнении POST запроса:', error)
-            })
-          }}
+          onClick={handleGoToUserProfile}
         >
           <img src="/header/userprofile.png" alt="" className={styles.userprofile} />
         </div>
         <div
           className={styles.headerCase}
-          onClick={() => {
-            if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
-            else {
-              Cookies.remove('current_login')
-              window.location.href = 'http://localhost:3000/'
-            }
-          }}
+          onClick={handleLog}
         >
           <span className={styles.menuCase}>{logTitle}</span>
         </div>
