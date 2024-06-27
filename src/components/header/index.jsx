@@ -4,6 +4,7 @@ import styles from './style.module.css'
 // import { Link, useLocation } from 'react-router-dom'
 // import axios from 'axios'
 import Cookies from 'js-cookie'
+import axios from 'axios'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -18,6 +19,7 @@ const Header = () => {
 
   const login = query.get('login') || ''
   const [logTitle, setLogTitle] = useState(Cookies.get('current_login') ? 'Log out' : 'Login')
+  // const [data, setData] = useState(null)
 
   useEffect(() => {
     if (login !== '') {
@@ -125,10 +127,21 @@ const Header = () => {
         <div
           className={styles.headerCase}
           onClick={() => {
-            if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
-            else {
-              window.location.href = 'http://localhost:3000/userprofile'
-            }
+           
+            axios.get(`http://database/takeAction?login=${Cookies.get('current_login')}&action=like`)
+            .then((response) => { 
+              const newList = [];
+              for (let i = 0; i < response.data.length; i++) {
+                newList.push(response.data[i].beat_name);
+              }
+              const text = newList.length > 0 ? newList.join(',') : undefined
+
+              if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
+              else window.location.href = `http://localhost:3000/userprofile?title=${text}`
+            })
+            .catch((error) => {
+              console.error('Ошибка при выполнении POST запроса:', error)
+            })
           }}
         >
           <img src="/header/userprofile.png" alt="" className={styles.userprofile} />

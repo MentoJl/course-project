@@ -15,6 +15,7 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 function sortBy($link, $bmp, $mood, $genre, $title){
     $sql = "SELECT * FROM base_information";
+    $titles = explode(",", $title);
 
     $conditions = [];
     if (!empty($bmp)) {
@@ -27,7 +28,7 @@ function sortBy($link, $bmp, $mood, $genre, $title){
         $conditions[] = "genre = '$genre'";
     }
     if (!empty($title)) {
-        $conditions[] = "title = '$title'";
+        $conditions[] = "title IN ('" . implode("','", $titles) . "')";
     }
 
     if (!empty($conditions)) {
