@@ -108,6 +108,7 @@ const BeatPage = () => {
     axios.post('http://database/action', Data)
     .then(response => {
         console.log('Успешный ответ от сервера:', response.data);
+        window.location.reload();
     })
     .catch(error => {
       console.error('Ошибка при выполнении POST запроса:', error);

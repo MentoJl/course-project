@@ -21,7 +21,7 @@ const Header = () => {
 
   useEffect(() => {
     if (login !== '') {
-      Cookies.set('current_login', login, { expires: 1 })
+      Cookies.set('current_login', login, 1)
       setLogTitle('Log out')
     }
   }, [login])

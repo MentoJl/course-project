@@ -1,24 +1,32 @@
 .commentTableContainer {
   width: 100%;
-  height: fit-content;
-  background-color: aliceblue;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   background-color: black;
   border-bottom: 2px solid rgb(71, 71, 71);
 }
 
 .commentTable {
-  background-color: black;
   width: 80%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
+.commentUserLogo {
+  border-radius: 50%;
+  min-width: 40px;
+  min-height: 40px;
+}
+
 .commentTitleContainer {
   margin-right: 100px;
   width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .commentTextContainer {
@@ -37,4 +45,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.commentTableText {
+  color: darkgrey;
+  font-size: 28px;
+  text-align: center;
+}
+
+.notCommentHead,
+.notCommentBody {
+  width: 100%;
+  height: 40px;
 }

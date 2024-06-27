@@ -1,4 +1,4 @@
-import { message } from 'antd'
+import { message, Image } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styles from './style.module.css'
@@ -18,7 +18,6 @@ const CommentTable = ({ title = 'Beef' }) => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(`http://database/takeAction?beat_name=${title}&action=comment`)
-        console.log(response)
         response.data.forEach((data) => {
           addComment(data.login, data.value)
         })
@@ -29,21 +28,31 @@ const CommentTable = ({ title = 'Beef' }) => {
     }
 
     fetchComments()
-  }, title)
+  }, [title])
 
   return (
     <div className={styles.commentTableContainer}>
+      <span className={styles.commentTableText}>Comments</span>
       <table className={styles.commentTable}>
-        {commentList.map((comment) => (
+        {commentList != [] 
+        ?
+        commentList.map((comment) => (
           <tr className={styles.commentContainer}>
             <td className={styles.commentTitleContainer}>
+              <Image src='./user/avatar.png' className={styles.commentUserLogo}></Image>
               <span className={styles.commentTitle}>{comment.title}</span>
             </td>
             <td className={styles.commentTextContainer}>
               <span className={styles.commentText}>{comment.comment}</span>
             </td>
           </tr>
-        ))}
+        ))
+        : 
+        <tr className={styles.notCommentHead}>
+          <td className={styles.notCommentBody}>
+            <span className={styles.notCommentText}>Not Comments Yet</span>
+          </td>  
+        </tr>}
       </table>
     </div>
   )

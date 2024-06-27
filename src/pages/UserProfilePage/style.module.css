@@ -1,100 +1,27 @@
-.main {
+.userProfileLogo {
+  border-radius: 50%;
+}
+
+.userProfileContainer {
   background-color: black;
-  color: white;
-  min-height: 100vh;
+}
+
+.userProfileName,
+.likedBeatsText {
+  color: aliceblue;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 50px;
+}
+
+.likedBeatsText {
+  margin-bottom: 50px;
+}
+
+.userProfileHeader {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
-}
-
-.content {
-  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  margin-bottom: 50px;
-  flex: 1;
-}
-
-.imageContainer {
-  margin-right: 20px;
-}
-
-.image {
-  max-width: 300px;
-  height: auto;
-  margin-top: 20%;
-}
-
-.infoContainer {
-  max-width: 900px;
-  margin-top: 75px;
-}
-
-.mainTitle {
-  font-size: 24px; /* Уменьшено с 36px */
-  font-weight: bold;
-  margin-top: 90px;
-}
-
-.subTitle {
-  font-size: 18px; /* Уменьшено с 24px */
-  font-weight: normal;
-  margin-bottom: 20px;
-}
-
-.text {
-  font-size: 12px; /* Уменьшено с 16px */
-  line-height: 1.5;
-  margin-bottom: 15px;
-}
-
-.purchase {
-  width: 130px;
-  min-width: 130px;
-  height: 40px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  top: 5px;
-}
-
-.previewBeatButtons {
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* margin-top: 30px; */
-}
-
-.cartPriceImg {
-  min-width: 15px;
-  min-height: 15px;
-  /* margin-top: 2px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.share {
-  width: 50px;
-  height: 40px;
-  background-color: black;
-  /* background-color: #67030d; */
-  border: none;
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
-.share:hover {
-  background-color: #67030d;
-}
-
-.purchaseText {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* margin-top: 10px; */
 }
