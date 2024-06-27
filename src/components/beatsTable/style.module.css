@@ -87,8 +87,12 @@ td {
   width: 30%;
 }
 
+.addBeatContainer {
+  align-items: center;
+  justify-items: center;
+}
+
 .tagsTableCol {
-  width: 200px;
   text-align: center;
   justify-content: center;
   inset-inline: initial;
@@ -196,6 +200,14 @@ td {
   width: 65px;
 }
 
+.tagsTableCol {
+  min-width: 200px;
+}
+
+.deleteBeatButton {
+  background-color: black;
+}
+
 @media (max-width: 1200px) {
   .tableBeats {
     width: 95%;
@@ -224,9 +236,19 @@ td {
     visibility 0.3s ease-in-out;
 }
 
+.soundTableCol {
+  max-width: 40px;
+}
+
 .modalOverlay.active {
   opacity: 1;
   visibility: visible;
+}
+
+.deleteBeatButtonContainer {
+  width: 40px;
+  align-items: center;
+  justify-items: center;
 }
 
 .modal {

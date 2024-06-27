@@ -1,7 +1,7 @@
-import { UploadOutlined, CopyOutlined } from '@ant-design/icons'
+import { UploadOutlined, CopyOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Image, Modal, Upload, Input, message } from 'antd'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import EditableTagGroup from '../EditableTags/index'
 import Player from '../Player'
@@ -22,9 +22,14 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
   const title = query.get('title') || ''
+  const UpldIMG = useRef(null)
+  const UpldSND = useRef(null)
+  const nameBeat = useRef(null)
+  const timeBeat = useRef(null)
+  const bpmBeat = useRef(null)
 
   const props = {
-    file: 'file',
+    file: 'image',
     path: '/public/test/',
     headers: {
       authorization: 'Upload',
@@ -40,6 +45,27 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           console.error('Ошибка при выполнении POST запроса:', error)
         })
     },
+  }
+
+  const handleAddBeat = () => {
+    const duration = null
+    if(UpldIMG.current.fileList[0] === undefined
+      || UpldSND.current.fileList[0] === undefined
+      || nameBeat.current.value === ''
+      || timeBeat.current.value === ''
+      || bpmBeat.current.value === ''
+      || newTags == []
+    ) {
+      message.error('Fill all params for new beat')
+      return 
+    }
+    message.error('Fill all params for new beat')
+    console.log('Image File:', UpldIMG.current.fileList[0])
+    console.log('Sound File:', UpldSND.current.fileList[0])
+    console.log('Name:', nameBeat.current.value)
+    console.log('Time:', timeBeat.current.value)
+    console.log('BPM:', timeBeat.current.value)
+    console.log('Tags:', timeBeat.current.value)
   }
 
   const showShareModal = (beat, link) => {
@@ -192,6 +218,11 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               <td className={styles.tagsTableCol}>{row.tags}</td>
               <td className={styles.linkTableCol}>{row.link}</td>
               <td className={styles.priceTableCol}>{row.price}</td>
+              <td className={styles.deleteBeatButtonContainer}>
+                <Button type='dashed' ghost danger className={styles.deleteBeatButton}>
+                  <CloseOutlined />
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -202,32 +233,37 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
             <td className={styles.timeTableCol}>TIME</td>
             <td className={styles.bpmTableCol}>BPM</td>
             <td className={styles.tagsTableCol}>TAGS</td>
-            <td className={styles.linkTableCol}>LINK</td>
-            <td className={styles.priceTableCol}>PRICE</td>
+            <td className={styles.priceTableCol}>SOUND</td>
           </tr>
           <tr>
             <td className={styles.beatTableCol}>
-              <Upload {...props}>
+              <Upload {...props} ref={UpldIMG}>
                 <Button className={styles.beatImg}>
                   <UploadOutlined />
                 </Button>
               </Upload>
             </td>
             <td className={styles.titleTableCol}>
-              <input className={styles.titleInput} type="text" />
+              <input className={styles.titleInput} ref={nameBeat} type="text" />
             </td>
             <td className={styles.timeTableCol}>
-              <input className={styles.timeInput} type="text" />
+              <input className={styles.timeInput} ref={timeBeat} type="text" />
             </td>
             <td className={styles.bpmTableCol}>
-              <input className={styles.timeInput} type="text" />
+              <input className={styles.timeInput} ref={bpmBeat} type="text" />
             </td>
             <td className={styles.tagsTableCol}>
               <EditableTagGroup tags={newTags} setTags={setNewTags} />
             </td>
-            <td className={styles.inputLinkTableCol}></td>
-            <td className={styles.priceTableCol}>
-              <input className={styles.priceInput} type="text" />
+            <td className={styles.soundTableCol}>
+              <Upload {...props} preview={false} ref={UpldSND} >
+                <Button className={styles.beatImg}>
+                  <UploadOutlined />
+                </Button>
+              </Upload>
+            </td>
+            <td className={styles.addBeatContainer}>
+              <Button className={styles.beatSrc} shape="round" icon={<PlusOutlined/>} size='middle' onClick={handleAddBeat}/>
             </td>
           </tr>
         </tfoot>
