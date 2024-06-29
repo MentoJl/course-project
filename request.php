@@ -1,5 +1,7 @@
 <?php
 require './slim-skeleton/vendor/autoload.php';
+require_once 'vendor/autoload.php';
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -48,6 +50,7 @@ function sortBy($link, $bmp, $mood, $genre, $title){
 }
 
 function add_user($data, $conn){
+    $conn = mysqli_connect("localhost", "root", "", "INFO");
     $id = mysqli_real_escape_string($conn, $data['new_member']['id']);
     $img = mysqli_real_escape_string($conn, $data['new_member']['img']);
     $title = mysqli_real_escape_string($conn, $data['new_member']['title']);
@@ -60,13 +63,27 @@ function add_user($data, $conn){
     $mood = mysqli_real_escape_string($conn, $data['new_member']['mood']);
     $genre = mysqli_real_escape_string($conn, $data['new_member']['genre']);
     $soundSrc = mysqli_real_escape_string($conn, $data['new_member']['soundSrc']);
-
-
+    
+    if (strtolower(pathinfo($soundSrc, PATHINFO_EXTENSION)) === 'mp3') {
+        $getID3 = new getID3;
+        $fileInfo = $getID3->analyze($soundSrc);
+    
+        if (isset($fileInfo['playtime_seconds'])) {
+            $durationInSeconds = (int) $fileInfo['playtime_seconds'];
+            $duration = gmdate("H:i:s", $durationInSeconds);
+            $time = mysqli_real_escape_string($conn, $duration);
+        } else {
+            return false;
+        }
+    } else {
+        $time = mysqli_real_escape_string($conn, $data['new_member']['time']);
+    }
+    
     $sql = "INSERT INTO `base_information` 
             (`id`, `img`, `title`, `time`, `bpm`, `tags`, `link`, `price`, `key`, `mood`, `genre`, `soundSrc`) 
             VALUES 
             ('$id', '$img', '$title', '$time', '$bpm', '$tags', '$link', '$price', '$key', '$mood', '$genre', '$soundSrc')";
-
+    
     if (mysqli_query($conn, $sql)) {
         return true;
     } else {

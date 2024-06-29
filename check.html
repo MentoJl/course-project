@@ -16,28 +16,28 @@
         //     action : "comment",
         //     text : "That so cool, keep it up"
         // };
-        const Data = {
-        beatName : "Beef",
-        login : "user",
-        action : "like",
-        text : ""
-        }
-        // const data = {
-        //   new_member : {
-        //     "id": "32",
-        //     "img": "public\\db\\img\\beef.png",
-        //     "title": "Beef",
-        //     "time": "00:02:26",
-        //     "bpm": "105",
-        //     "tags": "{\"beat\": \"\", \"music\": \"\", \"bitmaker\": \"\"}",
-        //     "link": "",
-        //     "price": "50",
-        //     "key": "Dm",
-        //     "mood": "shoreline mafia & ohgeesy",
-        //     "genre": "Hip Hop",
-        //     "soundSrc": "public\\db\\sound\\beef.mp3"
-        //   }
+        // const Data = {
+        // beatName : "Beef",
+        // login : "user",
+        // action : "like",
+        // text : ""
         // }
+        const Data = {
+          new_member : {
+            "id": "990",
+            "img": "public\\db\\img\\beef.png",
+            "title": "Beef",
+            "time": "",
+            "bpm": "105",
+            "tags": "{\"beat\": \"\", \"music\": \"\", \"bitmaker\": \"\"}",
+            "link": "",
+            "price": "50",
+            "key": "Dm",
+            "mood": "shoreline mafia & ohgeesy",
+            "genre": "Hip Hop",
+            "soundSrc": "public\\db\\sound\\beef.mp3"
+          }
+        }
         // const data = {
         //   id : 32,
         // };
@@ -71,9 +71,9 @@
         //     .catch(error => {
         //         console.error('Ошибка при выполнении POST запроса:', error);
         //     });
-        axios.post('http://database/deleteAction', Data)
+        axios.post('http://database/Database/add_user', Data)
             .then(response => {
-                console.log('Успешный удаление ответ от сервера:', response.data);
+                console.log('Успешный удаление ответ от сервера:', response);
             })
             .catch(error => {
 			console.error('Ошибка при выполнении POST запроса:', error);
