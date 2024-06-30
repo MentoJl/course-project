@@ -3,8 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styles from './style.module.css'
 // import { Link, useLocation } from 'react-router-dom'
 // import axios from 'axios'
-import Cookies from 'js-cookie'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -54,26 +54,28 @@ const Header = () => {
   }
 
   const handleGoToUserProfile = () => {
-    axios.get(`http://database/takeAction?login=${Cookies.get('current_login')}&action=like`)
-    .then((response) => { 
-      const newList = [];
-      response.data.map((data) => {
-        newList.push(data.beat_name)
-      })
-      const likedBeats = newList.length > 0 ? newList.join(',') : undefined
+    axios
+      .get(`http://database/takeAction?login=${Cookies.get('current_login')}&action=like`)
+      .then((response) => {
+        const newList = []
+        response.data.map((data) => {
+          newList.push(data.beat_name)
+        })
+        const likedBeats = newList.length > 0 ? newList.join(',') : undefined
 
-      if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
-      else window.location.href = `http://localhost:3000/userprofile?title=${likedBeats}`
-    })
-    .catch((error) => {
-      console.error('Ошибка при выполнении POST запроса:', error)
-    })
+        if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
+        else window.location.href = `http://localhost:3000/userprofile?title=${likedBeats}`
+      })
+      .catch((error) => {
+        console.error('Ошибка при выполнении POST запроса:', error)
+      })
   }
 
   const handleLog = () => {
     if (logTitle === 'Login') window.location.href = 'http://database/Autorisation.php?window=Login'
     else {
       Cookies.remove('current_login')
+      Cookies.set('totalPrice', '0.00')
       window.location.href = 'http://localhost:3000/'
     }
   }
@@ -148,16 +150,10 @@ const Header = () => {
             <span className={styles.menuCase}>${Cookies.get('totalPrice')}</span>
           </div>
         </Link>
-        <div
-          className={styles.headerCase}
-          onClick={handleGoToUserProfile}
-        >
+        <div className={styles.headerCase} onClick={handleGoToUserProfile}>
           <img src="/header/userprofile.png" alt="" className={styles.userprofile} />
         </div>
-        <div
-          className={styles.headerCase}
-          onClick={handleLog}
-        >
+        <div className={styles.headerCase} onClick={handleLog}>
           <span className={styles.menuCase}>{logTitle}</span>
         </div>
       </div>
