@@ -36,6 +36,9 @@ function sortBy($link, $bmp, $mood, $genre, $title){
     if (!empty($conditions)) {
         $sql .= " WHERE " . implode(" AND ", $conditions);
     }
+    if (!empty($title)) { #change order
+        $sql .= " ORDER BY FIELD(title, '" . implode("','", $titles) . "')";
+    }
 
     $result = mysqli_query($link, $sql);
 
