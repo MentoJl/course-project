@@ -3,8 +3,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styles from './style.module.css'
 
-const CommentTable = ({ title = 'Beef' }) => {
+const CommentTable = ({ title = '' }) => {
   const [commentList, setCommentList] = useState([])
+  console.log(title)
 
   const addComment = (title, comment) => {
     const newRow = {
@@ -15,6 +16,7 @@ const CommentTable = ({ title = 'Beef' }) => {
   }
 
   useEffect(() => {
+    setCommentList([])
     const fetchComments = async () => {
       try {
         const response = await axios.get(`http://database/takeAction?beat_name=${title}&action=comment`)

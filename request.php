@@ -176,7 +176,7 @@ $app->post('/savePurchased', function (Request $request, Response $response, $ar
 //         ->withHeader('Content-Type', 'application/json');
 // });
 
-$app->post('/POST', function (Request $request, Response $response, $args) {
+$app->post('/uploadFile', function (Request $request, Response $response, $args) {
     $uploadedFiles = $request->getUploadedFiles();
     $uploadedFile = $uploadedFiles['file'];
     $uploadPath = $request->getParsedBody()['path'];
@@ -209,7 +209,7 @@ $app->get('/takeAction', function (Request $request, Response $response, $args) 
     return $response->withHeader('Content-Type', 'application/json');
 });
 
-$app->post('/Database/add_user', function (Request $request, Response $response, $args) {
+$app->post('/Database/add_beat', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
     print_r($data);
     $link = mysqli_connect("localhost", "root", "", "INFO");

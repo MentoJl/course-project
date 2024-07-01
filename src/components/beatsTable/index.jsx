@@ -22,50 +22,48 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
   const title = query.get('title') || ''
-  const UpldIMG = useRef(null)
-  const UpldSND = useRef(null)
+  const [UpldIMG, setUpldIMG] = useState(null) 
+  const [UpldSND, setUpldSND] = useState(null)
   const nameBeat = useRef(null)
-  const timeBeat = useRef(null)
+  const keyBeat = useRef(null)
   const bpmBeat = useRef(null)
 
-  const props = {
-    file: 'image',
-    path: '/public/test/',
-    headers: {
-      authorization: 'Upload',
-    },
-    onChange(info) {
-      console.log(info)
-      axios
-        .post('http://database/POST', info)
-        .then((response) => {
-          console.log('Успешный ответ от сервера:', response.data)
-        })
-        .catch((error) => {
-          console.error('Ошибка при выполнении POST запроса:', error)
-        })
-    },
-  }
-
   const handleAddBeat = () => {
-    const duration = null
-    if(UpldIMG.current.fileList[0] === undefined
-      || UpldSND.current.fileList[0] === undefined
-      || nameBeat.current.value === ''
-      || timeBeat.current.value === ''
-      || bpmBeat.current.value === ''
-      || newTags == []
+    if (!UpldIMG ||
+      !UpldSND || 
+      !nameBeat.current.value ||
+      !nameBeat.current.value ||
+      newTags == []
     ) {
       message.error('Fill all params for new beat')
-      return 
+      return
     }
-    message.error('Fill all params for new beat')
-    console.log('Image File:', UpldIMG.current.fileList[0])
-    console.log('Sound File:', UpldSND.current.fileList[0])
+    const fileDataSND = new FormData()
+    fileDataSND.append('file', UpldSND.fileList[0].originFileObj, UpldSND.fileList[0].name)
+    fileDataSND.append('path', './public/db/sound/');
+    const fileDataIMG = new FormData()
+    fileDataIMG.append('file', UpldIMG.fileList[0].originFileObj, UpldIMG.fileList[0].name)
+    fileDataIMG.append('path', './public/db/img/');
+    axios.post('http://database/uploadFile', fileDataIMG)
+      .then(response => {
+        console.log('Успешный ответ от сервера:', response.data);
+      })
+      .catch(error => {
+        console.error('Ошибка при выполнении POST запроса:', error);
+      });
+    axios.post('http://database/uploadFile', fileDataSND)
+      .then(response => {
+        console.log('Успешный ответ от сервера:', response.data);
+      })
+      .catch(error => {
+        console.error('Ошибка при выполнении POST запроса:', error);
+      });
+    console.log('Image File:', UpldIMG.fileList[0])
+    console.log('Sound File:', UpldSND.fileList[0])
     console.log('Name:', nameBeat.current.value)
-    console.log('Time:', timeBeat.current.value)
-    console.log('BPM:', timeBeat.current.value)
-    console.log('Tags:', timeBeat.current.value)
+    console.log('Key:', keyBeat.current.value)
+    console.log('BPM:', bpmBeat.current.value)
+    console.log('Tags:', newTags)
   }
 
   const showShareModal = (beat, link) => {
@@ -230,14 +228,14 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           <tr className={styles.addBeatHeader}>
             <td className={styles.beatTableCol}>IMG</td>
             <td className={styles.titleTableCol}>TITLE</td>
-            <td className={styles.timeTableCol}>TIME</td>
+            <td className={styles.timeTableCol}>KEY</td>
             <td className={styles.bpmTableCol}>BPM</td>
             <td className={styles.tagsTableCol}>TAGS</td>
             <td className={styles.priceTableCol}>SOUND</td>
           </tr>
           <tr>
             <td className={styles.beatTableCol}>
-              <Upload {...props} ref={UpldIMG}>
+              <Upload onChange={(file) => {setUpldIMG(file)}} ref={UpldIMG}>
                 <Button className={styles.beatImg}>
                   <UploadOutlined />
                 </Button>
@@ -247,7 +245,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               <input className={styles.titleInput} ref={nameBeat} type="text" />
             </td>
             <td className={styles.timeTableCol}>
-              <input className={styles.timeInput} ref={timeBeat} type="text" />
+              <input className={styles.timeInput} ref={keyBeat} type="text" />
             </td>
             <td className={styles.bpmTableCol}>
               <input className={styles.timeInput} ref={bpmBeat} type="text" />
@@ -256,7 +254,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               <EditableTagGroup tags={newTags} setTags={setNewTags} />
             </td>
             <td className={styles.soundTableCol}>
-              <Upload {...props} preview={false} ref={UpldSND} >
+            <Upload onChange={(file) => {setUpldSND(file)}} preview={false} ref={UpldSND} >
                 <Button className={styles.beatImg}>
                   <UploadOutlined />
                 </Button>
