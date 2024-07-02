@@ -1,11 +1,11 @@
 import { Select } from 'antd'
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import Searcher from '../../components/Searcher/index'
 import BeatsTable from '../../components/beatsTable/index'
 import Footer from '../../components/footer/index'
 import Header from '../../components/header/index'
 import styles from './style.module.css'
-import Searcher from '../../components/Searcher/index'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -18,13 +18,15 @@ const AllBeats = () => {
   const [mood, setMood] = useState('All')
   const [bpm, setBpm] = useState('All')
   const [key, setKey] = useState('All')
+  const [like, setLike] = useState('All')
+
 
   return (
     <div className={styles.allbeatsContainer}>
       <Header />
       <div className={styles.beatsNavigator}>
         <span className={styles.allBeatsBoard}>All Beats</span>
-        <Searcher/>
+        <Searcher />
         <div className={styles.beatsSortContainer}>
           <Select
             defaultValue="All BPM"
@@ -33,7 +35,7 @@ const AllBeats = () => {
             options={[
               {
                 value: '',
-                label: "All Bpm",
+                label: 'All Bpm',
               },
               {
                 value: '90',
@@ -169,7 +171,7 @@ const AllBeats = () => {
           />
           <Select
             defaultValue="All Genres"
-            className={styles.selectGener}
+            className={styles.selectGenre}
             onChange={(value) => setGenre(value)}
             options={[
               {
@@ -187,6 +189,25 @@ const AllBeats = () => {
               {
                 value: 'Trap',
                 label: 'Trap',
+              },
+            ]}
+          />
+          <Select
+            defaultValue="Sort By"
+            className={styles.selectGenre}
+            onChange={(value) => setLike(value)}
+            options={[
+              {
+                value: 'Sort By',
+                label: 'Sort By',
+              },
+              {
+                value: 'Sort Ascending',
+                label: 'Sort Ascending',
+              },
+              {
+                value: 'Sort Descending',
+                label: 'Sort Descending',
               },
             ]}
           />

@@ -1,14 +1,14 @@
 import { LikeFilled, LikeOutlined, SendOutlined } from '@ant-design/icons'
 import { Button, Image, Input } from 'antd'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import CommentTable from '../CommentTable/index'
 import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
 import styles from './style.module.css'
-import CommentTable from '../CommentTable/index'
-import Cookies from 'js-cookie'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -95,24 +95,25 @@ const BeatPage = () => {
   }
 
   const handleSubmit = () => {
-    if(!Cookies.get('current_login')){
+    if (!Cookies.get('current_login')) {
       window.location.href = 'http://database/Autorisation.php?window=Login'
       return
     }
     const Data = {
-      beatName : title,
-      login : Cookies.get('current_login'),
-      action : "comment",
-      text : comment.trim()
+      beatName: title,
+      login: Cookies.get('current_login'),
+      action: 'comment',
+      text: comment.trim(),
     }
-    axios.post('http://database/action', Data)
-    .then(response => {
-        console.log('Успешный ответ от сервера:', response.data);
-        window.location.reload();
-    })
-    .catch(error => {
-      console.error('Ошибка при выполнении POST запроса:', error);
-    });
+    axios
+      .post('http://database/action', Data)
+      .then((response) => {
+        console.log('Успешный ответ от сервера:', response.data)
+        window.location.reload()
+      })
+      .catch((error) => {
+        console.error('Ошибка при выполнении POST запроса:', error)
+      })
   }
 
   return (
@@ -176,9 +177,10 @@ const BeatPage = () => {
           </div>
         </div>
       </div>
-      <CommentTable
-      title={title}/>
+
+      <CommentTable title={title} />
       <BeatsTable />
+
       <Footer />
     </div>
   )

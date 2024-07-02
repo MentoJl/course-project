@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Route, BrowserRouter as Controller, Routes } from 'react-router-dom'
+import { BrowserRouter as Controller, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop/index'
+import BeatPage from './components/beatPage'
 import Main from './components/main_page/index'
 import AboutMePage from './pages/AboutMePage/index'
 import AllBeats from './pages/AllBeatsPage/index'
@@ -14,10 +15,8 @@ import MixAndMasteringDetailsPage from './pages/MixAndMasteringDetailsPage'
 import ServicesPage from './pages/ServicesPage/index'
 import SoundKitDetailPage from './pages/SoundKitDetailPage'
 import SoundKitsPage from './pages/SoundKitsPage'
-import reportWebVitals from './reportWebVitals'
-import BeatPage from './components/beatPage'
 import UserProfilePage from './pages/UserProfilePage'
-
+import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -36,9 +35,8 @@ root.render(
       <Route path="/services/custombeat" element={<CustomBeatDetailsPage />} />
       <Route path="/services/mixandmastering" element={<MixAndMasteringDetailsPage />} />
       <Route path="/cart" element={<CartPage />}></Route>
-      <Route path='/beatPage' element={<BeatPage />} />
+      <Route path="/beatPage" element={<BeatPage />} />
       <Route path="/userprofile" element={<UserProfilePage />} />
-
     </Routes>
   </Controller>
 )

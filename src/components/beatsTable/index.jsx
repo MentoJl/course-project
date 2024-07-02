@@ -1,5 +1,5 @@
-import { UploadOutlined, CopyOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, Image, Modal, Upload, Input, message } from 'antd'
+import { CloseOutlined, CopyOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons'
+import { Button, Image, Input, Modal, Upload, message } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
@@ -22,12 +22,11 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
   const [title, setTitle] = useState(query.get('title') || '')
-  const [UpldIMG, setUpldIMG] = useState(null) 
+  const [UpldIMG, setUpldIMG] = useState(null)
   const [UpldSND, setUpldSND] = useState(null)
   const nameBeat = useRef(null)
   const keyBeat = useRef(null)
   const bpmBeat = useRef(null)
-
 
   // useEffect(() => {
   //   const likeCounts = {};
@@ -41,35 +40,32 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   // })
 
   const handleAddBeat = () => {
-    if (!UpldIMG ||
-      !UpldSND || 
-      !nameBeat.current.value ||
-      !nameBeat.current.value ||
-      newTags == []
-    ) {
+    if (!UpldIMG || !UpldSND || !nameBeat.current.value || !nameBeat.current.value || newTags == []) {
       message.error('Fill all params for new beat')
       return
     }
     const fileDataSND = new FormData()
     fileDataSND.append('file', UpldSND.fileList[0].originFileObj, UpldSND.fileList[0].name)
-    fileDataSND.append('path', './public/db/sound/');
+    fileDataSND.append('path', './public/db/sound/')
     const fileDataIMG = new FormData()
     fileDataIMG.append('file', UpldIMG.fileList[0].originFileObj, UpldIMG.fileList[0].name)
-    fileDataIMG.append('path', './public/db/img/');
-    axios.post('http://database/uploadFile', fileDataIMG)
-      .then(response => {
-        console.log('Успешный ответ от сервера:', response.data);
+    fileDataIMG.append('path', './public/db/img/')
+    axios
+      .post('http://database/uploadFile', fileDataIMG)
+      .then((response) => {
+        console.log('Успешный ответ от сервера:', response.data)
       })
-      .catch(error => {
-        console.error('Ошибка при выполнении POST запроса:', error);
-      });
-    axios.post('http://database/uploadFile', fileDataSND)
-      .then(response => {
-        console.log('Успешный ответ от сервера:', response.data);
+      .catch((error) => {
+        console.error('Ошибка при выполнении POST запроса:', error)
       })
-      .catch(error => {
-        console.error('Ошибка при выполнении POST запроса:', error);
-      });
+    axios
+      .post('http://database/uploadFile', fileDataSND)
+      .then((response) => {
+        console.log('Успешный ответ от сервера:', response.data)
+      })
+      .catch((error) => {
+        console.error('Ошибка при выполнении POST запроса:', error)
+      })
     console.log('Image File:', UpldIMG.fileList[0])
     console.log('Sound File:', UpldSND.fileList[0])
     console.log('Name:', nameBeat.current.value)
@@ -118,7 +114,14 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   }
 
   const addBeat = (id, imgSrc, title, time, bpm, beatTags, price, soundSrc, key) => {
-    const beatPlayerInfo = { id, imgSrc, title, link: `localhost:3000/beatPage?name=${encodeURIComponent(title)}`, price, soundSrc }
+    const beatPlayerInfo = {
+      id,
+      imgSrc,
+      title,
+      link: `localhost:3000/beatPage?name=${encodeURIComponent(title)}`,
+      price,
+      soundSrc,
+    }
     const newRow = {
       id: id,
       beatPlayerInfo: beatPlayerInfo,
@@ -130,7 +133,9 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
             beatTags.join(',')
           )}&price=${price}&key=${encodeURIComponent(key)}`}
         >
-          <span className={styles.titleText}>{title}</span>
+          <span onClick={() => {
+            window.scrollTo(0, 0);
+          }}className={styles.titleText}>{title}</span>
         </Link>
       ),
       time: <span className={styles.time}>{time.split(':').slice(-2).join(':')}</span>,
@@ -143,13 +148,21 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           ))
         : null,
       link: (
-        <Button className={styles.share} onClick={() => showShareModal(title, `localhost:3000/beatPage?imgSrc=${encodeURIComponent(imgSrc)}
+        <Button
+          className={styles.share}
+          onClick={() =>
+            showShareModal(
+              title,
+              `localhost:3000/beatPage?imgSrc=${encodeURIComponent(imgSrc)}
         &name=${encodeURIComponent(title)}
         &bpm=${bpm}
         &beatTags=${encodeURIComponent(beatTags.join(','))}
         &price=${price}
-        &key=${encodeURIComponent(key)}`)} 
-        type="primary">
+        &key=${encodeURIComponent(key)}`
+            )
+          }
+          type="primary"
+        >
           <Image preview={false} src="/mainPage/share.png" className={styles.shareImg} />
         </Button>
       ),
@@ -170,12 +183,15 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   }
 
   const handleCopy = (link) => {
-    navigator.clipboard.writeText(link).then(() => {
-      message.success('Link copied to clipboard!');
-    }).catch(err => {
-      message.error('Failed to copy link');
-    });
-  };
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        message.success('Link copied to clipboard!')
+      })
+      .catch((err) => {
+        message.error('Failed to copy link')
+      })
+  }
 
   useEffect(() => {
     setBeatList([])
@@ -186,17 +202,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       .then((response) => {
         response.data.map((data) => {
           const tagsArray = JSON.parse(data.tags)
-          addBeat(
-            data.id,
-            data.img,
-            data.title,
-            data.time,
-            data.bpm,
-            tagsArray,
-            data.price,
-            data.soundSrc,
-            data.key
-          )
+          addBeat(data.id, data.img, data.title, data.time, data.bpm, tagsArray, data.price, data.soundSrc, data.key)
         })
       })
       .catch((error) => {
@@ -229,7 +235,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               <td className={styles.linkTableCol}>{row.link}</td>
               <td className={styles.priceTableCol}>{row.price}</td>
               <td className={styles.deleteBeatButtonContainer}>
-                <Button type='dashed' ghost danger className={styles.deleteBeatButton}>
+                <Button type="dashed" ghost danger className={styles.deleteBeatButton}>
                   <CloseOutlined />
                 </Button>
               </td>
@@ -247,7 +253,12 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           </tr>
           <tr>
             <td className={styles.beatTableCol}>
-              <Upload onChange={(file) => {setUpldIMG(file)}} ref={UpldIMG}>
+              <Upload
+                onChange={(file) => {
+                  setUpldIMG(file)
+                }}
+                ref={UpldIMG}
+              >
                 <Button className={styles.beatImg}>
                   <UploadOutlined />
                 </Button>
@@ -266,14 +277,26 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               <EditableTagGroup tags={newTags} setTags={setNewTags} />
             </td>
             <td className={styles.soundTableCol}>
-            <Upload onChange={(file) => {setUpldSND(file)}} preview={false} ref={UpldSND} >
+              <Upload
+                onChange={(file) => {
+                  setUpldSND(file)
+                }}
+                preview={false}
+                ref={UpldSND}
+              >
                 <Button className={styles.beatImg}>
                   <UploadOutlined />
                 </Button>
               </Upload>
             </td>
             <td className={styles.addBeatContainer}>
-              <Button className={styles.beatSrc} shape="round" icon={<PlusOutlined/>} size='middle' onClick={handleAddBeat}/>
+              <Button
+                className={styles.beatSrc}
+                shape="round"
+                icon={<PlusOutlined />}
+                size="middle"
+                onClick={handleAddBeat}
+              />
             </td>
           </tr>
         </tfoot>
