@@ -211,6 +211,33 @@ $app->get('/takeAction', function (Request $request, Response $response, $args) 
     $response->getBody()->write(json_encode($sorted_data));
     return $response->withHeader('Content-Type', 'application/json');
 });
+$app->get('/sortedLikes', function (Request $request, Response $response, $args) {
+    $link = mysqli_connect("localhost", "root", "", "INFO");
+    $sql = "SELECT * FROM actions WHERE action = 'like'";
+
+    $result = mysqli_query($link, $sql);
+    $likeCounts = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $beat_name = $row['beat_name'];
+        if (isset($likeCounts[$beat_name])) {
+            $likeCounts[$beat_name]++;
+        } else {
+            $likeCounts[$beat_name] = 1;
+        }
+        $sql ="UPDATE base_information SET Likes = '" . $likeCounts[$beat_name] . "' WHERE title = '$beat_name'";
+        mysqli_query($link, $sql);
+    }
+
+    arsort($likeCounts); # arsort - 3,2,1, asort - 1,2,3
+    $sortedBeatNames = implode(',', array_keys($likeCounts));
+    print_r( $likeCounts);
+    mysqli_close($link);
+
+    $response->getBody()->write(json_encode($sortedBeatNames));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
 
 $app->post('/Database/add_beat', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
@@ -237,7 +264,11 @@ $app->post('/action', function (Request $request, Response $response, $args) {
     $query = "INSERT INTO actions (beat_name, login, action, value) VALUES ('$beat_name', '$login', '$action', '$text')";
     mysqli_query($link, $query);
 
-    // mysqli_close($link);
+    if ($action == "Like"){
+        $sql = "UPDATE base_information SET Likes = Likes + 1 WHERE title = '$beat_name'";
+        mysqli_query($link, $sql);
+    }
+
 
     return $response->withHeader('Content-Type', 'application/json');
 });
@@ -252,6 +283,11 @@ $app->post('/deleteAction', function (Request $request, Response $response, $arg
     $action = mysqli_real_escape_string($link, $data['action']);
 
     $sql = "DELETE FROM `actions` WHERE `login` = '$login' AND `beat_name` = '$BN' AND `action` = '$action'";
+
+    if ($action == "Like"){
+        $sql = "UPDATE base_information SET Likes = Likes - 1 WHERE title = '$BN'";
+        mysqli_query($link, $sql);
+    }
 
     if (mysqli_query($link, $sql)) {
         echo "Запись успешно удалена из базы данных";

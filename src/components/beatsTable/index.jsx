@@ -31,30 +31,13 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
 
   // useEffect(() => {
   //   const likeCounts = {};
-  //   axios.get('http://database/takeAction?action=Like')
+  //   axios.get('http://database/sortedLikes')
   //     .then(response => {
-  //       console.log('Успешный ответ от сервера:', response.data);
-  //       response.data.forEach(beat => {
-  //         if (beat.action === "like") {
-  //           if (likeCounts[beat.beat_name]) {
-  //             likeCounts[beat.beat_name]++;
-  //           } else {
-  //             likeCounts[beat.beat_name] = 1;
-  //           }
-  //         }
-  //       });
-  //       const entries = Object.entries(likeCounts);
-
-  //       entries.sort((a, b) => b[1] - a[1]);
-  //       const sortedBeatNames = entries.map(entry => entry[0]).join(',');
-
-  //       console.log(sortedBeatNames);
-  //       setTitle(sortedBeatNames);
+  //       console.log('awdawd:', response.data);
   //     })
   //     .catch(error => {
   //       console.error('Ошибка при выполнении POST запроса:', error);
   //     });
-    
   // })
 
   const handleAddBeat = () => {
