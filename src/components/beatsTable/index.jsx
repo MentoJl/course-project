@@ -21,13 +21,12 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const [newTags, setNewTags] = useState([])
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
-  const title = query.get('title') || ''
+  const [title, setTitle] = useState(query.get('title') || '')
   const [UpldIMG, setUpldIMG] = useState(null) 
   const [UpldSND, setUpldSND] = useState(null)
   const nameBeat = useRef(null)
   const keyBeat = useRef(null)
   const bpmBeat = useRef(null)
-  const [sortedLikes, setSortedLikes] = useState("")
 
 
   // useEffect(() => {
@@ -50,12 +49,13 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   //       const sortedBeatNames = entries.map(entry => entry[0]).join(',');
 
   //       console.log(sortedBeatNames);
+  //       setTitle(sortedBeatNames);
   //     })
   //     .catch(error => {
   //       console.error('Ошибка при выполнении POST запроса:', error);
   //     });
     
-  // },[])
+  // })
 
   const handleAddBeat = () => {
     if (!UpldIMG ||
