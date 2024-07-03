@@ -52,20 +52,20 @@ function sortBy($link, $bmp, $mood, $genre, $title){
     return $data;
 }
 
-function add_user($data, $conn){
+function add_beat($data, $conn){
     $conn = mysqli_connect("localhost", "root", "", "INFO");
-    $id = mysqli_real_escape_string($conn, $data['new_member']['id']);
-    $img = mysqli_real_escape_string($conn, $data['new_member']['img']);
-    $title = mysqli_real_escape_string($conn, $data['new_member']['title']);
-    $time = mysqli_real_escape_string($conn, $data['new_member']['time']);
-    $bpm = mysqli_real_escape_string($conn, $data['new_member']['bpm']);
-    $tags = mysqli_real_escape_string($conn, $data['new_member']['tags']);
-    $link = mysqli_real_escape_string($conn, $data['new_member']['link']);
-    $price = mysqli_real_escape_string($conn, $data['new_member']['price']);
-    $key = mysqli_real_escape_string($conn, $data['new_member']['key']);
-    $mood = mysqli_real_escape_string($conn, $data['new_member']['mood']);
-    $genre = mysqli_real_escape_string($conn, $data['new_member']['genre']);
-    $soundSrc = mysqli_real_escape_string($conn, $data['new_member']['soundSrc']);
+    $id = mysqli_real_escape_string($conn, $data['newBeat']['id']);
+    $img = mysqli_real_escape_string($conn, $data['newBeat']['img']);
+    $title = mysqli_real_escape_string($conn, $data['newBeat']['title']);
+    $time = mysqli_real_escape_string($conn, $data['newBeat']['time']);
+    $bpm = mysqli_real_escape_string($conn, $data['newBeat']['bpm']);
+    $tags = mysqli_real_escape_string($conn, $data['newBeat']['tags']);
+    $link = mysqli_real_escape_string($conn, $data['newBeat']['link']);
+    $price = mysqli_real_escape_string($conn, $data['newBeat']['price']);
+    $key = mysqli_real_escape_string($conn, $data['newBeat']['key']);
+    $mood = mysqli_real_escape_string($conn, $data['newBeat']['mood']);
+    $genre = mysqli_real_escape_string($conn, $data['newBeat']['genre']);
+    $soundSrc = mysqli_real_escape_string($conn, $data['newBeat']['soundSrc']);
     
     if (strtolower(pathinfo($soundSrc, PATHINFO_EXTENSION)) === 'mp3') {
         $getID3 = new getID3;
@@ -79,7 +79,7 @@ function add_user($data, $conn){
             return false;
         }
     } else {
-        $time = mysqli_real_escape_string($conn, $data['new_member']['time']);
+        $time = mysqli_real_escape_string($conn, $data['newBeat']['time']);
     }
     
     $sql = "INSERT INTO `base_information` 
@@ -285,7 +285,7 @@ $app->post('/Database/add_beat', function (Request $request, Response $response,
     print_r($data);
     $link = mysqli_connect("localhost", "root", "", "INFO");
 
-    add_user($data, $link);
+    add_beat($data, $link);
 
     mysqli_close($link);
 
