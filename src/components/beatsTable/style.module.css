@@ -87,9 +87,11 @@ td {
   width: 30%;
 }
 
-.addBeatContainer {
+.addBeatButtonContainer {
+  display: flex;
   align-items: center;
   justify-items: center;
+  border: 1px solid wheat;
 }
 
 .tagsTableCol {

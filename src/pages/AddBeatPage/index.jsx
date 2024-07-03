@@ -1,6 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons'
-import { Button, Select, Upload } from 'antd'
+import { Button, Select, Upload, message } from 'antd'
 import React, { useRef, useState } from 'react'
+import axios from 'axios'
 import EditableTagGroup from '../../components/EditableTags/index'
 import Footer from '../../components/footer/index'
 import Header from '../../components/header/index'
@@ -12,10 +13,73 @@ const AddBeatPage = () => {
   const [UpldIMG, setUpldIMG] = useState(null)
   const [UpldSND, setUpldSND] = useState(null)
   const nameBeat = useRef(null)
-  const keyBeat = useRef(null)
   const bpmBeat = useRef(null)
-  const tagsBeat = useRef(null)
+  const [key, setKey] = useState([])
+  const [moods, setMoods] = useState([])
+  const [genre, setGenre] = useState([])
   const [newTags, setNewTags] = useState([])
+
+  const handleAddBeat = () => {
+    if (!UpldIMG 
+      || !UpldSND  
+      || !nameBeat.current.value 
+      || !key
+      || !bpmBeat.current.value 
+      || !moods
+      || !genre
+      || newTags == []
+    ) {
+      message.error('Fill all params for new beat')
+      return
+    }
+    const fileDataSND = new FormData()
+    fileDataSND.append('file', UpldSND.fileList[0].originFileObj, UpldSND.fileList[0].name)
+    fileDataSND.append('path', './public/db/sound/');
+    const fileDataIMG = new FormData()
+    fileDataIMG.append('file', UpldIMG.fileList[0].originFileObj, UpldIMG.fileList[0].name)
+    fileDataIMG.append('path', './public/db/img/');
+    axios.post('http://database/uploadFile', fileDataIMG)
+      .then(response => {
+        console.log('Успешный ответ от сервера:', response.data);
+      })
+      .catch(error => {
+        console.error('Ошибка при выполнении POST запроса:', error);
+      });
+    axios.post('http://database/uploadFile', fileDataSND)
+      .then(response => {
+        console.log('Успешный ответ от сервера:', response.data);
+      })
+      .catch(error => {
+        console.error('Ошибка при выполнении POST запроса:', error);
+      });
+    console.log('Image File:', UpldIMG.fileList[0])
+    console.log('Sound File:', UpldSND.fileList[0])
+    console.log('Name:', nameBeat.current.value)
+    console.log('Key:', key)
+    console.log('BPM:', bpmBeat.current.value)
+    console.log('Moods:', moods)
+    console.log('Geners:', genre)
+    console.log('Tags:', newTags)
+    const Data = {
+      newBeat : {
+        "img": `./db/img/${UpldIMG.fileList[0].name}`,
+        "title": nameBeat.current.value,
+        "bpm": bpmBeat.current.value,
+        "tags": newTags,
+        "key": key,
+        "mood": moods,
+        "genre": genre,
+        "soundSrc": `./db/sound/${UpldSND.fileList[0].name}`
+      }
+    }
+    axios.post('http://database/add_beat', Data)
+    .then(response => {
+      console.log('Успешный ответ от сервера:', response.data);
+    })
+    .catch(error => {
+      console.error('Ошибка при выполнении POST запроса:', error);
+    });
+  }
 
   return (
     <div>
@@ -81,46 +145,40 @@ const AddBeatPage = () => {
                   style={{ fontSize: '15px', paddingLeft: '12px' }}
                 />
                 <Select
-                  // variant="standart"
-                  // style={{ borderRadius: 'none' }}
-                  defaultValue="Genre"
                   style={{ width: '100%' }}
                   className={styles.inputGenre}
                   placeholder="Genre"
+                  onChange={(value) => {setGenre(value)}}
                 >
                   <Option value="Hip Hop">Hip Hop</Option>
                   <Option value="West Coast">West Coast</Option>
                   <Option value="Trap">Trap</Option>
                 </Select>
                 <Select
-                  defaultValue="Moods"
                   className={styles.inputGenre}
-                  placeholder="Primary Mood"
+                  placeholder="Moods"
                   mode="multiple"
                   maxCount={2}
                   style={{ width: '100%' }}
-                >
-                  <Option value="Bouncy">Bouncy</Option>
-                  <Option value="Dark">Dark</Option>
-                  <Option value="Calm">Calm</Option>
-                  <Option value="Angry">Angry</Option>
-                  <Option value="Sad">Sad</Option>
-                  <Option value="Depressed">Depressed</Option>
-                  <Option value="Lonely">Lonely</Option>
-                  <Option value="Relaxed">Relaxed</Option>
-                  <Option value="Energetic">Energetic</Option>
-                  <Option value="Lonely">Lonely</Option>
-                </Select>
+                  onChange={(values) => {setMoods(values)}}
+                  options={[
+                    { value: 'Bouncy', label: 'Bouncy' },
+                    { value: 'Dark', label: 'Dark' },
+                    { value: 'Calm', label: 'Calm' },
+                    { value: 'Angry', label: 'Angry' },
+                    { value: 'Sad', label: 'Sad' },
+                    { value: 'Depressed', label: 'Depressed' },
+                    { value: 'Lonely', label: 'Lonely' },
+                    { value: 'Relaxed', label: 'Relaxed' },
+                    { value: 'Energetic', label: 'Energetic' },
+                  ]}
+                />
                 <Select
-                  defaultValue="All Keys"
+                  placeholder='Key'
                   className={styles.inputGenre}
                   style={{ width: '100%' }}
-                  // onChange={(value) => setKey(value)}
+                  onChange={(value) => {setKey(value)}}
                   options={[
-                    {
-                      value: '',
-                      label: 'All Keys',
-                    },
                     {
                       value: 'D Minor',
                       label: 'D Minor',
@@ -166,8 +224,7 @@ const AddBeatPage = () => {
                 <EditableTagGroup tags={newTags} setTags={setNewTags} className={styles.inputField} />
               </div>
             </div>
-
-            <Button style={{ top: '15px', width: '100px', height: '35px' }}>Done</Button>
+            <Button type="default" style={{ top: '15px', width: '100px', height: '35px' }} onClick={handleAddBeat}>Done</Button>
           </div>
         </div>
       </div>
@@ -176,4 +233,4 @@ const AddBeatPage = () => {
   )
 }
 
-export default AddBeatPage
+export default AddBeatPage;

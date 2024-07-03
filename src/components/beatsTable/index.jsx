@@ -18,61 +18,10 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const [shareLink, setShareLink] = useState(['', ''])
   const [currentBeat, setCurrentBeat] = useState(null)
   const [cartBeat, setCartBeat] = useState(null)
-  const [newTags, setNewTags] = useState([])
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
+  const [del, setdel] = useState(false)
   const title = query.get('title') || ''
-  const [UpldIMG, setUpldIMG] = useState(null)
-  const [UpldSND, setUpldSND] = useState(null)
-  const nameBeat = useRef(null)
-  const keyBeat = useRef(null)
-  const bpmBeat = useRef(null)
-
-  // useEffect(() => {
-  //   const likeCounts = {};
-  //   axios.get('http://database/sortedLikes')
-  //     .then(response => {
-  //       console.log('awdawd:', response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Ошибка при выполнении POST запроса:', error);
-  //     });
-  // })
-
-  const handleAddBeat = () => {
-    if (!UpldIMG || !UpldSND || !nameBeat.current.value || !nameBeat.current.value || newTags == []) {
-      message.error('Fill all params for new beat')
-      return
-    }
-    const fileDataSND = new FormData()
-    fileDataSND.append('file', UpldSND.fileList[0].originFileObj, UpldSND.fileList[0].name)
-    fileDataSND.append('path', './public/db/sound/')
-    const fileDataIMG = new FormData()
-    fileDataIMG.append('file', UpldIMG.fileList[0].originFileObj, UpldIMG.fileList[0].name)
-    fileDataIMG.append('path', './public/db/img/')
-    axios
-      .post('http://database/uploadFile', fileDataIMG)
-      .then((response) => {
-        console.log('Успешный ответ от сервера:', response.data)
-      })
-      .catch((error) => {
-        console.error('Ошибка при выполнении POST запроса:', error)
-      })
-    axios
-      .post('http://database/uploadFile', fileDataSND)
-      .then((response) => {
-        console.log('Успешный ответ от сервера:', response.data)
-      })
-      .catch((error) => {
-        console.error('Ошибка при выполнении POST запроса:', error)
-      })
-    console.log('Image File:', UpldIMG.fileList[0])
-    console.log('Sound File:', UpldSND.fileList[0])
-    console.log('Name:', nameBeat.current.value)
-    console.log('Key:', keyBeat.current.value)
-    console.log('BPM:', bpmBeat.current.value)
-    console.log('Tags:', newTags)
-  }
 
   const showShareModal = (beat, link) => {
     setShareLink([beat, link])
@@ -111,6 +60,18 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
     } else {
       setCurrentBeat(beatList[currentBeat.id].beatPlayerInfo)
     }
+  }
+
+  const handleDeleteBeat = (title) => {
+    console.log(title)
+    axios.post('http://database/delete_beat', {'title': title})
+    .then(response => {
+      console.log('Успешный ответ от сервера:', response.data);
+    })
+    .catch(error => {
+      console.error('Ошибка при выполнении POST запроса:', error);
+    });
+    setdel(!del)
   }
 
   const addBeat = (id, imgSrc, title, time, bpm, beatTags, price, soundSrc, key) => {
@@ -178,6 +139,11 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           <span className={styles.priceText}>${price}</span>
         </Button>
       ),
+      delete: (
+        <Button type="dashed" ghost danger className={styles.deleteBeatButton} onClick={() => {handleDeleteBeat(title)}}>
+          <CloseOutlined />
+        </Button>
+      ),
     }
     setBeatList((prevBeatList) => [...prevBeatList, newRow])
   }
@@ -208,7 +174,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
-  }, [title, bpmCategory, moodCategory, genreCategory, keyCategory, sortByLikes])
+  }, [title, bpmCategory, moodCategory, genreCategory, keyCategory, sortByLikes, del])
 
   return (
     <div className={styles.tableBeatsContainer}>
@@ -234,77 +200,26 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               <td className={styles.tagsTableCol}>{row.tags}</td>
               <td className={styles.linkTableCol}>{row.link}</td>
               <td className={styles.priceTableCol}>{row.price}</td>
-              <td className={styles.deleteBeatButtonContainer}>
-                <Button type="dashed" ghost danger className={styles.deleteBeatButton}>
-                  <CloseOutlined />
-                </Button>
-              </td>
+              <td className={styles.deleteBeatButtonContainer}>{row.delete}</td>
             </tr>
           ))}
         </tbody>
-        <tfoot>
-          <tr className={styles.addBeatHeader}>
-            <td className={styles.beatTableCol}>IMG</td>
-            <td className={styles.titleTableCol}>TITLE</td>
-            <td className={styles.timeTableCol}>KEY</td>
-            <td className={styles.bpmTableCol}>BPM</td>
-            <td className={styles.tagsTableCol}>TAGS</td>
-            <td className={styles.priceTableCol}>SOUND</td>
-          </tr>
-          <tr>
-            <td className={styles.beatTableCol}>
-              <Upload
-                onChange={(file) => {
-                  setUpldIMG(file)
-                }}
-                ref={UpldIMG}
-              >
-                <Button className={styles.beatImg}>
-                  <UploadOutlined />
-                </Button>
-              </Upload>
-            </td>
-            <td className={styles.titleTableCol}>
-              <input className={styles.titleInput} ref={nameBeat} type="text" />
-            </td>
-            <td className={styles.timeTableCol}>
-              <input className={styles.timeInput} ref={keyBeat} type="text" />
-            </td>
-            <td className={styles.bpmTableCol}>
-              <input className={styles.timeInput} ref={bpmBeat} type="text" />
-            </td>
-            <td className={styles.tagsTableCol}>
-              <EditableTagGroup tags={newTags} setTags={setNewTags} />
-            </td>
-            <td className={styles.soundTableCol}>
-              <Upload
-                onChange={(file) => {
-                  setUpldSND(file)
-                }}
-                preview={false}
-                ref={UpldSND}
-              >
-                <Button className={styles.beatImg}>
-                  <UploadOutlined />
-                </Button>
-              </Upload>
-            </td>
-            <td className={styles.addBeatContainer}>
-              <Link
-                  to={`/addbeat`}
-                >
-                <Button
-                  className={styles.beatSrc}
-                  shape="round"
-                  icon={<PlusOutlined />}
-                  size="middle"
-                  onClick={handleAddBeat}
-                />
-              </Link>
-            </td>
-          </tr>
-        </tfoot>
       </table>
+        <Link
+              to={`/addbeat`}
+            >
+            <Button
+              className={styles.beatSrc}
+              style={{
+                marginTop: '20px',
+                width: '100px',
+                height: '35px',
+              }}
+              shape="round"
+              icon={<PlusOutlined />}
+              size="middle"
+            />
+          </Link>
       <Modal title={shareLink[0]} visible={isShareModalVisible} footer={null} onCancel={handleShareModalClose}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Input value={shareLink[1]} readOnly />
