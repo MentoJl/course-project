@@ -5,7 +5,6 @@ import styles from './style.module.css'
 
 const CommentTable = ({ title = '' }) => {
   const [commentList, setCommentList] = useState([])
-  console.log(title)
 
   const addComment = (title, comment) => {
     const newRow = {

@@ -154,15 +154,15 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
             showShareModal(
               title,
               `localhost:3000/beatPage?imgSrc=${encodeURIComponent(imgSrc)}
-        &name=${encodeURIComponent(title)}
-        &bpm=${bpm}
-        &beatTags=${encodeURIComponent(beatTags.join(','))}
-        &price=${price}
-        &key=${encodeURIComponent(key)}`
-            )
-          }
-          type="primary"
-        >
+              &name=${encodeURIComponent(title)}
+              &bpm=${bpm}
+              &beatTags=${encodeURIComponent(beatTags.join(','))}
+              &price=${price}
+              &key=${encodeURIComponent(key)}`
+              )
+            }
+            type="primary"
+          >
           <Image preview={false} src="/mainPage/share.png" className={styles.shareImg} />
         </Button>
       ),
@@ -290,13 +290,17 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               </Upload>
             </td>
             <td className={styles.addBeatContainer}>
-              <Button
-                className={styles.beatSrc}
-                shape="round"
-                icon={<PlusOutlined />}
-                size="middle"
-                onClick={handleAddBeat}
-              />
+              <Link
+                  to={`/addbeat`}
+                >
+                <Button
+                  className={styles.beatSrc}
+                  shape="round"
+                  icon={<PlusOutlined />}
+                  size="middle"
+                  onClick={handleAddBeat}
+                />
+              </Link>
             </td>
           </tr>
         </tfoot>

@@ -12,26 +12,36 @@ const AddBeatPage = () => {
     const nameBeat = useRef(null)
     const keyBeat = useRef(null)
     const bpmBeat = useRef(null)
-    console.log(UpldIMG)
 
     return (
         <div>
             <Header/>
             <div className={styles.addBeatContainer}>
-                <div className={styles.uploadContainer}>
-                    <Upload 
-                    listType="picture-card" 
-                    className={styles.uploadIMG}
-                    onChange={(img) => { UpldIMG === null ? setUpldIMG(img) : setUpldIMG(null)}}>
-                        {UpldIMG === null ? <div className={styles.uploadText}>
-                            <PlusOutlined />
-                            Upload
-                        </div> : ''}
-                    </Upload>
-                    Image
-                </div>
-                <div>
-
+                <div className={styles.formContainer}>
+                    <div className={styles.uploadIMGContainer}>
+                        <Upload 
+                        listType="picture-card" 
+                        className={styles.uploadIMG}
+                        onChange={(img) => { UpldIMG === null ? setUpldIMG(img) : setUpldIMG(null)}}>
+                            {UpldIMG === null ? <div className={styles.uploadText}>
+                                <PlusOutlined />
+                                Upload
+                            </div> : ''}
+                        </Upload>
+                        Image
+                    </div>
+                    <div className={styles.uploadSNDContainer}>
+                        <Upload 
+                        listType="picture-circle" 
+                        className={styles.uploadSND}
+                        onChange={(img) => { UpldSND === null ? setUpldSND(img) : setUpldIMG(null)}}>
+                            {UpldSND === null ? <div className={styles.uploadText}>
+                                <PlusOutlined />
+                                Upload
+                            </div> : ''}
+                        </Upload>
+                        Audio
+                    </div>
                 </div>
             </div>
             <Footer/>
