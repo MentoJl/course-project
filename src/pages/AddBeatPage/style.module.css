@@ -4,35 +4,40 @@
     justify-content: center;
     align-items: center;
     border: 1px solid palevioletred;
-}
-
-.formContainer {
+  }
+  
+  .formContainer {
     border: 1px solid blueviolet;
     height: fit-content;
-    width: 70%;
+    width: 100%;
     margin-top: 50px;
-    margin-bottom: 50px;
-    display: grid;
-    grid-template-columns: 200px 100px 100px;
-    grid-template-rows: 100px 100px;
-}
-
-.uploadIMG,
-.uploadSND {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .uploadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+  }
+  
+  .uploadIMG,
+  .uploadSND {
     cursor: pointer;
     margin-bottom: 20px;
-}   
-
-.uploadText {
+  }
+  
+  .uploadText {
     color: aliceblue;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-.uploadIMGContainer,
-.uploadSNDContainer {
+  }
+  
+  .uploadIMGContainer,
+  .uploadSNDContainer {
     border: 1px solid wheat;
     width: 200px;
     height: 200px;
@@ -41,4 +46,75 @@
     justify-content: center;
     align-items: center;
     color: aliceblue;
-}
+    margin-bottom: 20px;
+  }
+  
+  .inputFields {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .formRow {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    color: white;
+  }
+  
+  .inputGenre {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    color: white;
+  }
+  
+  .ant-select {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  .ant-select-selector {
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid white !important;
+    color: white !important;
+    padding: 15px 0 !important;
+  }
+  
+  .ant-select-dropdown {
+    background-color: black !important;
+  }
+  
+  .ant-select-item {
+    color: white !important;
+  }
+  
