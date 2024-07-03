@@ -21,31 +21,6 @@ const AllBeats = () => {
   const [key, setKey] = useState('All')
   const [like, setLike] = useState('All')
 
-  const handleSortChange = (value) => {
-
-    console.log("AWAWDAWD", value)
-    if (value === 'Sort Ascending') {
-      axios.get(`http://database/ascendingSortedLikes`)
-      .then(response => {
-        setLike(response.data)
-      })
-      .catch(error => {
-        console.error('Ошибка при выполнении GET запроса:', error);
-      });
-    } else if (value === 'Sort Descending') {
-      axios.get(`http://database/descendingSortedLikes`)
-      .then(response => {
-        setLike(response.data)
-      })
-      .catch(error => {
-        console.error('Ошибка при выполнении GET запроса:', error);
-      });
-    } else if (value === 'Sort by'){
-      setLike("")
-    }
-  };
-
-
   return (
     <div className={styles.allbeatsContainer}>
       <Header />
@@ -220,7 +195,7 @@ const AllBeats = () => {
           <Select
             defaultValue="Sort By"
             className={styles.selectGenre}
-            onChange={handleSortChange}//{(value) => setLike(value)}
+            onChange={(value) => setLike(value)}
             options={[
               {
                 value: 'Sort By',
@@ -244,6 +219,7 @@ const AllBeats = () => {
         moodCategory={mood === 'All' ? '' : mood}
         genreCategory={genre === 'All' ? '' : genre}
         keyCategory={key === 'All' ? '' : key}
+        sortByLikes={like === 'All' ? '' : like} 
       />
       <Footer />
     </div>
