@@ -1,7 +1,6 @@
 import { PlusOutlined } from '@ant-design/icons'
 import { Input, Tag, Tooltip } from 'antd'
 import React, { useState } from 'react'
-import styles from './style.module.css'
 
 const EditableTagGroup = ({ tags, setTags, maxTags = 2 }) => {
   const [inputVisible, setInputVisible] = useState(false)
@@ -49,7 +48,6 @@ const EditableTagGroup = ({ tags, setTags, maxTags = 2 }) => {
           return (
             <Input
               key={tag}
-              size="small"
               className="tag-input"
               value={editInputValue}
               onChange={handleEditInputChange}
@@ -62,7 +60,13 @@ const EditableTagGroup = ({ tags, setTags, maxTags = 2 }) => {
         const isLongTag = tag.length > 20
 
         const tagElem = (
-          <Tag className="edit-tag" key={tag} closable onClose={() => handleClose(tag)}>
+          <Tag
+            className="edit-tag"
+            key={tag}
+            closable
+            onClose={() => handleClose(tag)}
+            style={{ padding: '6px', marginBottom: '20px', width: '100%', paddingLeft: '10px' }}
+          >
             <span
               onDoubleClick={(e) => {
                 if (index !== 0) {
@@ -87,16 +91,20 @@ const EditableTagGroup = ({ tags, setTags, maxTags = 2 }) => {
       {inputVisible && tags.length < maxTags && (
         <Input
           type="text"
-          size="small"
           className="tag-input"
           value={inputValue}
           onChange={handleInputChange}
           onBlur={handleInputConfirm}
           onPressEnter={handleInputConfirm}
+          style={{ padding: '5px', paddingLeft: '10px' }}
         />
       )}
       {!inputVisible && tags.length < maxTags && (
-        <Tag className="site-tag-plus" onClick={showInput}>
+        <Tag
+          className="site-tag-plus"
+          onClick={showInput}
+          style={{ padding: '6px', width: '100%', paddingLeft: '10px' }}
+        >
           <PlusOutlined /> New Tag
         </Tag>
       )}
