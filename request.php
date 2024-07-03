@@ -54,14 +54,11 @@ function sortBy($link, $bmp, $mood, $genre, $title){
 
 function add_beat($data, $conn){
     $conn = mysqli_connect("localhost", "root", "", "INFO");
-    $id = mysqli_real_escape_string($conn, $data['newBeat']['id']);
     $img = mysqli_real_escape_string($conn, $data['newBeat']['img']);
     $title = mysqli_real_escape_string($conn, $data['newBeat']['title']);
-    // $time = mysqli_real_escape_string($conn, $data['newBeat']['time']);
+    $time = "";
     $bpm = mysqli_real_escape_string($conn, $data['newBeat']['bpm']);
-    $tags = mysqli_real_escape_string($conn, $data['newBeat']['tags']);
-    $link = mysqli_real_escape_string($conn, $data['newBeat']['link']);
-    $price = mysqli_real_escape_string($conn, $data['newBeat']['price']);
+    $tags = mysqli_real_escape_string($conn, json_encode($data['newBeat']['tags']));
     $key = mysqli_real_escape_string($conn, $data['newBeat']['key']);
     $mood = mysqli_real_escape_string($conn, $data['newBeat']['mood']);
     $genre = mysqli_real_escape_string($conn, $data['newBeat']['genre']);
@@ -76,16 +73,15 @@ function add_beat($data, $conn){
             $duration = gmdate("H:i:s", $durationInSeconds);
             $time = mysqli_real_escape_string($conn, $duration);
         } else {
+            echo "QWDQWDQWD";
             return false;
         }
-    } else {
-        $time = mysqli_real_escape_string($conn, $data['newBeat']['time']);
     }
     
     $sql = "INSERT INTO `base_information` 
-            (`id`, `img`, `title`, `time`, `bpm`, `tags`, `key`, `mood`, `genre`, `soundSrc`) 
+            ( `img`, `title`, `time`, `bpm`, `tags`, `key`, `mood`, `genre`, `soundSrc`) 
             VALUES 
-            ('$id', '$img', '$title', '$time', '$bpm', '$tags', '$key', '$mood', '$genre', '$soundSrc')";
+            ('$img', '$title', '$time', '$bpm', '$tags', '$key', '$mood', '$genre', '$soundSrc')";
     
     if (mysqli_query($conn, $sql)) {
         return true;
@@ -345,14 +341,14 @@ $app->post('/deleteAction', function (Request $request, Response $response, $arg
     return $response->withHeader('Content-Type', 'application/json');
 });
 
-$app->post('/Database/delete_user', function (Request $request, Response $response, $args) {
+$app->post('/Database/delete_beat', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
     print_r($data);
 
     $link = mysqli_connect("localhost", "root", "", "INFO");
 
-    $id = mysqli_real_escape_string($link, $data['id']);
-    $sql = "DELETE FROM `base_information` WHERE `id` = '{$id}'";
+    $title = mysqli_real_escape_string($link, $data['title']);
+    $sql = "DELETE FROM `base_information` WHERE `title` = '{$title}'";
 
     if (mysqli_query($link, $sql)) {
         echo "Запись успешно удалена из базы данных";
