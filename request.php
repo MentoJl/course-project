@@ -60,7 +60,7 @@ function add_beat($data, $conn){
     $bpm = mysqli_real_escape_string($conn, $data['newBeat']['bpm']);
     $tags = mysqli_real_escape_string($conn, json_encode($data['newBeat']['tags']));
     $key = mysqli_real_escape_string($conn, $data['newBeat']['key']);
-    $mood = mysqli_real_escape_string($conn, $data['newBeat']['mood']);
+    $mood = mysqli_real_escape_string($conn, json_encode($data['newBeat']['mood']));
     $genre = mysqli_real_escape_string($conn, $data['newBeat']['genre']);
     $soundSrc = mysqli_real_escape_string($conn, $data['newBeat']['soundSrc']);
     
