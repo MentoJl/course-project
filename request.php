@@ -72,9 +72,6 @@ function add_beat($data, $conn){
             $durationInSeconds = (int) $fileInfo['playtime_seconds'];
             $duration = gmdate("H:i:s", $durationInSeconds);
             $time = mysqli_real_escape_string($conn, $duration);
-        } else {
-            echo "QWDQWDQWD";
-            return false;
         }
     }
     

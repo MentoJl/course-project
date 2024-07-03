@@ -20,7 +20,6 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const [cartBeat, setCartBeat] = useState(null)
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
-  const [del, setdel] = useState(false)
   const title = query.get('title') || ''
 
   const showShareModal = (beat, link) => {
@@ -63,15 +62,14 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   }
 
   const handleDeleteBeat = (title) => {
-    console.log(title)
-    axios.post('http://database/delete_beat', {'title': title})
+    axios.post('http://database/Database/delete_beat', {'title': title})
     .then(response => {
       console.log('Успешный ответ от сервера:', response.data);
     })
     .catch(error => {
       console.error('Ошибка при выполнении POST запроса:', error);
     });
-    setdel(!del)
+    window.location.reload()
   }
 
   const addBeat = (id, imgSrc, title, time, bpm, beatTags, price, soundSrc, key) => {
@@ -174,7 +172,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
-  }, [title, bpmCategory, moodCategory, genreCategory, keyCategory, sortByLikes, del])
+  }, [title, bpmCategory, moodCategory, genreCategory, keyCategory, sortByLikes])
 
   return (
     <div className={styles.tableBeatsContainer}>

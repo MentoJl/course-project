@@ -52,8 +52,8 @@ const AddBeatPage = () => {
       .catch(error => {
         console.error('Ошибка при выполнении POST запроса:', error);
       });
-    console.log('Image File:', UpldIMG.fileList[0])
-    console.log('Sound File:', UpldSND.fileList[0])
+    console.log('Image File:', `./db/img/${UpldIMG.fileList[0].name}`)
+    console.log('Sound File:', `./db/sound/${UpldSND.fileList[0].name}`)
     console.log('Name:', nameBeat.current.value)
     console.log('Key:', key)
     console.log('BPM:', bpmBeat.current.value)
@@ -72,7 +72,7 @@ const AddBeatPage = () => {
         "soundSrc": `./db/sound/${UpldSND.fileList[0].name}`
       }
     }
-    axios.post('http://database/add_beat', Data)
+    axios.post('http://database/Database/add_beat', Data)
     .then(response => {
       console.log('Успешный ответ от сервера:', response.data);
     })
