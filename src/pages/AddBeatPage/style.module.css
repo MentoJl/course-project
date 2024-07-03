@@ -1,0 +1,27 @@
+.addBeatContainer {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploadIMG {
+    cursor: pointer;
+}   
+
+.uploadText {
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.uploadContainer {
+    border: 1px solid wheat;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

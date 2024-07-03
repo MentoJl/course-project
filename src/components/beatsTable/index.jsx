@@ -11,7 +11,7 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', keyCategory = '' }) => {
+const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', keyCategory = '', sortByLikes = '' }) => {
   const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
@@ -21,7 +21,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const [newTags, setNewTags] = useState([])
   const [beatList, setBeatList] = useState([])
   const [handlePlaySound, setHandlePlaySound] = useState(false)
-  const [title, setTitle] = useState(query.get('title') || '')
+  const title = query.get('title') || ''
   const [UpldIMG, setUpldIMG] = useState(null)
   const [UpldSND, setUpldSND] = useState(null)
   const nameBeat = useRef(null)
@@ -208,7 +208,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
-  }, [title, bpmCategory, moodCategory, genreCategory, keyCategory])
+  }, [title, bpmCategory, moodCategory, genreCategory, keyCategory, sortByLikes])
 
   return (
     <div className={styles.tableBeatsContainer}>
