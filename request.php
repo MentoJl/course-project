@@ -206,12 +206,14 @@ $app->get('/takeAction', function (Request $request, Response $response, $args) 
     $login = isset($queryParams['login']) ? $queryParams['login'] : "";
     $action = isset($queryParams['action']) ? $queryParams['action'] : "";
 
+    updateLikes();
+
     $sorted_data = sortAction($link, $BN, $login, $action);
 
     $response->getBody()->write(json_encode($sorted_data));
     return $response->withHeader('Content-Type', 'application/json');
 });
-$app->get('/ascendingSortedLikes', function (Request $request, Response $response, $args) {
+function updateLikes(){
     $link = mysqli_connect("localhost", "root", "", "INFO");
     $sql = "SELECT * FROM actions WHERE action = 'like'";
 
@@ -229,13 +231,9 @@ $app->get('/ascendingSortedLikes', function (Request $request, Response $respons
         mysqli_query($link, $sql);
     }
 
-    asort($likeCounts); # arsort - 3,2,1, asort - 1,2,3
-    $sortedBeatNames = implode(',', array_keys($likeCounts));
     mysqli_close($link);
-
-    $response->getBody()->write($sortedBeatNames);
-    return $response->withHeader('Content-Type', 'application/json');
-});
+    return;
+};
 
 $app->get('/descendingSortedLikes', function (Request $request, Response $response, $args) {
     $link = mysqli_connect("localhost", "root", "", "INFO");
@@ -289,7 +287,9 @@ $app->post('/action', function (Request $request, Response $response, $args) {
     $query = "INSERT INTO actions (beat_name, login, action, value) VALUES ('$beat_name', '$login', '$action', '$text')";
     mysqli_query($link, $query);
 
-    if ($action == "Like"){
+    updateLikes();
+
+    if ($action == "like"){
         $sql = "UPDATE base_information SET Likes = Likes + 1 WHERE title = '$beat_name'";
         mysqli_query($link, $sql);
     }
@@ -309,17 +309,20 @@ $app->post('/deleteAction', function (Request $request, Response $response, $arg
 
     $sql = "DELETE FROM `actions` WHERE `login` = '$login' AND `beat_name` = '$BN' AND `action` = '$action'";
 
-    if ($action == "Like"){
-        $sql = "UPDATE base_information SET Likes = Likes - 1 WHERE title = '$BN'";
-        mysqli_query($link, $sql);
-    }
 
     if (mysqli_query($link, $sql)) {
         echo "Запись успешно удалена из базы данных";
     } else {
         echo "Ошибка при выполнении запроса: " . mysqli_error($link);
     }
-    // mysqli_close($link);
+    
+    updateLikes();
+    
+    if ($action == "like"){
+        $sql = "UPDATE base_information SET Likes = Likes - 1 WHERE title = '$BN'";
+        mysqli_query($link, $sql);
+    }
+
 
     return $response->withHeader('Content-Type', 'application/json');
 });
