@@ -235,30 +235,48 @@ function updateLikes(){
     return;
 };
 
-$app->get('/descendingSortedLikes', function (Request $request, Response $response, $args) {
+// $app->get('/descendingSortedLikes', function (Request $request, Response $response, $args) {
+//     $link = mysqli_connect("localhost", "root", "", "INFO");
+//     $sql = "SELECT * FROM actions WHERE action = 'like'";
+
+//     $result = mysqli_query($link, $sql);
+//     $likeCounts = [];
+
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         $beat_name = $row['beat_name'];
+//         if (isset($likeCounts[$beat_name])) {
+//             $likeCounts[$beat_name]++;
+//         } else {
+//             $likeCounts[$beat_name] = 1;
+//         }
+//         $sql ="UPDATE base_information SET Likes = '" . $likeCounts[$beat_name] . "' WHERE title = '$beat_name'";
+//         mysqli_query($link, $sql);
+//     }
+
+//     arsort($likeCounts); # arsort - 3,2,1, asort - 1,2,3
+//     $sortedBeatNames = implode(',', array_keys($likeCounts));
+//     mysqli_close($link);
+
+//     $response->getBody()->write($sortedBeatNames);
+//     return $response->withHeader('Content-Type', 'application/json');
+// });
+$app->post('/takeUsersRights', function (Request $request, Response $response, $args) {
+    $data = json_decode(file_get_contents('php://input'), true);
     $link = mysqli_connect("localhost", "root", "", "INFO");
-    $sql = "SELECT * FROM actions WHERE action = 'like'";
 
+    $sql = "SELECT admin_rights FROM userLog WHERE userLogin = '" . $data['user'] ."'";
     $result = mysqli_query($link, $sql);
-    $likeCounts = [];
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $beat_name = $row['beat_name'];
-        if (isset($likeCounts[$beat_name])) {
-            $likeCounts[$beat_name]++;
-        } else {
-            $likeCounts[$beat_name] = 1;
-        }
-        $sql ="UPDATE base_information SET Likes = '" . $likeCounts[$beat_name] . "' WHERE title = '$beat_name'";
-        mysqli_query($link, $sql);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        $admin_rights = $row['admin_rights'];
+        $response->getBody()->write($admin_rights);
+    } else {
+        $response->getBody()->write("Error: " . mysqli_error($link));
     }
 
-    arsort($likeCounts); # arsort - 3,2,1, asort - 1,2,3
-    $sortedBeatNames = implode(',', array_keys($likeCounts));
     mysqli_close($link);
-
-    $response->getBody()->write($sortedBeatNames);
-    return $response->withHeader('Content-Type', 'application/json');
+    return $response->withHeader('Content-Type', 'text/plain')->withStatus(200);
 });
 
 
