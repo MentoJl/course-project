@@ -66,7 +66,9 @@ function add_beat($data, $conn){
     
     if (strtolower(pathinfo($soundSrc, PATHINFO_EXTENSION)) === 'mp3') {
         $getID3 = new getID3;
-        $fileInfo = $getID3->analyze($soundSrc);
+        $replacedTXT = preg_replace("/\./", './public', $soundSrc, 1);
+        $fileInfo = $getID3->analyze($replacedTXT);
+        print_r($replacedTXT);
     
         if (isset($fileInfo['playtime_seconds'])) {
             $durationInSeconds = (int) $fileInfo['playtime_seconds'];
@@ -76,12 +78,13 @@ function add_beat($data, $conn){
     }
     
     $sql = "INSERT INTO `base_information` 
-            ( `img`, `title`, `time`, `bpm`, `tags`, `key`, `mood`, `genre`, `soundSrc`) 
+            (`id`, `img`, `title`, `time`, `bpm`, `tags`, `key`, `mood`, `genre`, `soundSrc`) 
             VALUES 
-            ('$img', '$title', '$time', '$bpm', '$tags', '$key', '$mood', '$genre', '$soundSrc')";
+            ('', '$img', '$title', '$time', '$bpm', '$tags', '$key', '$mood', '$genre', '$soundSrc')";
     
     if (mysqli_query($conn, $sql)) {
         return true;
+        
     } else {
         echo "Ошибка: " . mysqli_error($conn);
         return false;
@@ -275,7 +278,6 @@ $app->post('/takeUsersRights', function (Request $request, Response $response, $
 
 $app->post('/Database/add_beat', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
-    print_r($data);
     $link = mysqli_connect("localhost", "root", "", "INFO");
 
     add_beat($data, $link);
