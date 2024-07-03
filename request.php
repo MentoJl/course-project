@@ -57,7 +57,7 @@ function add_beat($data, $conn){
     $id = mysqli_real_escape_string($conn, $data['newBeat']['id']);
     $img = mysqli_real_escape_string($conn, $data['newBeat']['img']);
     $title = mysqli_real_escape_string($conn, $data['newBeat']['title']);
-    $time = mysqli_real_escape_string($conn, $data['newBeat']['time']);
+    // $time = mysqli_real_escape_string($conn, $data['newBeat']['time']);
     $bpm = mysqli_real_escape_string($conn, $data['newBeat']['bpm']);
     $tags = mysqli_real_escape_string($conn, $data['newBeat']['tags']);
     $link = mysqli_real_escape_string($conn, $data['newBeat']['link']);
@@ -83,9 +83,9 @@ function add_beat($data, $conn){
     }
     
     $sql = "INSERT INTO `base_information` 
-            (`id`, `img`, `title`, `time`, `bpm`, `tags`, `link`, `price`, `key`, `mood`, `genre`, `soundSrc`) 
+            (`id`, `img`, `title`, `time`, `bpm`, `tags`, `key`, `mood`, `genre`, `soundSrc`) 
             VALUES 
-            ('$id', '$img', '$title', '$time', '$bpm', '$tags', '$link', '$price', '$key', '$mood', '$genre', '$soundSrc')";
+            ('$id', '$img', '$title', '$time', '$bpm', '$tags', '$key', '$mood', '$genre', '$soundSrc')";
     
     if (mysqli_query($conn, $sql)) {
         return true;
