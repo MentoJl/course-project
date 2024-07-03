@@ -211,7 +211,33 @@ $app->get('/takeAction', function (Request $request, Response $response, $args) 
     $response->getBody()->write(json_encode($sorted_data));
     return $response->withHeader('Content-Type', 'application/json');
 });
-$app->get('/sortedLikes', function (Request $request, Response $response, $args) {
+$app->get('/ascendingSortedLikes', function (Request $request, Response $response, $args) {
+    $link = mysqli_connect("localhost", "root", "", "INFO");
+    $sql = "SELECT * FROM actions WHERE action = 'like'";
+
+    $result = mysqli_query($link, $sql);
+    $likeCounts = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $beat_name = $row['beat_name'];
+        if (isset($likeCounts[$beat_name])) {
+            $likeCounts[$beat_name]++;
+        } else {
+            $likeCounts[$beat_name] = 1;
+        }
+        $sql ="UPDATE base_information SET Likes = '" . $likeCounts[$beat_name] . "' WHERE title = '$beat_name'";
+        mysqli_query($link, $sql);
+    }
+
+    asort($likeCounts); # arsort - 3,2,1, asort - 1,2,3
+    $sortedBeatNames = implode(',', array_keys($likeCounts));
+    mysqli_close($link);
+
+    $response->getBody()->write($sortedBeatNames);
+    return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->get('/descendingSortedLikes', function (Request $request, Response $response, $args) {
     $link = mysqli_connect("localhost", "root", "", "INFO");
     $sql = "SELECT * FROM actions WHERE action = 'like'";
 
@@ -231,10 +257,9 @@ $app->get('/sortedLikes', function (Request $request, Response $response, $args)
 
     arsort($likeCounts); # arsort - 3,2,1, asort - 1,2,3
     $sortedBeatNames = implode(',', array_keys($likeCounts));
-    print_r( $likeCounts);
     mysqli_close($link);
 
-    $response->getBody()->write(json_encode($sortedBeatNames));
+    $response->getBody()->write($sortedBeatNames);
     return $response->withHeader('Content-Type', 'application/json');
 });
 

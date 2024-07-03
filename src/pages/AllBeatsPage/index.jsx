@@ -6,6 +6,7 @@ import BeatsTable from '../../components/beatsTable/index'
 import Footer from '../../components/footer/index'
 import Header from '../../components/header/index'
 import styles from './style.module.css'
+import axios from 'axios'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -19,6 +20,30 @@ const AllBeats = () => {
   const [bpm, setBpm] = useState('All')
   const [key, setKey] = useState('All')
   const [like, setLike] = useState('All')
+
+  const handleSortChange = (value) => {
+
+    console.log("AWAWDAWD", value)
+    if (value === 'Sort Ascending') {
+      axios.get(`http://database/ascendingSortedLikes`)
+      .then(response => {
+        setLike(response.data)
+      })
+      .catch(error => {
+        console.error('Ошибка при выполнении GET запроса:', error);
+      });
+    } else if (value === 'Sort Descending') {
+      axios.get(`http://database/descendingSortedLikes`)
+      .then(response => {
+        setLike(response.data)
+      })
+      .catch(error => {
+        console.error('Ошибка при выполнении GET запроса:', error);
+      });
+    } else if (value === 'Sort by'){
+      setLike("")
+    }
+  };
 
 
   return (
@@ -195,7 +220,7 @@ const AllBeats = () => {
           <Select
             defaultValue="Sort By"
             className={styles.selectGenre}
-            onChange={(value) => setLike(value)}
+            onChange={handleSortChange}//{(value) => setLike(value)}
             options={[
               {
                 value: 'Sort By',
