@@ -1,4 +1,4 @@
-import { message, Image } from 'antd'
+import { Image, message } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styles from './style.module.css'
@@ -22,9 +22,9 @@ const CommentTable = ({ title = '' }) => {
         response.data.forEach((data) => {
           addComment(data.login, data.value)
         })
-        message.success(`Success Load`)
+        // message.success(`Success Load`)
       } catch (err) {
-        message.error(`Error to load comments: ${err}`)
+        // message.error(`Error to load comments: ${err}`)
       }
     }
 
@@ -35,25 +35,25 @@ const CommentTable = ({ title = '' }) => {
     <div className={styles.commentTableContainer}>
       <span className={styles.commentTableText}>Comments</span>
       <table className={styles.commentTable}>
-        {commentList != [] 
-        ?
-        commentList.map((comment) => (
-          <tr className={styles.commentContainer}>
-            <td className={styles.commentTitleContainer}>
-              <Image src='./user/avatar.png' className={styles.commentUserLogo}></Image>
-              <span className={styles.commentTitle}>{comment.title}</span>
-            </td>
-            <td className={styles.commentTextContainer}>
-              <span className={styles.commentText}>{comment.comment}</span>
+        {commentList != [] ? (
+          commentList.map((comment) => (
+            <tr className={styles.commentContainer}>
+              <td className={styles.commentTitleContainer}>
+                <Image src="./user/avatar.png" className={styles.commentUserLogo}></Image>
+                <span className={styles.commentTitle}>{comment.title}</span>
+              </td>
+              <td className={styles.commentTextContainer}>
+                <span className={styles.commentText}>{comment.comment}</span>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr className={styles.notCommentHead}>
+            <td className={styles.notCommentBody}>
+              <span className={styles.notCommentText}>Not Comments Yet</span>
             </td>
           </tr>
-        ))
-        : 
-        <tr className={styles.notCommentHead}>
-          <td className={styles.notCommentBody}>
-            <span className={styles.notCommentText}>Not Comments Yet</span>
-          </td>  
-        </tr>}
+        )}
       </table>
     </div>
   )

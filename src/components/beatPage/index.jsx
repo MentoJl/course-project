@@ -1,13 +1,16 @@
+// BeatPage.js
 import { LikeFilled, LikeOutlined, SendOutlined } from '@ant-design/icons'
 import { Button, Image, Input } from 'antd'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import CommentTable from '../CommentTable/index'
-import BeatsTable from '../beatsTable/index'
-import Footer from '../footer/index'
-import Header from '../header/index'
+import CommentTable from '../CommentTable'
+import PriceModal from '../PriceModal'
+import BeatsTable from '../beatsTable'
+import Footer from '../footer'
+import Header from '../header'
+import ShareModal from '../shareModal'
 import styles from './style.module.css'
 
 const useQuery = () => {
@@ -27,6 +30,9 @@ const BeatPage = () => {
   const [liked, setLiked] = useState(false)
   const [comment, setComment] = useState('')
   const [data, setData] = useState(null)
+  const [isShareModalVisible, setIsShareModalVisible] = useState(false)
+  const [shareLink, setShareLink] = useState(['', ''])
+  const [isPriceModalVisible, setIsPriceModalVisible] = useState(false)
 
   const toggleLike = () => {
     if (!Cookies.get('current_login')) {
@@ -40,7 +46,6 @@ const BeatPage = () => {
       action: 'like',
       text: '',
     }
-    console.log(Data)
 
     if (!liked)
       axios
@@ -71,6 +76,7 @@ const BeatPage = () => {
         console.error('Ошибка при выполнении POST запроса:', error)
       })
   }
+
   useEffect(() => {
     axios
       .get(`http://database/takeAction?beat_name=${title}&action=like`)
@@ -116,6 +122,23 @@ const BeatPage = () => {
       })
   }
 
+  const showShareModal = (beat, link) => {
+    setShareLink([beat, link])
+    setIsShareModalVisible(true)
+  }
+
+  const handleShareModalClose = () => {
+    setIsShareModalVisible(false)
+  }
+
+  const handlePriceModalOpen = () => {
+    setIsPriceModalVisible(true)
+  }
+
+  const handlePriceModalClose = () => {
+    setIsPriceModalVisible(false)
+  }
+
   return (
     <div>
       <Header />
@@ -136,11 +159,20 @@ const BeatPage = () => {
             </span>
             <div className={styles.beatControllHeader}>
               <div className={styles.naviButtons}>
-                <Button className={styles.priceButton}>
+                <Button className={styles.priceButton} onClick={handlePriceModalOpen}>
                   <Image className={styles.priceImg} src="/mainPage/cart.png" preview={false} />
                   <span className={styles.priceText}>${price}</span>
                 </Button>
-                <Button className={styles.share} type="primary">
+                <Button
+                  className={styles.share}
+                  type="primary"
+                  onClick={() =>
+                    showShareModal(
+                      title,
+                      `localhost:3000/beatPage?imgSrc=${encodeURIComponent(imgSrc)}&name=${encodeURIComponent(title)}&bpm=${bpm}&beatTags=${encodeURIComponent(beatTags.join(','))}&price=${price}&key=${encodeURIComponent(key)}`
+                    )
+                  }
+                >
                   <Image preview={false} src="./mainPage/share.png" className={styles.shareImg} />
                 </Button>
                 <Button
@@ -179,9 +211,19 @@ const BeatPage = () => {
       </div>
 
       <CommentTable title={title} />
+      <PriceModal
+        visible={isPriceModalVisible}
+        onCancel={handlePriceModalClose}
+        title={title}
+        imgSrc={imgSrc}
+        price={price}
+      />
+
       <BeatsTable />
 
       <Footer />
+
+      <ShareModal visible={isShareModalVisible} onClose={handleShareModalClose} shareLink={shareLink} />
     </div>
   )
 }

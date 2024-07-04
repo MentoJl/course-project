@@ -126,6 +126,7 @@
   max-width: 280px;
   max-height: 280px;
   border-radius: 5px;
+  /* cursor: pointer; */
 }
 
 .beatImgContainer {

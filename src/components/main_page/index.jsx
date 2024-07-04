@@ -1,10 +1,12 @@
-import { Image, Modal, message } from 'antd'
+import { Button, Image, Modal, Typography, message } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import PriceModal from '../PriceModal'
 import Searcher from '../Searcher'
 import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
+import ShareModal from '../shareModal'
 import ExclusiveRights from './license_cards_content/exclusiverigths'
 import Mp3License from './license_cards_content/mp3lease'
 import TrackoutLicense from './license_cards_content/trackoutlease'
@@ -13,21 +15,44 @@ import UnlimitedWavLicense from './license_cards_content/unlimitedwav'
 import WavLicense from './license_cards_content/wavlease'
 import styles from './style.module.css'
 
-const Main = () => {
+const Main = (id, imgSrc, title, time, bpm, beatTags, price, soundSrc, key) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false)
+  const [shareLink, setShareLink] = useState([
+    'Risky',
+    'http://localhost:3000/beatPage?imgSrc=.%2Fdb%2Fimg%2Frisky.png&name=Risky&bpm=102&beatTags=ohgeesy%2Cshoreline%20mafia&price=34.95&key=A-Flat%20Minor',
+  ])
   const messageRef = useRef(null)
   const sendMail = useRef(null)
   const sendName = useRef(null)
   const sendTitle = useRef(null)
+  const [cartBeat, setCartBeat] = useState(null)
+  const [isCartModalVisible, setIsCartModalVisible] = useState(false)
+  const handleCartModalClose = () => {
+    setIsCartModalVisible(false)
+  }
 
   const openModal = (content) => {
     setModalContent(content)
     setIsModalOpen(true)
   }
 
+  const showCartModal = (beat) => {
+    setCartBeat(beat)
+    setIsCartModalVisible(true)
+  }
+
   const closeModal = () => {
     setIsModalOpen(false)
+  }
+
+  const openShareModal = () => {
+    setIsShareModalOpen(true)
+  }
+
+  const closeShareModal = () => {
+    setIsShareModalOpen(false)
   }
 
   useEffect(() => {
@@ -82,27 +107,40 @@ const Main = () => {
       <Header />
       <div className={styles.empty}></div>
       <Searcher />
-      {/* <div className={styles.featuredBeat}>
+      <div className={styles.featuredBeat}>
         <div className={styles.beatHeat}>
           <Image className={styles.beatHeatLogo} src="/mainPage/previewBeatLogo.jpg" preview={false} />
           <div className={styles.beatInfo}>
             <div className={styles.featuredText}>Featured Track • 102BPM</div>
-            <div className={styles.beatName}>Risky</div>
+            <Link
+              to={`/beatPage?imgSrc=.%2Fdb%2Fimg%2Frisky.png&name=Risky&bpm=102&beatTags=ohgeesy%2Cshoreline%20mafia&price=34.95&key=A-Flat%20Minor`}
+            >
+              <div className={styles.beatName}>Risky</div>
+            </Link>
             <div className={styles.previewBeatButtons}>
-              <Button className={styles.purchase}>
+              <Button
+                className={styles.purchase}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  showCartModal({ imgSrc, title, price, soundSrc })
+                }}
+              >
                 <Image preview={false} className={styles.cartPriceImg} src="/mainPage/cart.png" />
                 <Typography.Text className={styles.purchaseText}>$34.95</Typography.Text>
               </Button>
-              <Button type="primary" className={styles.share}>
+              <Button type="primary" className={styles.share} onClick={openShareModal}>
                 <Image preview={false} src="/mainPage/share.png" className={styles.shareImg}></Image>
               </Button>
               <Button className={styles.tag}>
                 <Typography.Text className={styles.tagText}>ohgeesy</Typography.Text>
               </Button>
+              <Button className={styles.tag}>
+                <Typography.Text className={styles.tagText2}>shoreline mafia</Typography.Text>
+              </Button>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
       <div className={styles.eq}>
         <Image className={styles.test} preview={false} src="/mainPage/eq.png"></Image>
       </div>
@@ -281,6 +319,13 @@ const Main = () => {
       <Modal title="" width="1000px" visible={isModalOpen} footer={null} onCancel={closeModal}>
         {modalContent}
       </Modal>
+      <ShareModal visible={isShareModalOpen} onClose={closeShareModal} shareLink={shareLink} />
+      <PriceModal
+        visible={isCartModalVisible}
+        onCancel={handleCartModalClose}
+        title={'RIsky'}
+        imgSrc={'./db/img/risky.png'}
+      />
     </div>
   )
 }

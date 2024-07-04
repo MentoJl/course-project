@@ -121,10 +121,11 @@ td {
 .tagText {
   height: 100%;
   width: 100%;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   color: aliceblue;
   display: flex;
-  justify-self: center;
+  /* justify-self: center; */
+  justify-content: center;
   align-items: center;
 }
 
@@ -152,11 +153,12 @@ td {
 
 .share {
   width: 50px;
-  height: 37px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 28%;
+  left: 15%;
+  /* margin-top: 5px; */
   background-color: #67030d;
 }
 

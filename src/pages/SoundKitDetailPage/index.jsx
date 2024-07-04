@@ -1,14 +1,30 @@
 import { Button, Image, Typography } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
+import ShareModal from '../../components/shareModal'
 import styles from './style.module.css'
 
 const SoundKitDetailPage = () => {
   const imgSrc = '/soundkitspage/soundkits.png'
   const title = 'West Coast Loop Kit Vol.1'
   const price = '49.95'
+
+  const openShareModal = () => {
+    setIsShareModalOpen(true)
+  }
+
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false)
+
+  const closeShareModal = () => {
+    setIsShareModalOpen(false)
+  }
+
+  const [shareLink, setShareLink] = useState([
+    'West Coast Loop Kit Vol.1',
+    'http://localhost:3000/soundkits/westcoastloopkitvol1',
+  ])
 
   return (
     <div className={styles.main}>
@@ -52,12 +68,13 @@ const SoundKitDetailPage = () => {
                 <Typography.Text className={styles.purchaseText}>${price}</Typography.Text>
               </Button>
             </Link>
-            <Button className={styles.share} type="primary">
+            <Button className={styles.share} type="primary" onClick={openShareModal}>
               <Image preview={false} src="/mainPage/share.png" className={styles.shareImg}></Image>
             </Button>
           </div>
         </div>
       </div>
+      <ShareModal visible={isShareModalOpen} onClose={closeShareModal} shareLink={shareLink} />
       <Footer />
     </div>
   )

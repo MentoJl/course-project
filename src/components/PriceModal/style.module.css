@@ -1,0 +1,72 @@
+.modalContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 97%;
+  margin-top: 20px;
+  /* align-items: flex-start; */
+  /* justify-content: space-between; */
+  /* background-color: black; */
+}
+
+.customModal .ant-modal-close {
+  color: white;
+}
+
+.customModal .ant-modal-content {
+  background-color: black;
+}
+
+.cartModalLeft {
+  margin-right: 20px;
+  margin-bottom: 14.5%;
+}
+
+.cartModalRight {
+  flex: 1;
+  /* margin-bottom: 50px; */
+}
+
+.modalImage {
+  max-width: 300px;
+  /* margin-bottom: 50px; */
+}
+
+.modalTitle {
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 50px; */
+}
+
+.licenseRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  justify-content: center;
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  /* width: 50%; */
+  background-color: #202020;
+}
+
+.cartModalText {
+  flex: 1;
+  color: white;
+  margin-left: 10px;
+}
+
+.modalPriceButton {
+  background-color: rgb(255, 255, 255);
+  border: none;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  max-width: 130px;
+  height: 35px;
+}

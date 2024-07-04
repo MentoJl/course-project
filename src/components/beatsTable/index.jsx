@@ -1,17 +1,24 @@
-import { CloseOutlined, CopyOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons'
-import { Button, Image, Input, Modal, Upload, message } from 'antd'
+import { CloseOutlined, CopyOutlined, PlusOutlined } from '@ant-design/icons'
+import { Button, Image, Input, Modal, message } from 'antd'
 import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
+import Cookies from 'js-cookie'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Player from '../Player'
+import PriceModal from '../PriceModal'
 import styles from './style.module.css'
-import Cookies from 'js-cookie'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
 }
 
-const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', keyCategory = '', sortByLikes = '' }) => {
+const BeatsTable = ({
+  bpmCategory = '',
+  moodCategory = '',
+  genreCategory = '',
+  keyCategory = '',
+  sortByLikes = '',
+}) => {
   const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
@@ -29,13 +36,6 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   }
 
   const getUserRights = () => {
-    // axios.post('http://database/takeUsersRights', {User: Cookies.get('current_login')})
-    // .then(response => {
-    //   console.log('Успешный ответ от сервера:', response.data);
-    // })
-    // .catch(error => {
-    //   console.error('Ошибка при выполнении POST запроса:', error);
-    // });
     Cookies.get('current_login') === 'admin' ? setIsAdmin(true) : setIsAdmin(false)
   }
 
@@ -53,6 +53,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   }
 
   const handleBeatClick = (beat) => {
+    console.log('Selected beat:', beat)
     setCurrentBeat(beat)
     setHandlePlaySound(true)
   }
@@ -74,14 +75,15 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   }
 
   const handleDeleteBeat = (title) => {
-    axios.post('http://database/Database/delete_beat', {'title': title})
-    .then(response => {
-      console.log('Успешный ответ от сервера:', response.data);
-      window.location.reload()
-    })
-    .catch(error => {
-      console.error('Ошибка при выполнении POST запроса:', error);
-    });
+    axios
+      .post('http://database/Database/delete_beat', { title: title })
+      .then((response) => {
+        console.log('Успешный ответ от сервера:', response.data)
+        window.location.reload()
+      })
+      .catch((error) => {
+        console.error('Ошибка при выполнении POST запроса:', error)
+      })
   }
 
   const addBeat = (id, imgSrc, title, time, bpm, beatTags, price, soundSrc, key) => {
@@ -104,9 +106,14 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
             beatTags.join(',')
           )}&price=${price}&key=${encodeURIComponent(key)}`}
         >
-          <span onClick={() => {
-            window.scrollTo(0, 0);
-          }}className={styles.titleText}>{title}</span>
+          <span
+            onClick={() => {
+              window.scrollTo(0, 0)
+            }}
+            className={styles.titleText}
+          >
+            {title}
+          </span>
         </Link>
       ),
       time: <span className={styles.time}>{time.split(':').slice(-2).join(':')}</span>,
@@ -114,7 +121,9 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       tags: Array.isArray(beatTags)
         ? beatTags.map((tag) => (
             <Button className={styles.tag} key={tag}>
-              <span className={styles.tagText}>{tag}</span>
+              <span className={styles.tagText} style={{ display: 'flex' }}>
+                {tag}
+              </span>
             </Button>
           ))
         : null,
@@ -130,10 +139,10 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               &beatTags=${encodeURIComponent(beatTags.join(','))}
               &price=${price}
               &key=${encodeURIComponent(key)}`
-              )
-            }
-            type="primary"
-          >
+            )
+          }
+          type="primary"
+        >
           <Image preview={false} src="/mainPage/share.png" className={styles.shareImg} />
         </Button>
       ),
@@ -150,7 +159,15 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
         </Button>
       ),
       delete: (
-        <Button type="dashed" ghost danger className={styles.deleteBeatButton} onClick={() => {handleDeleteBeat(title)}}>
+        <Button
+          type="dashed"
+          ghost
+          danger
+          className={styles.deleteBeatButton}
+          onClick={() => {
+            handleDeleteBeat(title)
+          }}
+        >
           <CloseOutlined />
         </Button>
       ),
@@ -184,7 +201,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
-      getUserRights()
+    getUserRights()
   }, [title, bpmCategory, moodCategory, genreCategory, keyCategory, sortByLikes])
 
   return (
@@ -216,140 +233,40 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           ))}
         </tbody>
       </table>
-      {isAdmin 
-      ? <Link to={`/addbeat`}>
-        <Button
-          className={styles.beatSrc}
-          style={{
-            marginTop: '20px',
-            width: '100px',
-            height: '35px',
-          }}
-          shape="round"
-          icon={<PlusOutlined />}
-          size="middle"
-        />
-      </Link>
-      : <></>}
+      {isAdmin ? (
+        <Link to={`/addbeat`}>
+          <Button
+            className={styles.beatSrc}
+            style={{
+              marginTop: '20px',
+              width: '100px',
+              height: '35px',
+            }}
+            shape="round"
+            icon={<PlusOutlined />}
+            size="middle"
+          />
+        </Link>
+      ) : (
+        <></>
+      )}
       <Modal title={shareLink[0]} visible={isShareModalVisible} footer={null} onCancel={handleShareModalClose}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Input value={shareLink[1]} readOnly />
-          <Button icon={<CopyOutlined />} onClick={() => handleCopy(shareLink[1])}>
-            Copy Link
-          </Button>
+          <Button icon={<CopyOutlined />} onClick={() => handleCopy(shareLink[1])} />
         </div>
       </Modal>
-      <div className={`${styles.modalOverlay} ${isCartModalVisible ? styles.active : ''}`}>
-        <div className={`${styles.modal} ${isCartModalVisible ? styles.active : ''}`}>
-          <span className={styles.close} onClick={handleCartModalClose}>
-            &times;
-          </span>
-          <div className={styles.modalContent}>
-            <h2>Choose contract type</h2>
-            {cartBeat && (
-              <div className={styles.cartModalContent}>
-                <div className={styles.cartModalLeft}>
-                  <Image preview={false} src={cartBeat.imgSrc} className={styles.cartModalImage} />
-                  <p className={styles.cartModalTitle}>{cartBeat.title}</p>
-                </div>
-                <div className={styles.cartModalRight}>
-                  <div className={styles.licenseRow}>
-                    <div className={styles.licenseCard}>
-                      <p className={styles.cartModalText}>MP3 Lease: </p>
-                      <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
-                          cartBeat.title
-                        )}&price=34.95&lease=MP3 Lease`}
-                      >
-                        <Button className={styles.modalPriceButton}>
-                          <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
-                          <span className={styles.modalPriceText}>$34.95</span>
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={styles.licenseRow}>
-                    <div className={styles.licenseCard}>
-                      <p className={styles.cartModalText}>WAV Lease: </p>
-                      <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
-                          cartBeat.title
-                        )}&price=49.95&lease=WAV Lease`}
-                      >
-                        <Button className={styles.modalPriceButton}>
-                          <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
-                          <span className={styles.modalPriceText}>$49.95</span>
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={styles.licenseRow}>
-                    <div className={styles.licenseCard}>
-                      <p className={styles.cartModalText}>Unlimited WAV:</p>
-                      <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
-                          cartBeat.title
-                        )}&price=74.95&lease=Unlimited WAV`}
-                      >
-                        <Button className={styles.modalPriceButton}>
-                          <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
-                          <span className={styles.modalPriceText}>$79.95</span>
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={styles.licenseRow}>
-                    <div className={styles.licenseCard}>
-                      <p className={styles.cartModalText}>Trackout Lease:</p>
-                      <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
-                          cartBeat.title
-                        )}&price=99.95&lease=Trackout Lease`}
-                      >
-                        <Button className={styles.modalPriceButton}>
-                          <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
-                          <span className={styles.modalPriceText}>$99.95</span>
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={styles.licenseRow}>
-                    <div className={styles.licenseCard}>
-                      <p className={styles.cartModalText}>Unlimited Trackout:</p>
-                      <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
-                          cartBeat.title
-                        )}&price=149.95&lease=Unlimited Trackout`}
-                      >
-                        <Button className={styles.modalPriceButton}>
-                          <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
-                          <span className={styles.modalPriceText}>$149.95</span>
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={styles.licenseRow}>
-                    <div className={styles.licenseCard}>
-                      <p className={styles.cartModalText}>Exclusive Rights:</p>
-                      <Link
-                        to={`/cart?imgSrc=${encodeURIComponent(cartBeat.imgSrc)}&title=${encodeURIComponent(
-                          cartBeat.title
-                        )}&price=1000.00&lease=Exclusive Rights`}
-                      >
-                        <Button className={styles.modalPriceButton}>
-                          <Image className={styles.modalPriceImg} src="/mainPage/cart.png" preview={false} />
-                          <span className={styles.modalPriceText}>$1000.00</span>
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      {handlePlaySound && currentBeat && (
+      {cartBeat && (
+        <PriceModal
+          visible={isCartModalVisible}
+          onCancel={handleCartModalClose}
+          title={cartBeat.title}
+          imgSrc={cartBeat.imgSrc}
+          price={cartBeat.price}
+          soundSrc={cartBeat.soundSrc}
+        />
+      )}
+      {currentBeat && handlePlaySound && (
         <Player
           imgSrc={currentBeat.imgSrc}
           title={currentBeat.title}
