@@ -80,44 +80,128 @@ const AllBeats = () => {
                 label: 'All Keys',
               },
               {
-                value: 'D Minor',
-                label: 'D Minor',
+                value: 'A-Flat Minor',
+                label: 'A-Flat Minor',
+              },
+              {
+                value: 'A-Flat Major',
+                label: 'A-Flat Major',
+              },
+              {
+                value: 'A Minor',
+                label: 'A Minor',
+              },
+              {
+                value: 'A Major',
+                label: 'A Major',
+              },
+              {
+                value: 'A-Sharp Minor',
+                label: 'A-Sharp Minor',
+              },
+              {
+                value: 'A-Sharp Major',
+                label: 'A-Sharp Major',
+              },
+              {
+                value: 'B-Flat Minor',
+                label: 'B-Flat Minor',
+              },
+              {
+                value: 'B-Flat Major',
+                label: 'B-Flat Major',
               },
               {
                 value: 'B Minor',
                 label: 'B Minor',
               },
               {
-                value: 'C Sharp Minor',
-                label: 'C Sharp Minor',
-              },
-              {
-                value: 'G Minor',
-                label: 'G Minor',
-              },
-              {
                 value: 'B Major',
                 label: 'B Major',
               },
               {
-                value: 'A Sharp Minor',
-                label: 'A Sharp Minor',
+                value: 'C-Flat Major',
+                label: 'C-Flat Major',
+              },
+              {
+                value: 'C Minor',
+                label: 'C Minor',
+              },
+              {
+                value: 'C Major',
+                label: 'C Major',
+              },
+              {
+                value: 'C-Sharp Minor',
+                label: 'C-Sharp Minor',
+              },
+              {
+                value: 'C-Sharp Major',
+                label: 'C-Sharp Major',
+              },
+              {
+                value: 'D-Flat Major',
+                label: 'D-Flat Major',
+              },
+              {
+                value: 'D Minor',
+                label: 'D Minor',
+              },
+              {
+                value: 'D Major',
+                label: 'D Major',
+              },
+              {
+                value: 'D-Sharp Minor',
+                label: 'D-Sharp Minor',
               },
               {
                 value: 'E-Flat Minor',
                 label: 'E-Flat Minor',
               },
               {
+                value: 'E-Flat Major',
+                label: 'E-Flat Major',
+              },
+              {
+                value: 'E Minor',
+                label: 'E Minor',
+              },
+              {
+                value: 'E Major',
+                label: 'E Major',
+              },
+              {
                 value: 'F Minor',
                 label: 'F Minor',
               },
               {
-                value: 'A-Flat Minor',
-                label: 'A-Flat Minor',
+                value: 'F Major',
+                label: 'F Major',
               },
               {
-                value: 'F Sharp Minor',
-                label: 'F Sharp Minor',
+                value: 'F-Sharp Minor',
+                label: 'F-Sharp Minor',
+              },
+              {
+                value: 'F-Sharp Major',
+                label: 'F-Sharp Major',
+              },
+              {
+                value: 'G-Flat Major',
+                label: 'G-Flat Minor',
+              },
+              {
+                value: 'G Minor',
+                label: 'G Minor',
+              },
+              {
+                value: 'G Major',
+                label: 'G Major',
+              },
+              {
+                value: 'G-Sharp Minor',
+                label: 'G-Sharp Minor',
               },
             ]}
           />

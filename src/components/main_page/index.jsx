@@ -1,6 +1,7 @@
-import { Button, Image, Modal, Typography, message } from 'antd'
+import { Image, Modal, message } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Searcher from '../Searcher'
 import BeatsTable from '../beatsTable/index'
 import Footer from '../footer/index'
 import Header from '../header/index'
@@ -11,7 +12,6 @@ import UnlimitedTrackoutLicense from './license_cards_content/unlimitedtrackout'
 import UnlimitedWavLicense from './license_cards_content/unlimitedwav'
 import WavLicense from './license_cards_content/wavlease'
 import styles from './style.module.css'
-import Searcher from '../Searcher'
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -50,38 +50,39 @@ const Main = () => {
       title: sendTitle.current.value,
       name: sendName.current.value,
       message: messageRef.current.value,
-    };
+    }
 
-    if (sendMail.current.value !== ''
-      && sendTitle.current.value !== ''
-      && sendName.current.value !== ''
-      && messageRef.current.value !== ''
+    if (
+      sendMail.current.value !== '' &&
+      sendTitle.current.value !== '' &&
+      sendName.current.value !== '' &&
+      messageRef.current.value !== ''
     ) {
-    fetch('http://database/sendEmail.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailData),
-    })
-    .then(response => response.json())
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+      fetch('http://database/sendEmail.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      })
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error('Error:', error)
+        })
     }
     message.success('You sent an email')
     sendMail.current.value = ''
     sendTitle.current.value = ''
     sendName.current.value = ''
     messageRef.current.value = ''
- }
+  }
 
   return (
     <div className={styles.main}>
-      <Header/>
+      <Header />
       <div className={styles.empty}></div>
-      <Searcher/>
-      <div className={styles.featuredBeat}>
+      <Searcher />
+      {/* <div className={styles.featuredBeat}>
         <div className={styles.beatHeat}>
           <Image className={styles.beatHeatLogo} src="/mainPage/previewBeatLogo.jpg" preview={false} />
           <div className={styles.beatInfo}>
@@ -101,7 +102,7 @@ const Main = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className={styles.eq}>
         <Image className={styles.test} preview={false} src="/mainPage/eq.png"></Image>
       </div>
