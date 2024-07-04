@@ -3,9 +3,9 @@ import { Button, Image, Input, Modal, Upload, message } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import EditableTagGroup from '../EditableTags/index'
 import Player from '../Player'
 import styles from './style.module.css'
+import Cookies from 'js-cookie'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
@@ -15,6 +15,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const query = useQuery()
   const [isShareModalVisible, setIsShareModalVisible] = useState(false)
   const [isCartModalVisible, setIsCartModalVisible] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [shareLink, setShareLink] = useState(['', ''])
   const [currentBeat, setCurrentBeat] = useState(null)
   const [cartBeat, setCartBeat] = useState(null)
@@ -25,6 +26,17 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
   const showShareModal = (beat, link) => {
     setShareLink([beat, link])
     setIsShareModalVisible(true)
+  }
+
+  const getUserRights = () => {
+    // axios.post('http://database/takeUsersRights', {User: Cookies.get('current_login')})
+    // .then(response => {
+    //   console.log('Успешный ответ от сервера:', response.data);
+    // })
+    // .catch(error => {
+    //   console.error('Ошибка при выполнении POST запроса:', error);
+    // });
+    Cookies.get('current_login') === 'admin' ? setIsAdmin(true) : setIsAdmin(false)
   }
 
   const showCartModal = (beat) => {
@@ -65,11 +77,11 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
     axios.post('http://database/Database/delete_beat', {'title': title})
     .then(response => {
       console.log('Успешный ответ от сервера:', response.data);
+      window.location.reload()
     })
     .catch(error => {
       console.error('Ошибка при выполнении POST запроса:', error);
     });
-    window.location.reload()
   }
 
   const addBeat = (id, imgSrc, title, time, bpm, beatTags, price, soundSrc, key) => {
@@ -134,7 +146,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
           }}
         >
           <Image className={styles.priceImg} src="/mainPage/cart.png" preview={false} />
-          <span className={styles.priceText}>${price}</span>
+          <span className={styles.priceText}>$34.95</span>
         </Button>
       ),
       delete: (
@@ -172,6 +184,7 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
       .catch((error) => {
         console.error('There was a problem with your request:', error)
       })
+      getUserRights()
   }, [title, bpmCategory, moodCategory, genreCategory, keyCategory, sortByLikes])
 
   return (
@@ -198,26 +211,26 @@ const BeatsTable = ({ bpmCategory = '', moodCategory = '', genreCategory = '', k
               <td className={styles.tagsTableCol}>{row.tags}</td>
               <td className={styles.linkTableCol}>{row.link}</td>
               <td className={styles.priceTableCol}>{row.price}</td>
-              <td className={styles.deleteBeatButtonContainer}>{row.delete}</td>
+              {isAdmin ? <td className={styles.deleteBeatButtonContainer}>{row.delete}</td> : <></>}
             </tr>
           ))}
         </tbody>
       </table>
-        <Link
-              to={`/addbeat`}
-            >
-            <Button
-              className={styles.beatSrc}
-              style={{
-                marginTop: '20px',
-                width: '100px',
-                height: '35px',
-              }}
-              shape="round"
-              icon={<PlusOutlined />}
-              size="middle"
-            />
-          </Link>
+      {isAdmin 
+      ? <Link to={`/addbeat`}>
+        <Button
+          className={styles.beatSrc}
+          style={{
+            marginTop: '20px',
+            width: '100px',
+            height: '35px',
+          }}
+          shape="round"
+          icon={<PlusOutlined />}
+          size="middle"
+        />
+      </Link>
+      : <></>}
       <Modal title={shareLink[0]} visible={isShareModalVisible} footer={null} onCancel={handleShareModalClose}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Input value={shareLink[1]} readOnly />

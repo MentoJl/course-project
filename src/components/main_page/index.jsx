@@ -280,18 +280,6 @@ const Main = () => {
       <Modal title="" width="1000px" visible={isModalOpen} footer={null} onCancel={closeModal}>
         {modalContent}
       </Modal>
-
-      {/* {isModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <span className={styles.close} onClick={closeModal}>
-              &times;
-            </span>
-            <h2>License Preview</h2>
-            <p>{modalContent}</p>
-          </div>
-        </div>
-      )} */}
     </div>
   )
 }

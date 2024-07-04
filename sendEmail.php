@@ -23,10 +23,6 @@ header('Content-Type: application/json');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if ($data['email']) {
-
-    }
-
     if (!isset($data['email']) || !isset($data['title']) || !isset($data['name']) || !isset($data['message'])) {
         http_response_code(400);
         echo json_encode(['message' => 'Invalid input']);

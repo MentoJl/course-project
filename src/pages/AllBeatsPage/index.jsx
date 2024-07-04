@@ -6,7 +6,6 @@ import BeatsTable from '../../components/beatsTable/index'
 import Footer from '../../components/footer/index'
 import Header from '../../components/header/index'
 import styles from './style.module.css'
-import axios from 'axios'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search)
