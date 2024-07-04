@@ -281,15 +281,15 @@ const AllBeats = () => {
             onChange={(value) => setLike(value)}
             options={[
               {
-                value: 'Sort By',
+                value: 'All',
                 label: 'Sort By',
               },
               {
-                value: 'Sort Ascending',
+                value: 'ASC',
                 label: 'Sort Ascending',
               },
               {
-                value: 'Sort Descending',
+                value: 'DESC',
                 label: 'Sort Descending',
               },
             ]}

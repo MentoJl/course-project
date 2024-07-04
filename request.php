@@ -15,7 +15,7 @@ $app = AppFactory::create();
 $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-function sortBy($link, $bmp, $mood, $genre, $title, $key){
+function sortBy($link, $bmp, $mood, $genre, $title, $key, $sort){
     $sql = "SELECT * FROM base_information";
     $titles = explode(",", $title);
 
@@ -42,6 +42,9 @@ function sortBy($link, $bmp, $mood, $genre, $title, $key){
     }
     if (!empty($title)) { #change order
         $sql .= " ORDER BY FIELD(title, '" . implode("','", $titles) . "')";
+    } else if (!empty($sort)){
+        if($sort == "ASC") $sql .= " ORDER BY likes ASC";
+        else if($sort == "DESC") $sql .= " ORDER BY likes DESC";
     }
 
     $result = mysqli_query($link, $sql);
@@ -143,8 +146,9 @@ $app->get('/database', function (Request $request, Response $response, array $ar
     $genre = isset($queryParams['genre']) ? $queryParams['genre'] : "";
     $title = isset($queryParams['title']) ? $queryParams['title'] : "";
     $key = isset($queryParams['key']) ? $queryParams['key'] : "";
+    $sort = isset($queryParams['sort']) ? $queryParams['sort'] : "";
 
-    $sorted_data = sortBy($link, $bpm, $mood, $genre, $title, $key);
+    $sorted_data = sortBy($link, $bpm, $mood, $genre, $title, $key, $sort);
 
     $response->getBody()->write(json_encode($sorted_data));
     return $response->withHeader('Content-Type', 'application/json');

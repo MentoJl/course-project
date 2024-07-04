@@ -190,11 +190,12 @@ const BeatsTable = ({
     setBeatList([])
     axios
       .get(
-        `http://database/database?title=${title}&bpm=${bpmCategory}&mood=${moodCategory}&genre=${genreCategory}&key=${keyCategory}`
+        `http://database/database?title=${title}&bpm=${bpmCategory}&mood=${moodCategory}&genre=${genreCategory}&key=${keyCategory}&sort=${sortByLikes}`
       )
       .then((response) => {
         response.data.map((data) => {
           const tagsArray = JSON.parse(data.tags)
+          console.log("ADWDQAWD", sortByLikes)
           addBeat(data.id, data.img, data.title, data.time, data.bpm, tagsArray, data.price, data.soundSrc, data.key)
         })
       })
