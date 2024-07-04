@@ -78,9 +78,9 @@ function add_beat($data, $conn){
     }
     
     $sql = "INSERT INTO `base_information` 
-            (`id`, `img`, `title`, `time`, `bpm`, `tags`, `key`, `mood`, `genre`, `soundSrc`) 
+            (`id`, `img`, `title`, `time`, `bpm`, `tags`, `key`, `price`, `mood`, `genre`, `soundSrc`) 
             VALUES 
-            ('', '$img', '$title', '$time', '$bpm', '$tags', '$key', '$mood', '$genre', '$soundSrc')";
+            ('', '$img', '$title', '$time', '$bpm', '$tags', '$key', '39.95', '$mood', '$genre', '$soundSrc')";
     
     if (mysqli_query($conn, $sql)) {
         return true;
