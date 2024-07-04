@@ -35,8 +35,6 @@ const CartPage = () => {
       if (!itemExists) {
         setCartItems((prevItems) => [...prevItems, newItem])
       }
-
-      // setCartItems((prevItems) => [...prevItems, newItem])
     }
   }, [imgSrc, title, lease, price])
 
