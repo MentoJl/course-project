@@ -256,7 +256,7 @@ function updateLikes(){
 //     $response->getBody()->write($sortedBeatNames);
 //     return $response->withHeader('Content-Type', 'application/json');
 // });
-$app->post('/takeUsersRights', function (Request $request, Response $response, $args) {
+$app->get('/takeUsersRights', function (Request $request, Response $response, $args) {
     $data = json_decode(file_get_contents('php://input'), true);
     $link = mysqli_connect("localhost", "root", "", "INFO");
 
