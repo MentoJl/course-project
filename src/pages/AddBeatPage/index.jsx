@@ -78,7 +78,9 @@ const AddBeatPage = () => {
     axios
       .post('http://database/Database/add_beat', Data)
       .then((response) => {
+        
         console.log('Успешный ответ от сервера:', response.data)
+        window.location.reload()
       })
       .catch((error) => {
         console.error('Ошибка при выполнении POST запроса:', error)
@@ -318,7 +320,7 @@ const AddBeatPage = () => {
                 <EditableTagGroup tags={newTags} setTags={setNewTags} className={styles.inputField} />
               </div>
             </div>
-            <Button type="default" style={{ top: '15px', width: '100px', height: '35px' }} onClick={handleAddBeat}>
+            <Button type="" style={{ top: '15px', width: '100px', height: '35px' }} onClick={handleAddBeat}>
               Done
             </Button>
           </div>

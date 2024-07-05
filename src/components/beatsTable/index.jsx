@@ -36,6 +36,13 @@ const BeatsTable = ({
   }
 
   const getUserRights = () => {
+    axios.post('http://database/takeUsersRights', {User: Cookies.get('current_login')})
+    .then(response => {
+      console.log('Успешный ответ от сервера:', response.data);
+    })
+    .catch(error => {
+      console.error('Ошибка при выполнении POST запроса:', error);
+    });
     Cookies.get('current_login') === 'admin' ? setIsAdmin(true) : setIsAdmin(false)
   }
 
